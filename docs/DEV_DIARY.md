@@ -33,7 +33,7 @@ I actually work.
 
 ---
 
-## 2026-08-25 — Project kickoff and scaffolding
+## Project kickoff and scaffolding
 
 **What I worked on:** Set up the project skeleton — decided on stack,
 scaffolded the app, defined the folder structure and the plan for the
@@ -98,7 +98,7 @@ architecture decision to document there.
 
 ---
 
-## 2026-09-02 — Page inventory and primitive proposal
+## Page inventory and primitive proposal
 
 **What I worked on:** Reviewed the current poletto.dev homepage and the
 Start Here, Blog, Topics, About, Newsletter, Contact, and article routes to
@@ -129,7 +129,7 @@ scaffold the approved primitives and add a focused typecheck/lint check.
 Decide later whether article prose, form submission, or visual variants have
 earned additional abstractions.
 
-## 2026-09-09 — First component primitives
+## First component primitives
 
 **What I worked on:** Scaffolded the first reusable components for the live
 site's shared layout and editorial content patterns.
@@ -165,7 +165,7 @@ typography, article prose, button variants, or form state deserve separate
 abstractions. Add tests after the first meaningful behavior exists, as planned
 in the kickoff entry.
 
-## 2026-09-09 — First live-content homepage
+## First live-content homepage
 
 **What I worked on:** Replaced the default Next.js starter page with the first
 real homepage composition using content from the current poletto.dev.
@@ -197,7 +197,7 @@ typography/prose layer before building the article route. Add interaction
 tests once newsletter submission and navigation behavior are wired to real
 routes.
 
-## 2026-09-09 — First article route
+## First article route
 
 **What I worked on:** Built the route for the current featured article,
 `/blog/engineering-strategy-is-mostly-saying-no`.
@@ -225,7 +225,7 @@ needs are visible.
 decide whether the next content milestone should extract this article into
 MDX or first build the Blog archive using the same local article data shape.
 
-## 2026-09-09 — Shared content model and Blog archive
+## Shared content model and Blog archive
 
 **What I worked on:** Used the original `polettoweb/leadingbytes` repository
 as the source of truth for published article metadata and built the first Blog
@@ -256,7 +256,7 @@ articles into `src/content` next, or build the Start Here page from the shared
 metadata first. The source repo's topic relationships are now available to
 inform that decision.
 
-## 2026-09-09 — Start Here reading path
+## Start Here reading path
 
 **What I worked on:** Built the `/start-here` route as a curated entry point
 for new readers.
@@ -281,7 +281,7 @@ is navigable today and avoids creating links to pages that do not exist yet.
 content and establish the content loader, or build the Topics route first if
 the content relationships are the more valuable next architectural test.
 
-## 2026-09-09 — Topics and explicit article relationships
+## Topics and explicit article relationships
 
 **What I worked on:** Built the `/topics` route from the shared article
 metadata and the topic structure found in the original `leadingbytes` repo.
@@ -308,7 +308,7 @@ bodies and decide how their frontmatter maps to this metadata module. Once
 that is in place, replace the temporary static article proof point with the
 real content pipeline.
 
-## 2026-09-09 — First MDX content proof
+## First MDX content proof
 
 **What I worked on:** Added the Next.js MDX toolchain and moved the featured
 article body into a local MDX file.
@@ -339,7 +339,7 @@ article bodies, then decide whether frontmatter should become the canonical
 metadata source or remain a generated/indexed layer over the typed content
 module. Add MDX component overrides only when real article content needs them.
 
-## 2026-09-09 — About page from verified source content
+## About page from verified source content
 
 **What I worked on:** Built the `/about` route using the career narrative,
 current role, leadership philosophy, experience, and contact details from the
@@ -367,7 +367,7 @@ then return to the verified MDX migration with a clear source acquisition path
 for the remaining articles. Add structured metadata and tests after the core
 page surfaces are represented.
 
-## 2026-09-09 — Newsletter page and signup reuse
+## Newsletter page and signup reuse
 
 **What I worked on:** Built the dedicated `/newsletter` route from the source
 site's Leading Bytes positioning and issue themes.
@@ -391,7 +391,7 @@ filtering, so a separate model would add maintenance without user value.
 metadata and tests around the shared form and content lookup once the core
 routes are complete.
 
-## 2026-09-09 — Direct contact page
+## Direct contact page
 
 **What I worked on:** Built the `/contact` route from the source site's
 contact content and professional links.
@@ -417,7 +417,7 @@ for content lookup and newsletter form semantics. Then return to the remaining
 source article bodies and dynamic article routing when complete source files
 are available for verification.
 
-## 2026-09-09 — Dynamic article routing and verified content boundary
+## Dynamic article routing and verified content boundary
 
 **What I worked on:** Replaced the one-off featured article route with a
 dynamic `/blog/[slug]` route and added structured Article metadata.
@@ -446,7 +446,7 @@ bodies, then add them to the MDX registry one at a time. After the content
 surface is stable, add focused tests for article lookup, 404 behavior, and
 newsletter form semantics.
 
-## 2026-09-09 — RSS route for verified articles
+## RSS route for verified articles
 
 **What I worked on:** Implemented the `/rss.xml` route already linked from the
 site footer and Newsletter page.
@@ -472,7 +472,7 @@ the MDX registry, then expand the RSS feed automatically as each article moves
 out of Coming soon. Add focused tests once the test-runner sequencing decision
 is made.
 
-## 2026-09-09 — Sitemap for the public route surface
+## Sitemap for the public route surface
 
 **What I worked on:** Added a native Next.js sitemap for the rebuilt public
 pages and verified article routes.
@@ -496,7 +496,7 @@ the framework owns the serialization, and the source stays easy to inspect.
 routes, content lookup, RSS, and sitemap exist. Then add focused tests for
 content availability, 404 behavior, and feed/discovery boundaries.
 
-## 2026-09-09 — Vitest as the first test layer
+## Vitest as the first test layer
 
 **What I worked on:** Added the first automated test runner and tests for the
 content model.
@@ -524,7 +524,7 @@ boundaries, then add Playwright for a small set of critical navigation and
 form journeys once the content surface is stable. Review the npm audit output
 separately rather than mixing dependency remediation into test setup.
 
-## 2026-09-09 — Test the publishing boundary
+## Test the publishing boundary
 
 **What I worked on:** Hardened the verified-content rule shared by the RSS
 feed and sitemap.
@@ -549,7 +549,7 @@ later Playwright or route-integration slice.
 extend the same tests as each article becomes publishable. Choose the smallest
 browser-test slice after the remaining content route decisions settle.
 
-## 2026-09-09 — First Playwright route smoke tests
+## First Playwright route smoke tests
 
 **What I worked on:** Added the first browser-level test layer for the rebuilt
 site.
@@ -577,7 +577,7 @@ that risk worth its cost.
 sitemap responses, then migrate the remaining verified article bodies and
 expand route coverage as content becomes available.
 
-## 2026-09-09 — Expand browser contracts
+## Expand browser contracts
 
 **What I worked on:** Extended the Playwright suite beyond route reachability
 to cover the site's conversion and discovery surfaces.
@@ -600,7 +600,7 @@ route boundary without turning every page detail into an end-to-end test.
 then add mobile browser coverage if the responsive routes develop distinct
 behavior rather than merely different layout.
 
-## 2026-09-09 — CI for the proven validation path
+## CI for the proven validation path
 
 **What I worked on:** Added the first GitHub Actions workflow for pull-request
 and main-branch validation.
@@ -626,7 +626,7 @@ or browser-specific behavior.
 consider splitting CI jobs only when runtime or ownership makes parallelism
 valuable. Add a deployment workflow only after the hosting target is decided.
 
-## 2026-09-09 — Site identity metadata and SEO contracts
+## Site identity metadata and SEO contracts
 
 **What I worked on:** Added root-level canonical metadata and structured site
 identity information.
@@ -652,7 +652,7 @@ decide whether their metadata should move from the typed module into
 frontmatter. Add preview images when there is a deliberate visual identity to
 encode.
 
-## 2026-09-09 — Single source of truth for the content boundary
+## Single source of truth for the content boundary
 
 **What I worked on:** Reviewed whether another article body could be
 verified and migrated, then closed a structural gap in how the site decides
@@ -707,7 +707,7 @@ deliberately deferred: `SiteHeader` has no distinct mobile interaction (no
 menu toggle), so at present it would only be testing layout, which the
 project's own criterion for adding that coverage says not to do yet.
 
-## 2026-09-09 — Static export, ready for Cloudflare Pages
+## Static export, ready for Cloudflare Pages
 
 **What I worked on:** Resolved the last open architecture question
 (hosting/deploy target) and made the app deployable. Also stepped back to
@@ -759,7 +759,7 @@ output directory `out`. After that's live: migrate the remaining verified
 article bodies (source repo fetch is still failing outright, see prior entry),
 then write the case-study post the whole diary exists to support.
 
-## 2026-09-09 — Design pass: sepia dark mode
+## Design pass: sepia dark mode
 
 **What I worked on:** A design review of the existing visual system, then
 added dark-mode support with a manual toggle.
@@ -806,10 +806,50 @@ primitives don't cover. The next priorities from the last entry are
 unchanged: get Cloudflare Pages connected, then the remaining article
 bodies, then the case-study post.
 
+## Public-repo readiness: contact email and commit history
+
+**What I worked on:** A pre-publish check before making the repo public and
+pushing it to GitHub for the first time.
+
+**What the agent did:** Audited the working tree and git history for
+secrets before answering "is this safe to make public" — no `.env` files,
+no keys/tokens in source or CI, no credentials ever committed. That check
+did surface something real: `git log` showed the project's very first
+commit was authored with the personal address behind this account, not a
+public-facing one, and every commit since used a different personal Gmail
+address as the git author email — neither was the domain email meant to be
+the public identity here. Replaced the public-facing contact address
+(`polettoweb@gmail.com`, used on the About and Contact pages) with
+`marco@poletto.dev` in both places, removed the `YYYY-MM-DD` prefix from
+every dev-diary entry heading and the entry template per request, then
+rewrote every commit's author and committer email to `marco@poletto.dev`
+with `git filter-branch --env-filter` before the first push, since history
+rewrites are only free of consequence before anyone else has a copy of the
+branch.
+
+**What I changed or overrode, and why:** Did not change local git config
+(`user.email`) — that's an explicit standing rule regardless of the
+request, separate from rewriting the commits themselves. Future commits
+will keep using whatever the local git config is set to; the user updates
+that themselves if they want it to match going forward.
+
+**Trade-offs / decisions made:** Rewrote history rather than adding a
+`.mailmap` (which only relabels author identity in `git log` output, not in
+what's actually stored in each commit object and served to anyone who
+clones or views the commit) because this repo had no remote yet — a history
+rewrite has no cost when nothing has been shared. That window closes the
+moment this is pushed; any future correction after this point would need a
+force-push and coordination instead of a clean rewrite.
+
+**Open questions / next steps:** Next: push this rewritten history to the
+(currently empty) public remote at `github.com/polettoweb/poletto-dev-rebuild`
+as the first public commit history. Cloudflare Pages, remaining article
+bodies, and the case-study post remain the open priorities after that.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
-## YYYY-MM-DD — <short title>
+## <short title>
 
 **What I worked on:**
 

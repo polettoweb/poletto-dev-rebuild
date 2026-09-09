@@ -42,10 +42,10 @@ export default function ContactPage() {
                 I read everything and reply as soon as I can.
               </p>
               <a
-                href="mailto:polettoweb@gmail.com"
+                href="mailto:marco@poletto.dev"
                 className="mt-8 inline-block text-2xl font-semibold underline underline-offset-4 sm:text-3xl"
               >
-                polettoweb@gmail.com
+                marco@poletto.dev
               </a>
             </section>
 

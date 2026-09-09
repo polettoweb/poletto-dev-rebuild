@@ -106,7 +106,7 @@ export default function AboutPage() {
               Read the articles, disagree with them, share them with your team -
               this space is better as a conversation than a monologue. You can
               reach me at{" "}
-              <a href="mailto:polettoweb@gmail.com">polettoweb@gmail.com</a> or find
+              <a href="mailto:marco@poletto.dev">marco@poletto.dev</a> or find
               me on{" "}
               <a href="https://www.linkedin.com/in/marco-poletto-96853774/">
                 LinkedIn
