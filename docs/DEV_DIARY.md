@@ -165,6 +165,38 @@ typography, article prose, button variants, or form state deserve separate
 abstractions. Add tests after the first meaningful behavior exists, as planned
 in the kickoff entry.
 
+## 2026-09-09 — First live-content homepage
+
+**What I worked on:** Replaced the default Next.js starter page with the first
+real homepage composition using content from the current poletto.dev.
+
+**What the agent did:** Composed the existing layout and UI primitives into a
+homepage with Marco's introduction, the four current topic links, the latest
+four article titles and metadata, the newsletter signup, and the shared footer.
+It also established the initial color tokens, link treatments, responsive
+spacing, and site metadata. Lint, TypeScript validation, and a production
+build all passed.
+
+**What I changed or overrode, and why:** Chose to use the live site's actual
+copy and article data immediately, stored as typed local arrays in the route.
+This makes the page meaningful for visual and accessibility decisions now,
+while keeping the data shape easy to move into MDX later. I did not add a
+generic hero, section, button, or card abstraction just to make the page look
+more systematic; the existing primitives were sufficient for this route.
+
+**Trade-offs / decisions made:** Used the Buttondown embed endpoint as the
+newsletter form action because the live site identifies Buttondown as its
+provider, while keeping the action configurable on `NewsletterSignup`. The
+homepage uses the live article dates and URLs but does not yet fetch remote
+content, avoiding a runtime dependency before the MDX content decision is
+implemented.
+
+**Open questions / next steps:** Review the first rendered page at desktop and
+mobile widths, then decide whether the visual system needs a dedicated
+typography/prose layer before building the article route. Add interaction
+tests once newsletter submission and navigation behavior are wired to real
+routes.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
