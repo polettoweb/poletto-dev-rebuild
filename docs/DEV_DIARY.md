@@ -256,6 +256,31 @@ articles into `src/content` next, or build the Start Here page from the shared
 metadata first. The source repo's topic relationships are now available to
 inform that decision.
 
+## 2026-09-09 — Start Here reading path
+
+**What I worked on:** Built the `/start-here` route as a curated entry point
+for new readers.
+
+**What the agent did:** Added three reading paths, connected them to the
+shared article metadata, reused the existing layout and newsletter primitives,
+and verified the route in the browser and with lint, TypeScript, and a
+production build.
+
+**What I changed or overrode, and why:** Chose to build this route before
+importing the original Markdown bodies into MDX. The route tests whether the
+metadata model can support editorial relationships and curated navigation;
+it does, without requiring a content loader or article-body transformation.
+This is useful evidence before choosing the MDX integration details.
+
+**Trade-offs / decisions made:** The first reading path uses the currently
+available published metadata in this rebuild rather than reproducing every
+historical path from the source repo. That keeps the route honest about what
+is navigable today and avoids creating links to pages that do not exist yet.
+
+**Open questions / next steps:** Import the original article Markdown/MDX
+content and establish the content loader, or build the Topics route first if
+the content relationships are the more valuable next architectural test.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
