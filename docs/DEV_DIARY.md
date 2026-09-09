@@ -1012,6 +1012,25 @@ may target a different/new Worker instead of the one already connected to
 this git integration - worth confirming the deployed URL actually updates
 before treating this as resolved.
 
+## Live
+
+**What I worked on:** Nothing to build - just closing the loop on the
+standing "get Cloudflare Pages connected" item that's been in every recent
+entry's next-steps.
+
+**What happened:** The `wrangler.jsonc` static-assets fix deployed clean,
+and the user pointed the Worker's custom domain at `poletto.dev`. DNS is
+propagating (up to ~24h on this setup, per the earlier Namecheap-custom-DNS
+check). The rebuild has a real, live URL for the first time.
+
+**Open questions / next steps:** Once DNS has actually flipped, worth
+confirming end to end rather than assuming the local `wrangler dev` checks
+generalize: the real trailing-slash redirect behavior on the actual domain,
+the RSS content-type header over the real path, and that the old site
+isn't still being served from a cached edge somewhere. Standing items otherwise unchanged: the remaining three article bodies
+(still blocked on finding a verifiable source - see the earlier "Single
+source of truth" entry) and the deferred Vitest 5 upgrade from `npm audit`.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
