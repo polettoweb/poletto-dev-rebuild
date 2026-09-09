@@ -59,3 +59,7 @@ export const latestArticles = articles.filter(
 export function getArticleBySlug(slug: string) {
   return articles.find((article) => article.slug === slug);
 }
+
+export function getPublishedArticles() {
+  return articles.filter((article) => article.hasContent);
+}

@@ -524,6 +524,31 @@ boundaries, then add Playwright for a small set of critical navigation and
 form journeys once the content surface is stable. Review the npm audit output
 separately rather than mixing dependency remediation into test setup.
 
+## 2026-09-09 — Test the publishing boundary
+
+**What I worked on:** Hardened the verified-content rule shared by the RSS
+feed and sitemap.
+
+**What the agent did:** Extracted `getPublishedArticles()` into the shared
+article module, updated RSS and sitemap generation to use it, and added a
+Vitest test proving that only articles with verified local bodies enter
+published discovery surfaces. The suite now passes 3 files and 4 tests.
+
+**What I changed or overrode, and why:** Chose to test the content boundary as
+a pure function rather than testing serialized XML and sitemap output first.
+The important decision is which articles are publishable; keeping that rule
+centralized prevents RSS and SEO discovery from drifting as migration work
+continues.
+
+**Trade-offs / decisions made:** Left route serialization thin and did not add
+an integration-test harness yet. The current risk is content status logic,
+which Vitest covers quickly; browser-level feed and sitemap checks remain a
+later Playwright or route-integration slice.
+
+**Open questions / next steps:** Add verified MDX bodies one at a time and
+extend the same tests as each article becomes publishable. Choose the smallest
+browser-test slice after the remaining content route decisions settle.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

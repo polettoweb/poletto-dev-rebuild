@@ -1,4 +1,4 @@
-import { articles } from "@/content/articles";
+import { getPublishedArticles } from "@/content/articles";
 
 const siteUrl = "https://poletto.dev";
 
@@ -12,8 +12,7 @@ function escapeXml(value: string) {
 }
 
 export function GET() {
-  const items = articles
-    .filter((article) => article.hasContent)
+  const items = getPublishedArticles()
     .map(
       (article) => `
     <item>

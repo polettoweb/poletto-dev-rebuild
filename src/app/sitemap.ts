@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { articles } from "@/content/articles";
+import { getPublishedArticles } from "@/content/articles";
 
 const siteUrl = "https://poletto.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/about", "/blog", "/contact", "/newsletter", "/start-here", "/topics"];
-  const articlePages = articles
-    .filter((article) => article.hasContent)
+  const articlePages = getPublishedArticles()
     .map((article) => `/blog/${article.slug}`);
 
   return [...pages, ...articlePages].map((path) => ({
