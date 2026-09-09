@@ -549,6 +549,34 @@ later Playwright or route-integration slice.
 extend the same tests as each article becomes publishable. Choose the smallest
 browser-test slice after the remaining content route decisions settle.
 
+## 2026-09-09 — First Playwright route smoke tests
+
+**What I worked on:** Added the first browser-level test layer for the rebuilt
+site.
+
+**What the agent did:** Installed `@playwright/test` and Chromium, added an
+isolated Playwright configuration, and wrote three smoke tests covering
+homepage-to-Blog navigation, verified article rendering with JSON-LD, and the
+404 contract for an article whose body is not yet migrated. All three passed
+against the production server.
+
+**What I changed or overrode, and why:** Started with route contracts rather
+than visual snapshots or exhaustive page coverage. The highest-risk browser
+behavior is currently whether navigation, verified content, and honest 404s
+work together; pixel-level tests would add maintenance before the visual
+system is stable. The dev-server lock also blocked the first harness attempt,
+so I changed Playwright to launch `next start` on port 3100 against the
+validated production build instead of fighting the existing dev process.
+
+**Trade-offs / decisions made:** Kept the suite Chromium-only and used
+accessible roles and text rather than CSS selectors. Mobile and cross-browser
+coverage can be added when the route surface or interaction complexity makes
+that risk worth its cost.
+
+**Open questions / next steps:** Add tests for the newsletter form and RSS /
+sitemap responses, then migrate the remaining verified article bodies and
+expand route coverage as content becomes available.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
