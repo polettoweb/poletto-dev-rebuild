@@ -367,6 +367,30 @@ then return to the verified MDX migration with a clear source acquisition path
 for the remaining articles. Add structured metadata and tests after the core
 page surfaces are represented.
 
+## 2026-09-09 — Newsletter page and signup reuse
+
+**What I worked on:** Built the dedicated `/newsletter` route from the source
+site's Leading Bytes positioning and issue themes.
+
+**What the agent did:** Added page metadata, the newsletter promise, four issue
+themes, the author quote, the Buttondown signup, and an RSS fallback. It reused
+the existing `NewsletterSignup` primitive and verified the route with lint,
+TypeScript, production build, and a browser accessibility snapshot.
+
+**What I changed or overrode, and why:** Kept the signup primitive unchanged
+after testing it on the dedicated page. It already supports the real variation
+we have - caller-provided action, heading, and description - so adding form
+variants or a submission state now would be abstraction ahead of behavior.
+
+**Trade-offs / decisions made:** Used the source site's issue themes as plain
+content data in the route rather than creating a newsletter taxonomy model.
+Those themes explain the editorial promise but do not yet drive navigation or
+filtering, so a separate model would add maintenance without user value.
+
+**Open questions / next steps:** Build `/contact`, then add structured SEO
+metadata and tests around the shared form and content lookup once the core
+routes are complete.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
