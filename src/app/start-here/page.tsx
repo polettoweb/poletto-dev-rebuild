@@ -69,16 +69,25 @@ export default function StartHerePage() {
 
                     return (
                       <li key={article.slug} className="border-l-2 border-[var(--line)] pl-5">
-                        <a
-                          href={`/blog/${article.slug}`}
-                          className="text-xl font-semibold tracking-tight underline underline-offset-4"
-                        >
-                          {article.title}
-                        </a>
+                        {article.hasContent ? (
+                          <a
+                            href={`/blog/${article.slug}`}
+                            className="text-xl font-semibold tracking-tight underline underline-offset-4"
+                          >
+                            {article.title}
+                          </a>
+                        ) : (
+                          <p className="text-xl font-semibold tracking-tight">{article.title}</p>
+                        )}
                         <p className="mt-2 text-sm uppercase tracking-[0.12em] text-[var(--muted)]">
                           {article.readTime} · {article.date}
                         </p>
                         <p className="mt-2 max-w-2xl text-[var(--muted)]">{article.excerpt}</p>
+                        {!article.hasContent && (
+                          <p className="mt-2 text-sm uppercase tracking-[0.12em] text-[var(--muted)]">
+                            Coming soon
+                          </p>
+                        )}
                       </li>
                     );
                   })}

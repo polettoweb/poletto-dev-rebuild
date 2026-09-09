@@ -33,7 +33,7 @@ export default function BlogPage() {
             {articles.map((article) => (
               <ArticleCard
                 key={article.slug}
-                href={`/blog/${article.slug}`}
+                href={article.hasContent ? `/blog/${article.slug}` : undefined}
                 title={article.title}
                 excerpt={article.excerpt}
                 date={article.date}

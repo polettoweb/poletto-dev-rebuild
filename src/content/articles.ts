@@ -5,6 +5,7 @@ export type Article = {
   date: string;
   readTime: string;
   tags: string[];
+  hasContent?: boolean;
   featured?: boolean;
 };
 
@@ -17,6 +18,7 @@ export const articles: Article[] = [
     date: "2026-08-25",
     readTime: "6 min read",
     tags: ["leadership", "strategy", "management"],
+    hasContent: true,
     featured: true,
   },
   {

@@ -45,15 +45,22 @@ export default function TopicsPage() {
                       <ul className="mt-4 flex flex-col gap-4">
                         {relatedArticles.map((article) => (
                           <li key={article.slug}>
-                            <a
-                              href={`/blog/${article.slug}`}
-                              className="text-lg font-semibold underline underline-offset-4"
-                            >
-                              {article.title}
-                            </a>
+                            {article.hasContent ? (
+                              <a
+                                href={`/blog/${article.slug}`}
+                                className="text-lg font-semibold underline underline-offset-4"
+                              >
+                                {article.title}
+                              </a>
+                            ) : (
+                              <span className="text-lg font-semibold">{article.title}</span>
+                            )}
                             <span className="ml-3 text-sm text-[var(--muted)]">
                               {article.date}
                             </span>
+                            {!article.hasContent && (
+                              <span className="ml-3 text-sm text-[var(--muted)]">Coming soon</span>
+                            )}
                           </li>
                         ))}
                       </ul>

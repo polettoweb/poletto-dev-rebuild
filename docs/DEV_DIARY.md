@@ -417,6 +417,35 @@ for content lookup and newsletter form semantics. Then return to the remaining
 source article bodies and dynamic article routing when complete source files
 are available for verification.
 
+## 2026-09-09 — Dynamic article routing and verified content boundary
+
+**What I worked on:** Replaced the one-off featured article route with a
+dynamic `/blog/[slug]` route and added structured Article metadata.
+
+**What the agent did:** Added an explicit MDX content registry, static params,
+per-article metadata generation, Article JSON-LD, and a proper 404 for slugs
+without verified local content. It also updated internal Blog links to use
+Next.js `Link` and validated the known route, the missing-content 404, the
+archive, lint, TypeScript, and the production build.
+
+**What I changed or overrode, and why:** Refused to create placeholder article
+pages from metadata alone. The source repository search still exposed only
+partial excerpts for three article bodies, so those entries now render as
+non-clickable “Coming soon” metadata instead of sending users to dead links.
+This preserves content integrity while leaving the dynamic route ready for
+verified MDX files.
+
+**Trade-offs / decisions made:** Added JSON-LD only for articles with actual
+rendered content, and kept the content registry explicit rather than using a
+filesystem glob that could publish an unreviewed file accidentally. The
+archive remains useful as an editorial index without pretending the migration
+is complete.
+
+**Open questions / next steps:** Obtain and verify the remaining article
+bodies, then add them to the MDX registry one at a time. After the content
+surface is stable, add focused tests for article lookup, 404 behavior, and
+newsletter form semantics.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

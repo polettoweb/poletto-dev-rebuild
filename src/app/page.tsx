@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -62,9 +64,9 @@ export default function Home() {
                 Articles for leaders building with people in mind.
               </h2>
             </div>
-            <a href="/blog" className="link-arrow hidden shrink-0 text-sm sm:block">
+            <Link href="/blog" className="link-arrow hidden shrink-0 text-sm sm:block">
               View all →
-            </a>
+            </Link>
           </div>
           <div className="mt-10 grid gap-12 md:grid-cols-2">
             <ArticleCard
@@ -78,7 +80,7 @@ export default function Home() {
             {latestArticles.map((article) => (
               <ArticleCard
                 key={article.slug}
-                href={`/blog/${article.slug}`}
+                href={article.hasContent ? `/blog/${article.slug}` : undefined}
                 title={article.title}
                 excerpt={article.excerpt}
                 date={article.date}
@@ -86,9 +88,9 @@ export default function Home() {
               />
             ))}
           </div>
-          <a href="/blog" className="link-arrow mt-10 inline-block text-sm sm:hidden">
+          <Link href="/blog" className="link-arrow mt-10 inline-block text-sm sm:hidden">
             View all articles →
-          </a>
+          </Link>
         </PageContainer>
 
         <section className="border-y border-[var(--line)]">
