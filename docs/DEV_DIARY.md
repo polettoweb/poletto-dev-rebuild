@@ -969,6 +969,49 @@ choice the diary doesn't actually record a reason for.
 connection (now confirmed lower-friction than earlier assumed), the
 remaining three article bodies, and the deferred Vitest 5 upgrade.
 
+## The Cloudflare project defaulted to the wrong build path
+
+**What I worked on:** The first real Cloudflare deploy attempt, which
+failed - `npx opennextjs-cloudflare build` erroring on a missing
+`.next/standalone/.next/server/pages-manifest.json`.
+
+**What the agent did:** Traced it from the actual build log rather than
+guessing: the Cloudflare project is a **Workers** project (not classic
+Pages - the giveaway was a "Deploy command: npx wrangler deploy" field, not
+a framework-preset dropdown), and Wrangler's auto-config silently defaults
+an undeclared Next.js repo to the OpenNext/Workers adapter, which needs a
+full server build. This repo's `output: "export"` never produces that
+server build, hence the `ENOENT`. Confirmed the fix by reproducing it
+locally instead of pushing and hoping: added `wrangler.jsonc` declaring an
+assets-only Worker pointing at `./out`, ran `wrangler deploy --dry-run`
+(read the 114 built files, no OpenNext banner, no error), then `wrangler
+dev` against it directly and re-ran the exact checks that matter -
+homepage 200, `/rss.xml` still carrying the `application/rss+xml` header
+from `_headers`, and an unverified article slug still returning a real 404
+with the styled 404 page, not Workers Static Assets' default empty-body
+404.
+
+**What I changed or overrode, and why:** Set `assets.not_found_handling`
+to `"404-page"` explicitly rather than leaving it at its default (`"none"`,
+a null-body 404). The status code alone would have satisfied the existing
+Playwright assertion; the page content wouldn't have, and silently serving
+an empty body instead of the actual 404 page would have been a real
+regression nobody would notice from a green test.
+
+**Trade-offs / decisions made:** Installed `wrangler` as a devDependency
+instead of relying only on Cloudflare's build-time `npx wrangler` fetch, so
+`wrangler dev`/`--dry-run` are available locally to verify a Cloudflare
+config change before pushing it - the same reasoning as testing the static
+export against a real static server rather than trusting `next build`'s
+output description.
+
+**Open questions / next steps:** Waiting on the user to retrigger the
+Cloudflare deployment with this config in place. If the project's linked
+Worker name doesn't exactly match `poletto-dev-rebuild`, `wrangler deploy`
+may target a different/new Worker instead of the one already connected to
+this git integration - worth confirming the deployed URL actually updates
+before treating this as resolved.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
