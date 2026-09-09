@@ -16,10 +16,12 @@ workflow rather than just claiming familiarity with one.
 
 ## Stack
 
-- **Next.js** (App Router) + **TypeScript**
+- **Next.js** (App Router) + **TypeScript**, built as a static export (`output: "export"`) — no server, every route is static or computable at build time
 - **Tailwind CSS**
 - MDX for content (no CMS layer — see dev diary for reasoning)
-- Deployment and CI: TBD, see dev diary open questions
+- **Testing:** Vitest for content/behavior logic, Playwright for route and interaction smoke tests, both run against the actual static build
+- **CI:** GitHub Actions — lint, typecheck, unit tests, build, browser tests on every push and PR to `main`
+- **Deployment:** Cloudflare Pages (static assets, no adapter needed)
 
 ## Project structure
 
@@ -27,10 +29,12 @@ workflow rather than just claiming familiarity with one.
 src/
   app/            # Next.js App Router routes
   components/
-    ui/           # Small, reusable primitives (Button, Card, ...)
+    ui/           # Small, reusable primitives (ArticleCard, ThemeToggle, ...)
     layout/       # Page shell, nav, footer
-  content/        # MDX essays / posts
+  content/        # MDX articles + typed metadata/topic modules
   lib/            # Utilities, helpers
+tests/
+  e2e/            # Playwright route and interaction tests
 docs/
   DEV_DIARY.md    # Running build log — decisions, trade-offs, AI-agent notes
 ```
@@ -42,6 +46,13 @@ npm install
 npm run dev
 ```
 
+Other scripts: `npm test` (Vitest), `npm run test:e2e` (Playwright, against
+a static build served on port 3100), `npm run build` (static export to
+`out/`), `npm run start` (serve that export locally).
+
 ## Status
 
-Early scaffolding. See the dev diary for current state and next steps.
+Core routes, content pipeline, dark mode, and CI are live. Articles with a
+verified body publish; the rest are held to an honest "Coming soon" boundary
+until their source is verified — see the dev diary for the current state and
+next steps.

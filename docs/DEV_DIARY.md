@@ -890,6 +890,46 @@ affects both articles equally - worth a follow-up pass, not urgent enough
 to scope-creep into this session. Cloudflare Pages and the remaining three
 article bodies are still the open items after that.
 
+## CI on Node 20 finally caught up with reality
+
+**What I worked on:** A GitHub Actions warning surfaced by an actual CI run
+- Node 20 is deprecated as the actions runtime, forcing `actions/checkout@v4`
+and `actions/setup-node@v4` onto Node 24 anyway - plus the README still
+saying "Deployment and CI: TBD" from before either existed.
+
+**What the agent did:** Confirmed Node 20 is now fully outside its support
+window (Node 24 is Active LTS, Node 22 is Maintenance) rather than assuming
+the warning was cosmetic. Bumped both actions to `@v5` (their Node
+24-runtime major) and the workflow's own `node-version` to 24, then bumped
+`@types/node` to match so the type layer isn't checking against a runtime
+the project no longer targets. Rewrote the README's Stack, Project
+structure, Getting started, and Status sections, which had drifted well
+past "TBD" - they still described placeholder `Button`/`Card` components
+and "early scaffolding" long after CI, dark mode, and a real content
+pipeline shipped.
+
+**What I changed or overrode, and why:** The original Node 20 pin (see the
+CI entry, several sessions back) existed because the newest Vitest release
+conflicted with Node 20's typings. That constraint no longer applies once
+the runtime moves to 24, but upgrading Vitest itself is a separate,
+breaking change (`npm audit` flags it - moderate/high/critical advisories,
+all in Vite/Vitest's dev-server and UI code, not anything exposed by this
+static-export production build) - left it alone rather than bundling an
+unplanned major bump into a CI-runtime fix. Worth its own pass.
+
+**Trade-offs / decisions made:** Wrote the README's Status section in terms
+of the content boundary mechanism ("articles with a verified body publish")
+rather than a specific count, after catching myself about to write "one
+article has a verified body" the same day a second one shipped - a stale
+number is exactly the kind of thing that goes unnoticed until someone reads
+the README next to the live site.
+
+**Open questions / next steps:** The Vitest/Vite dev-tooling vulnerabilities
+from `npm audit` are still open - worth a dedicated session to upgrade to
+Vitest 5 and confirm the MDX transform and config still work, not folded
+into unrelated work. Cloudflare Pages connection and the remaining article
+bodies are still the standing priorities.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
