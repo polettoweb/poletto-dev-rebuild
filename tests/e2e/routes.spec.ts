@@ -13,7 +13,7 @@ test("homepage leads readers to the Blog archive", async ({ page }) => {
   expect(identityJsonLd).toContain("Marco Poletto");
   await page.getByRole("link", { name: "View all →" }).click();
 
-  await expect(page).toHaveURL(/\/blog$/);
+  await expect(page).toHaveURL(/\/blog\/$/);
   await expect(
     page.getByRole("heading", {
       name: "Articles on engineering leadership, management, and sustainable teams.",
@@ -22,7 +22,7 @@ test("homepage leads readers to the Blog archive", async ({ page }) => {
 });
 
 test("verified article routes render content and structured metadata", async ({ page }) => {
-  await page.goto("/blog/engineering-strategy-is-mostly-saying-no");
+  await page.goto("/blog/engineering-strategy-is-mostly-saying-no/");
 
   await expect(
     page.getByRole("heading", { name: "Engineering Strategy Is Mostly Saying No" }),
@@ -32,7 +32,7 @@ test("verified article routes render content and structured metadata", async ({ 
 });
 
 test("unverified article routes return a real 404", async ({ page }) => {
-  const response = await page.goto("/blog/what-changes-when-you-start-managing-managers");
+  const response = await page.goto("/blog/what-changes-when-you-start-managing-managers/");
 
   expect(response?.status()).toBe(404);
   await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
@@ -75,7 +75,7 @@ test("theme toggle overrides the OS theme and persists across navigation", async
   await expect(page.getByRole("button", { name: "Switch to light mode" })).toBeVisible();
 
   await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Blog" }).click();
-  await expect(page).toHaveURL(/\/blog$/);
+  await expect(page).toHaveURL(/\/blog\/$/);
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
   await page.reload();

@@ -930,6 +930,45 @@ Vitest 5 and confirm the MDX transform and config still work, not folded
 into unrelated work. Cloudflare Pages connection and the remaining article
 bodies are still the standing priorities.
 
+## Matching the live site's actual URL shape before cutover
+
+**What I worked on:** Whether this rebuild keeps the same URLs as the live
+poletto.dev, ahead of the domain cutover - the kind of check that's cheap
+now and expensive after Google has indexed the wrong URLs.
+
+**What the agent did:** Didn't answer from the diary's memory of what was
+"ported over" - fetched the live site directly and diffed its actual URL
+structure against this rebuild's. Top-level routes and all four article
+slugs matched exactly. One real gap: every live URL is canonical with a
+trailing slash (`/about/`, `/blog/slug/`), confirmed with a raw `curl -I`
+showing a 307 from the non-slash form - and this rebuild's static export
+was generating the opposite shape (`about.html`, no redirect at all,
+because there's no server to issue one). Fixed it structurally rather than
+noting it: set `trailingSlash: true`, which changes the export to
+directory-plus-`index.html` output matching the live shape exactly, and
+updated every hand-built URL that doesn't go through Next's `Link` (the
+sitemap, the RSS feed, two JSON-LD `url`/`mainEntityOfPage` fields, and two
+plain `<a href>` tags on the homepage that don't get Next's automatic
+trailing-slash handling the way `Link` does) to match.
+
+**What I changed or overrode, and why:** The `curl -I` check also showed
+`Server: cloudflare` on the current live site, and the user separately
+confirmed Namecheap is already pointed at Cloudflare's nameservers -
+correcting my own earlier answer about the domain cutover, which had
+hedged on "if DNS is elsewhere, you'd need to migrate nameservers." It
+isn't elsewhere. The custom-domain step should be closer to zero-friction
+than I'd first described.
+
+**Trade-offs / decisions made:** Fixed the two plain `<a href>` tags on the
+homepage by adding the trailing slash directly rather than converting them
+to `Link`. Matching the URL shape didn't require touching why they're plain
+anchors in the first place - not worth a speculative claim here about a
+choice the diary doesn't actually record a reason for.
+
+**Open questions / next steps:** Standing items unchanged: Cloudflare Pages
+connection (now confirmed lower-friction than earlier assumed), the
+remaining three article bodies, and the deferred Vitest 5 upgrade.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

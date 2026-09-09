@@ -59,9 +59,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   author: {
                     "@type": "Person",
                     name: "Marco Poletto",
-                    url: "https://poletto.dev/about",
+                    url: "https://poletto.dev/about/",
                   },
-                  mainEntityOfPage: `https://poletto.dev/blog/${article.slug}`,
+                  mainEntityOfPage: `https://poletto.dev/blog/${article.slug}/`,
                 }),
               }}
             />

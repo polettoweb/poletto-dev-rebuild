@@ -20,8 +20,8 @@ export function GET() {
     <item>
       <title>${escapeXml(article.title)}</title>
       <description>${escapeXml(article.excerpt)}</description>
-      <link>${siteUrl}/blog/${article.slug}</link>
-      <guid isPermaLink="true">${siteUrl}/blog/${article.slug}</guid>
+      <link>${siteUrl}/blog/${article.slug}/</link>
+      <guid isPermaLink="true">${siteUrl}/blog/${article.slug}/</guid>
       <pubDate>${new Date(article.date).toUTCString()}</pubDate>
     </item>`,
     )

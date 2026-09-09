@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   "@id": "https://poletto.dev/#marco",
                   name: "Marco Poletto",
                   jobTitle: "Engineering Leader",
-                  url: "https://poletto.dev/about",
+                  url: "https://poletto.dev/about/",
                   sameAs: [
                     "https://github.com/polettoweb",
                     "https://www.linkedin.com/in/marco-poletto-96853774/",

@@ -31,10 +31,10 @@ export default function Home() {
               design, delivery, and the human side of technology.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium">
-              <a href="/start-here" className="link-arrow">
+              <a href="/start-here/" className="link-arrow">
                 Start here →
               </a>
-              <a href="/about" className="link-arrow">
+              <a href="/about/" className="link-arrow">
                 More about Marco →
               </a>
             </div>
