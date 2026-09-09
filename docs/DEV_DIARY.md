@@ -472,6 +472,30 @@ the MDX registry, then expand the RSS feed automatically as each article moves
 out of Coming soon. Add focused tests once the test-runner sequencing decision
 is made.
 
+## 2026-09-09 — Sitemap for the public route surface
+
+**What I worked on:** Added a native Next.js sitemap for the rebuilt public
+pages and verified article routes.
+
+**What the agent did:** Added `src/app/sitemap.ts` using Next's
+`MetadataRoute.Sitemap`, included the homepage, core content pages, contact,
+newsletter, and topics routes, and generated the verified article URL from the
+shared content model. It validated lint, TypeScript, production build, and the
+rendered `/sitemap.xml` response.
+
+**What I changed or overrode, and why:** Applied the same content-integrity
+boundary as RSS: article URLs enter the sitemap only when their bodies are
+verified and locally renderable. Metadata-only entries remain out of search
+discovery until their content migration is complete.
+
+**Trade-offs / decisions made:** Used Next's built-in sitemap convention
+instead of hand-writing XML or adding an SEO package. The route list is small,
+the framework owns the serialization, and the source stays easy to inspect.
+
+**Open questions / next steps:** Decide on the test runner now that the main
+routes, content lookup, RSS, and sitemap exist. Then add focused tests for
+content availability, 404 behavior, and feed/discovery boundaries.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
