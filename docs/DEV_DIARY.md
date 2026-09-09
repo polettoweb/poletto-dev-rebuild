@@ -707,6 +707,58 @@ deliberately deferred: `SiteHeader` has no distinct mobile interaction (no
 menu toggle), so at present it would only be testing layout, which the
 project's own criterion for adding that coverage says not to do yet.
 
+## 2026-09-09 — Static export, ready for Cloudflare Pages
+
+**What I worked on:** Resolved the last open architecture question
+(hosting/deploy target) and made the app deployable. Also stepped back to
+reprioritize: with the engineering scaffolding solid, the next-highest-value
+work for the actual goal (a portfolio that gets a Sr/Staff/Lead frontend IC
+role) is getting a live URL, then real article content, then the case-study
+write-up, then a device/accessibility pass — in that order, because nothing
+else is checkable by a hiring manager until it's live.
+
+**What the agent did:** Confirmed Cloudflare's current Next.js adapter
+(`@opennextjs/cloudflare`) supports Next 16, but checked the app's actual
+route surface first: every route is either fully static or a Route Handler
+computed from local content with no per-request data (`rss.xml`,
+`sitemap.xml`). That doesn't need a Workers runtime at all, so the agent set
+`output: "export"` in `next.config.ts` instead of adding a Cloudflare-specific
+adapter dependency. Both route handlers needed `export const dynamic =
+"force-static"` to satisfy static export's requirements. Rebuilt and
+inspected `out/` directly (404.html, per-route .html files, rss.xml,
+sitemap.xml all present and correct).
+
+**What I changed or overrode, and why:** `next start` doesn't run against a
+static export build, so the Playwright `webServer` had to switch to serving
+`out/` directly. I chose the `serve` package over reintroducing a Next server
+because it matches how Cloudflare Pages actually serves the site — same
+static files, same 404 semantics — instead of testing a server mode we're
+no longer deploying. That surfaced a real gap: the RSS route's explicit
+`Content-Type: application/rss+xml` header only existed in server code,
+which static export drops — a static host serves file-extension-based
+content types unless told otherwise. Added `public/_headers` (Cloudflare
+Pages' header convention) and `public/serve.json` (local `serve` config) so
+both the production host and the local test server apply the same header.
+Also updated `start` from `next start` (would now error) to `serve out`, so
+local production preview matches what actually deploys.
+
+**Trade-offs / decisions made:** Chose static export over an SSR adapter
+even though the adapter works, because the app doesn't use anything that
+needs a server — adding Workers runtime for a site with zero server-only
+behavior would be exactly the kind of ahead-of-need abstraction this project
+keeps rejecting. This also keeps the deploy host swappable (Vercel, Netlify,
+GitHub Pages would all work identically) if Cloudflare turns out not to fit.
+Accepted a small duplication between `_headers` and `serve.json` — two
+different tools' config formats for the same one-line fact — rather than
+building a generator for two lines of config.
+
+**Open questions / next steps:** Deployment itself needs the user's Cloudflare
+account — I can't create the Pages project or set DNS. Cloudflare Pages
+dashboard settings once the repo is connected: build command `npm run build`,
+output directory `out`. After that's live: migrate the remaining verified
+article bodies (source repo fetch is still failing outright, see prior entry),
+then write the case-study post the whole diary exists to support.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

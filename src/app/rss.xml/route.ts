@@ -2,6 +2,8 @@ import { getPublishedArticles } from "@/content/articles";
 
 const siteUrl = "https://poletto.dev";
 
+export const dynamic = "force-static";
+
 function escapeXml(value: string) {
   return value
     .replaceAll("&", "&amp;")
