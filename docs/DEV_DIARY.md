@@ -496,6 +496,34 @@ the framework owns the serialization, and the source stays easy to inspect.
 routes, content lookup, RSS, and sitemap exist. Then add focused tests for
 content availability, 404 behavior, and feed/discovery boundaries.
 
+## 2026-09-09 — Vitest as the first test layer
+
+**What I worked on:** Added the first automated test runner and tests for the
+content model.
+
+**What the agent did:** Installed Vitest, added the `npm test` script and a
+minimal configuration, and wrote tests covering article lookup, verified
+content availability, latest-article derivation, and explicit topic
+relationships. The suite passed with 2 test files and 3 tests.
+
+**What I changed or overrode, and why:** Chose Vitest before Playwright or
+React Testing Library because the first meaningful behavior is pure content
+selection and relationship logic. The project has no client-side interactive
+components that justify a browser or component test layer yet. The newest
+Vitest release conflicted with the repository's Node 20 typings, so I chose
+Vitest 2.1.9 rather than forcing peer resolution or broadening unrelated
+scaffold dependencies.
+
+**Trade-offs / decisions made:** Kept the initial suite narrow and behavior-
+focused instead of testing implementation details or snapshotting rendered
+pages. Playwright remains a later route and accessibility milestone; React
+Testing Library remains deferred until client-side behavior exists.
+
+**Open questions / next steps:** Add tests for RSS and sitemap inclusion
+boundaries, then add Playwright for a small set of critical navigation and
+form journeys once the content surface is stable. Review the npm audit output
+separately rather than mixing dependency remediation into test setup.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
