@@ -33,7 +33,7 @@ I actually work.
 
 ---
 
-## 2026-09-09 — Project kickoff and scaffolding
+## 2026-08-25 — Project kickoff and scaffolding
 
 **What I worked on:** Set up the project skeleton — decided on stack,
 scaffolded the app, defined the folder structure and the plan for the
@@ -97,6 +97,73 @@ architecture decision to document there.
       there's no downtime or broken links during migration.
 
 ---
+
+## 2026-09-02 — Page inventory and primitive proposal
+
+**What I worked on:** Reviewed the current poletto.dev homepage and the
+Start Here, Blog, Topics, About, Newsletter, Contact, and article routes to
+identify the smallest set of repeated interface needs.
+
+**What the agent did:** Mapped the live pages to recurring structures: shared
+site header and footer, constrained page content, article previews, topic
+labels, newsletter signup, and long-form article typography. It proposed
+`PageContainer`, `SiteHeader`, `SiteFooter`, `ArticleCard`, `TopicTag`, and
+`NewsletterSignup` as the first implementation slice, with MDX prose styling
+handled as an article layout concern rather than a broad typography system.
+
+**What I changed or overrode, and why:** No code primitives were scaffolded
+yet. I paused at the component API boundary to get approval on using plain
+typed props with `className` extension and no variant or polymorphic-component
+library. That keeps the initial system legible and lets real repeated behavior
+justify abstraction before adding API complexity.
+
+**Trade-offs / decisions made:** I did not include a generic `Card`, `Stack`,
+or all-purpose `Typography` primitive in the first slice. The live site has
+article previews and grouped content, but not enough evidence that a generic
+framed card or spacing abstraction would improve the code. The newsletter
+form is a real repeated behavior, so it deserves a focused primitive rather
+than being hidden inside a page section.
+
+**Open questions / next steps:** Confirm the initial component API, then
+scaffold the approved primitives and add a focused typecheck/lint check.
+Decide later whether article prose, form submission, or visual variants have
+earned additional abstractions.
+
+## 2026-09-09 — First component primitives
+
+**What I worked on:** Scaffolded the first reusable components for the live
+site's shared layout and editorial content patterns.
+
+**What the agent did:** Added `PageContainer`, `SiteHeader`, and `SiteFooter`
+under `components/layout`, plus `ArticleCard`, `TopicTag`, and
+`NewsletterSignup` under `components/ui`. It used semantic HTML, Next.js
+links, accessible labels, native email validation, and explicit TypeScript
+props. It also installed the declared npm dependencies so the repository's
+lint command could run locally. TypeScript validation also found and repaired
+the scaffold's undefined `LayoutProps` reference in the root layout.
+
+**What I changed or overrode, and why:** Chose plain typed props with an
+optional `className` extension point instead of adding a variant library or a
+polymorphic `as` API. The current pages have a small number of clear patterns,
+so a more flexible API would add concepts before the site has earned them.
+The newsletter action is required from the caller rather than hard-coded to a
+provider because the form backend is still an open project decision. I also
+replaced the undefined scaffold-only `LayoutProps` type with `ReactNode`
+children typing because a clean typecheck is a useful baseline for the
+component work.
+
+**Trade-offs / decisions made:** Kept `ArticleCard` focused on article
+metadata and reading links, rather than making a generic card that would
+blur content and layout responsibilities. Kept `TopicTag` as a link rather
+than a visual-only badge because topics are navigable on the live site. Used
+native form controls instead of introducing a form library before submission
+behavior and validation requirements are known.
+
+**Open questions / next steps:** Integrate these primitives into the first
+rebuilt route, then use that real composition to decide whether shared
+typography, article prose, button variants, or form state deserve separate
+abstractions. Add tests after the first meaningful behavior exists, as planned
+in the kickoff entry.
 
 <!--
 Next entry template — copy this below the divider for each new session:
