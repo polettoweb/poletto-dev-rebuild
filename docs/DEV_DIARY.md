@@ -391,6 +391,32 @@ filtering, so a separate model would add maintenance without user value.
 metadata and tests around the shared form and content lookup once the core
 routes are complete.
 
+## 2026-09-09 — Direct contact page
+
+**What I worked on:** Built the `/contact` route from the source site's
+contact content and professional links.
+
+**What the agent did:** Added the contact introduction, direct email address,
+LinkedIn call to action, secondary social links, page metadata, and semantic
+sections using the shared site chrome. It validated the route with lint,
+TypeScript, production build, and a browser accessibility snapshot.
+
+**What I changed or overrode, and why:** Chose direct email and social links
+instead of adding a contact form or server action. The source site explicitly
+identifies direct contact as the reliable path, and this project has not chosen
+a form delivery or spam-protection backend. A form now would create behavior
+and operational obligations without evidence that they improve the workflow.
+
+**Trade-offs / decisions made:** Used external links with explicit new-tab
+semantics for professional profiles, while keeping email as a normal mailto
+link. Kept the route-specific sections local because they represent distinct
+contact channels, not a reusable card system yet.
+
+**Open questions / next steps:** Add structured SEO metadata and focused tests
+for content lookup and newsletter form semantics. Then return to the remaining
+source article bodies and dynamic article routing when complete source files
+are available for verification.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
