@@ -339,6 +339,34 @@ article bodies, then decide whether frontmatter should become the canonical
 metadata source or remain a generated/indexed layer over the typed content
 module. Add MDX component overrides only when real article content needs them.
 
+## 2026-09-09 — About page from verified source content
+
+**What I worked on:** Built the `/about` route using the career narrative,
+current role, leadership philosophy, experience, and contact details from the
+source site and repository.
+
+**What the agent did:** Added page metadata, a semantic long-form article
+structure, experience and values lists, mail and social links, and the shared
+header/footer. It validated the route with lint, TypeScript, production build,
+and a browser accessibility snapshot.
+
+**What I changed or overrode, and why:** Chose a route-local composition
+instead of forcing the About page into the article MDX pipeline. About content
+is a first-person profile with a different update cadence and no article
+metadata; treating it as a blog post would make the content model less honest.
+I also stopped short of importing remaining article bodies because the source
+search endpoint only exposed excerpts, not complete files.
+
+**Trade-offs / decisions made:** Reused the existing `.prose` treatment for
+readability without creating a generic page template. The page has enough
+semantic structure to justify a future content extraction, but not enough
+repetition yet to justify another abstraction.
+
+**Open questions / next steps:** Build the Newsletter and Contact routes,
+then return to the verified MDX migration with a clear source acquisition path
+for the remaining articles. Add structured metadata and tests after the core
+page surfaces are represented.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
