@@ -308,6 +308,37 @@ bodies and decide how their frontmatter maps to this metadata module. Once
 that is in place, replace the temporary static article proof point with the
 real content pipeline.
 
+## 2026-09-09 — First MDX content proof
+
+**What I worked on:** Added the Next.js MDX toolchain and moved the featured
+article body into a local MDX file.
+
+**What the agent did:** Installed `@next/mdx`, `@mdx-js/loader`, and
+`@mdx-js/react`; configured MDX page extensions; added the root MDX component
+boundary; created the article body at
+`src/content/articles/engineering-strategy-is-mostly-saying-no.mdx`; and
+updated the article route to render that component. It verified semantic
+rendering in the browser and passed lint, TypeScript, and production build.
+
+**What I changed or overrode, and why:** Kept article metadata in the typed
+`articles.ts` module instead of adding frontmatter parsing immediately. The
+source repository's collection schema is useful evidence, but the raw GitHub
+bulk fetch returned 404 for the requested article paths during this session.
+Rather than claim a complete import from partial search excerpts, I used the
+already-verified article body as a reversible MDX proof and left the full
+source migration for a separately verifiable step.
+
+**Trade-offs / decisions made:** Chose Next's native MDX integration over
+copying the original Astro content collection. This keeps the rebuild aligned
+with its Next.js architecture while still preserving the option to add
+frontmatter validation or a content loader once more article bodies are
+available locally.
+
+**Open questions / next steps:** Obtain and verify the remaining source
+article bodies, then decide whether frontmatter should become the canonical
+metadata source or remain a generated/indexed layer over the typed content
+module. Add MDX component overrides only when real article content needs them.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
