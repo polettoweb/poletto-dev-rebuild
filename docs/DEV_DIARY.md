@@ -281,6 +281,33 @@ is navigable today and avoids creating links to pages that do not exist yet.
 content and establish the content loader, or build the Topics route first if
 the content relationships are the more valuable next architectural test.
 
+## 2026-09-09 — Topics and explicit article relationships
+
+**What I worked on:** Built the `/topics` route from the shared article
+metadata and the topic structure found in the original `leadingbytes` repo.
+
+**What the agent did:** Added a typed topic model, related-article lookup,
+four content pillars, route metadata, semantic related-article lists, and the
+shared site chrome. It verified the route in the browser and with lint,
+TypeScript, and a production build.
+
+**What I changed or overrode, and why:** Rejected broad tag matching after
+the first browser check showed misleading relationships: a leadership tag
+caused AI and team-culture articles to appear under Scaling Organisations.
+Changed the model to explicit `articleSlugs`, matching the source repo's
+`postSlugs` approach, because editorial relationships are intentional and
+should not be inferred from overlapping tags.
+
+**Trade-offs / decisions made:** Kept topic relationships in a small typed
+module rather than adding a CMS-like taxonomy system. Four pillars are
+represented now because only four articles are in the rebuilt content model;
+additional source articles can be added without changing the page contract.
+
+**Open questions / next steps:** Import the original Markdown/MDX article
+bodies and decide how their frontmatter maps to this metadata module. Once
+that is in place, replace the temporary static article proof point with the
+real content pipeline.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
