@@ -652,6 +652,61 @@ decide whether their metadata should move from the typed module into
 frontmatter. Add preview images when there is a deliberate visual identity to
 encode.
 
+## 2026-09-09 — Single source of truth for the content boundary
+
+**What I worked on:** Reviewed whether another article body could be
+verified and migrated, then closed a structural gap in how the site decides
+which articles are publishable.
+
+**What the agent did:** Attempted to re-verify the three remaining article
+bodies against the source `polettoweb/leadingbytes` repository. Both a raw
+GitHub tree fetch and a direct repo page fetch returned 404, consistent with
+earlier sessions' partial-excerpt results — the repository is not reachable
+for a complete, verifiable fetch right now. Rather than migrate from partial
+excerpts, the agent audited the existing content boundary instead and found
+that `Article.hasContent` (hand-set per entry in `articles.ts`) and
+`contentBySlug` (hand-maintained in the `/blog/[slug]` route) were two
+independent, manually-synchronized sources of truth for the same fact:
+whether an article's body is verified and renderable. Nothing enforced that
+they agreed. It restructured `articles.ts` so `contentBySlug` is the single
+registry of verified MDX bodies and `hasContent` is now derived from
+membership in that map, updated the dynamic route to consume the shared
+registry instead of duplicating it, and added a Vitest test asserting the
+two can never diverge.
+
+**What I changed or overrode, and why:** Moving the MDX import into
+`articles.ts` broke Vitest, which had no MDX transform configured — content
+tests import `articles.ts`, and now transitively the `.mdx` file. Rather
+than move the registry back out (which would restore the drift risk this
+change exists to close), I added `@mdx-js/rollup` to Vitest via
+`vitest.config.mts`. That import is ESM-only and failed to load from a
+`.ts` config under CommonJS resolution, so I renamed the config to
+`vitest.config.mts` — a standard, scoped fix that doesn't touch
+`package.json`'s module type or any other tool's config. Also added
+`test-results/` and `playwright-report/` to `.gitignore`; Playwright had
+started writing run artifacts into the working tree that were never meant
+to be tracked.
+
+**Trade-offs / decisions made:** Did not migrate a third article body — the
+source repo isn't verifiably reachable right now, and the workflow rule
+against fabricating content from partial excerpts still applies. Chose to
+spend this session hardening the existing content boundary instead, which
+was the recommended fallback and also directly reduces the risk of the
+eventual migration work (one less place for a new article to be entered
+inconsistently). Kept the fix structural (derive, don't duplicate) rather
+than adding a test that merely checks the two lists match — a test can be
+forgotten or skipped; a single registry can't drift by construction.
+
+**Open questions / next steps:** Find a verifiable, complete source for the
+remaining three article bodies (the repo fetch failing outright, rather than
+returning partial excerpts, is new information worth following up on
+directly with the source rather than retrying the same fetch). Once a body
+is verified, adding it is now a one-line addition to `contentBySlug` with no
+separate `hasContent` bookkeeping. Mobile Playwright coverage remains
+deliberately deferred: `SiteHeader` has no distinct mobile interaction (no
+menu toggle), so at present it would only be testing layout, which the
+project's own criterion for adding that coverage says not to do yet.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

@@ -1,3 +1,7 @@
+import type { ComponentType } from "react";
+
+import EngineeringStrategyIsMostlySayingNo from "./articles/engineering-strategy-is-mostly-saying-no.mdx";
+
 export type Article = {
   slug: string;
   title: string;
@@ -5,11 +9,21 @@ export type Article = {
   date: string;
   readTime: string;
   tags: string[];
-  hasContent?: boolean;
+  hasContent: boolean;
   featured?: boolean;
 };
 
-export const articles: Article[] = [
+// Single source of truth for which article bodies are verified and
+// renderable. `Article.hasContent` is derived from this map rather than
+// hand-set per entry, so metadata can never claim a body that doesn't exist
+// (or hide one that does).
+export const contentBySlug: Record<string, ComponentType> = {
+  "engineering-strategy-is-mostly-saying-no": EngineeringStrategyIsMostlySayingNo,
+};
+
+type ArticleData = Omit<Article, "hasContent">;
+
+const articleData: ArticleData[] = [
   {
     slug: "engineering-strategy-is-mostly-saying-no",
     title: "Engineering Strategy Is Mostly Saying No",
@@ -18,7 +32,6 @@ export const articles: Article[] = [
     date: "2026-08-25",
     readTime: "6 min read",
     tags: ["leadership", "strategy", "management"],
-    hasContent: true,
     featured: true,
   },
   {
@@ -49,6 +62,11 @@ export const articles: Article[] = [
     tags: ["management", "leadership", "team-culture"],
   },
 ];
+
+export const articles: Article[] = articleData.map((article) => ({
+  ...article,
+  hasContent: Object.hasOwn(contentBySlug, article.slug),
+}));
 
 export const featuredArticle = articles.find((article) => article.featured) ?? articles[0];
 

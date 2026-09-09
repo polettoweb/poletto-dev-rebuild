@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import ArticleContent from "@/content/articles/engineering-strategy-is-mostly-saying-no.mdx";
-import { getArticleBySlug } from "@/content/articles";
+import { contentBySlug, getArticleBySlug, getPublishedArticles } from "@/content/articles";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { TopicTag } from "@/components/ui/TopicTag";
 
-const contentBySlug = {
-  "engineering-strategy-is-mostly-saying-no": ArticleContent,
-};
-
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return Object.keys(contentBySlug).map((slug) => ({ slug }));
+  return getPublishedArticles().map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
@@ -38,7 +33,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
-  const Content = contentBySlug[slug as keyof typeof contentBySlug];
+  const Content = contentBySlug[slug];
 
   if (!article || !Content) {
     notFound();
