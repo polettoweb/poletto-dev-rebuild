@@ -197,6 +197,34 @@ typography/prose layer before building the article route. Add interaction
 tests once newsletter submission and navigation behavior are wired to real
 routes.
 
+## 2026-09-09 — First article route
+
+**What I worked on:** Built the route for the current featured article,
+`/blog/engineering-strategy-is-mostly-saying-no`.
+
+**What the agent did:** Added the article metadata, live title, summary,
+publication details, topic links, section headings, article body, newsletter
+call to action, and shared site chrome. It added a focused `.prose` style for
+long-form reading and verified the route in the browser as well as with lint,
+TypeScript, and a production build.
+
+**What I changed or overrode, and why:** Kept this as a concrete static route
+instead of introducing dynamic routing or an MDX pipeline immediately. The
+route gives us real evidence about article hierarchy, reading width, metadata,
+and newsletter placement before we commit to a content architecture. I also
+kept prose styling local and small rather than adding a typography framework
+that the site has not yet earned.
+
+**Trade-offs / decisions made:** Reused `TopicTag`, `NewsletterSignup`, and
+the layout primitives rather than creating article-specific variants. The
+article content is intentionally local for now: it proves the page behavior
+while preserving the diary's earlier decision to revisit MDX once real content
+needs are visible.
+
+**Open questions / next steps:** Check the article route at mobile width and
+decide whether the next content milestone should extract this article into
+MDX or first build the Blog archive using the same local article data shape.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
