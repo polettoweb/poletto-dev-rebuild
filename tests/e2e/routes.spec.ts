@@ -32,3 +32,42 @@ test("unverified article routes return a real 404", async ({ page }) => {
   expect(response?.status()).toBe(404);
   await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
 });
+
+test("newsletter signup exposes an accessible Buttondown form", async ({ page }) => {
+  await page.goto("/newsletter");
+
+  const form = page.locator("form");
+  await expect(form).toHaveAttribute(
+    "action",
+    "https://buttondown.com/api/emails/embed-subscribe/marcopoletto",
+  );
+  await expect(page.getByRole("textbox", { name: "Email address" })).toHaveAttribute(
+    "type",
+    "email",
+  );
+  await expect(page.getByRole("button", { name: "Subscribe" })).toBeVisible();
+});
+
+test("RSS contains only verified article content", async ({ request }) => {
+  const response = await request.get("/rss.xml");
+  const body = await response.text();
+
+  expect(response.ok()).toBe(true);
+  expect(response.headers()["content-type"]).toContain("application/rss+xml");
+  expect(body).toContain("Engineering Strategy Is Mostly Saying No");
+  expect(body).not.toContain("What Changes When You Start Managing Managers");
+});
+
+test("sitemap contains public pages and verified article URLs", async ({ request }) => {
+  const response = await request.get("/sitemap.xml");
+  const body = await response.text();
+
+  expect(response.ok()).toBe(true);
+  expect(body).toContain("https://poletto.dev/blog");
+  expect(body).toContain(
+    "https://poletto.dev/blog/engineering-strategy-is-mostly-saying-no",
+  );
+  expect(body).not.toContain(
+    "https://poletto.dev/blog/what-changes-when-you-start-managing-managers",
+  );
+});

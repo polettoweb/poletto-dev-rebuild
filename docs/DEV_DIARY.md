@@ -577,6 +577,29 @@ that risk worth its cost.
 sitemap responses, then migrate the remaining verified article bodies and
 expand route coverage as content becomes available.
 
+## 2026-09-09 — Expand browser contracts
+
+**What I worked on:** Extended the Playwright suite beyond route reachability
+to cover the site's conversion and discovery surfaces.
+
+**What the agent did:** Added browser checks for the newsletter form's
+accessible email field and Buttondown action, RSS content type and verified
+article filtering, and sitemap inclusion/exclusion behavior. The suite now
+passes 6 browser tests.
+
+**What I changed or overrode, and why:** Chose response and accessible-role
+assertions over snapshots or CSS-level checks. These tests protect the public
+contracts that matter to readers, subscribers, and search/feed consumers while
+avoiding brittle coupling to the current visual implementation.
+
+**Trade-offs / decisions made:** Kept the suite Chromium-only and reused the
+production-server harness. The six tests are broad enough to cover the current
+route boundary without turning every page detail into an end-to-end test.
+
+**Open questions / next steps:** Migrate additional verified article bodies,
+then add mobile browser coverage if the responsive routes develop distinct
+behavior rather than merely different layout.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
