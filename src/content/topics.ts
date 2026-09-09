@@ -40,7 +40,10 @@ export const topics: Topic[] = [
     title: "AI & the Future of Engineering Work",
     description:
       "Leading people through AI-driven change while protecting engineering craft.",
-    articleSlugs: ["ai-is-breaking-the-junior-engineer-pipeline"],
+    articleSlugs: [
+      "ai-is-breaking-the-junior-engineer-pipeline",
+      "the-agent-wrote-the-code-leading-it-was-the-job",
+    ],
   },
 ];
 

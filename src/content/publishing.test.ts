@@ -7,6 +7,7 @@ describe("published content boundary", () => {
     const publishedArticles = getPublishedArticles();
 
     expect(publishedArticles.map((article) => article.slug)).toEqual([
+      "the-agent-wrote-the-code-leading-it-was-the-job",
       "engineering-strategy-is-mostly-saying-no",
     ]);
   });

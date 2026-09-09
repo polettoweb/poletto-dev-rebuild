@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 
 import EngineeringStrategyIsMostlySayingNo from "./articles/engineering-strategy-is-mostly-saying-no.mdx";
+import TheAgentWroteTheCodeLeadingItWasTheJob from "./articles/the-agent-wrote-the-code-leading-it-was-the-job.mdx";
 
 export type Article = {
   slug: string;
@@ -19,11 +20,22 @@ export type Article = {
 // (or hide one that does).
 export const contentBySlug: Record<string, ComponentType> = {
   "engineering-strategy-is-mostly-saying-no": EngineeringStrategyIsMostlySayingNo,
+  "the-agent-wrote-the-code-leading-it-was-the-job": TheAgentWroteTheCodeLeadingItWasTheJob,
 };
 
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "the-agent-wrote-the-code-leading-it-was-the-job",
+    title: "The Agent Wrote the Code. Leading It Was the Job.",
+    excerpt:
+      "This site was built with an AI coding agent. The interesting part isn't how fast it went - it's the moments I overrode it, and what those moments actually have to do with engineering leadership.",
+    date: "2026-09-09",
+    readTime: "8 min read",
+    tags: ["ai", "leadership"],
+    featured: true,
+  },
   {
     slug: "engineering-strategy-is-mostly-saying-no",
     title: "Engineering Strategy Is Mostly Saying No",
@@ -32,7 +44,6 @@ const articleData: ArticleData[] = [
     date: "2026-08-25",
     readTime: "6 min read",
     tags: ["leadership", "strategy", "management"],
-    featured: true,
   },
   {
     slug: "what-changes-when-you-start-managing-managers",

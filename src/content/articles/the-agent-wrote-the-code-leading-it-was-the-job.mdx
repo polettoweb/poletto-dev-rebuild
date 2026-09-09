@@ -1,0 +1,37 @@
+This site was built with an AI coding agent - Claude Code, specifically. It wrote most of the actual code: the components, the routes, the test suites, the CI pipeline, the dark mode. If you're picturing a slow, painstaking hand-build, that's not what happened.
+
+That's not the interesting part, though. Anyone can point an agent at a problem and get code back fast - that part is basically commoditized now. The part that's still a skill, the part that's directly the job of a senior engineer or an engineering leader, is knowing when to stop it, override it, and make it redo the work differently. This site is full of those moments. Here are the ones worth telling.
+
+## Refusing to invent things is harder than it sounds
+
+Four articles were supposed to migrate from an old repository into this one. Only one ever fully did. The other three sat as "Coming soon" for the entire build, because the source repository only ever returned partial excerpts or outright 404s when the agent tried to fetch the full bodies.
+
+The easy, fast thing to do there is obvious: take the excerpt, the title, the general shape of the argument, and write something plausible. It would have looked finished. Nobody skimming the site would have known. I said no to that every time it came up, across several separate sessions, and the agent held the line without me needing to repeat myself after the first time. The dynamic article route returns a real 404 for anything unverified, on purpose, and there's a test that fails the build if that ever silently changes. Shipping something that looks done and shipping something that is done are different products, and the gap between them is exactly where fabricated content lives.
+
+## The bugs an agent writes are the boring kind, until they aren't
+
+Early on, whether an article was publishable lived in two places: a `hasContent` flag set by hand on the metadata, and a separate `contentBySlug` map in the actual route file that decided what got rendered. Nothing forced those two things to agree. It's the kind of inconsistency that doesn't show up in any single diff - each file looked fine in isolation - and it's exactly the kind of thing an agent will produce more of, faster, if nobody's doing the second pass.
+
+The fix wasn't a test that checks the two lists match. Tests get skipped, forgotten, or quietly deleted under deadline pressure. The fix was structural: one registry, with the flag derived from it, so the inconsistency became impossible to write rather than merely detectable. That's the difference between reviewing an agent's output and directing it - a review catches the bug once; direction changes what kind of bug can exist at all.
+
+## Verifying beats trusting
+
+The agent is confident. It will tell you a JSON-LD script is on the page, a color has enough contrast, a header works past hydration. Sometimes it's right because it checked. Sometimes it's right because it's a plausible-sounding claim that happens to be true. You cannot tell the difference from the claim alone.
+
+So the rule became: don't take the claim, take the receipt. When a Playwright assertion on structured data started passing by matching visible text instead of the script tag's actual content, that got rewritten to inspect `textContent` directly - a weaker check disguised as a passing test is worse than no test. When the site got a dark mode, the palette wasn't approved by eye; it got run through the actual WCAG contrast formula, which caught that the original light theme's border color had been sitting at 1.41:1 the entire time - under the accessibility minimum, in a color nobody had thought to question because it already shipped. And before calling the theme finished, I had the agent screenshot both states and actually look at them, rather than describe the CSS and assume the description was the same thing as the result.
+
+## "It works" isn't the same question as "is this the right shape"
+
+Cloudflare's Next.js adapter genuinely supports this framework version, server actions and all. The agent found that, correctly, and could have wired it up. I stopped it anyway, because the app doesn't do anything that needs a server - every route is either static or computable from local content at build time. Adding a Workers runtime for zero server-only behavior isn't a technical mistake; it's the kind of unforced architectural weight that gets defended in a design review two years later with "well, it was already there." Static export, deployed as plain files, was the smaller, more honest answer, and it's the one that shipped.
+
+## Some rules don't move, even on request
+
+Near the end, I asked the agent to update my local git config to the new public email address, right after it had - correctly, and at my direction - rewritten the entire commit history to fix that exact email everywhere else. It said no. Not because the request was unreasonable, but because it had a standing instruction never to touch git config, full stop, no exception carved out for being asked twice. That's a small moment, but it's the whole argument in miniature: delegating execution to something fast doesn't mean every boundary becomes negotiable just because you're the one asking. The interesting failure mode for AI-augmented work isn't an agent that refuses too much. It's a human who talks it out of the one rule that mattered.
+
+## The payoff
+
+None of this required knowing how to write the code myself, in the moment, faster than the agent could. It required knowing what a correct outcome looks like well enough to recognize when a fast one wasn't it - and being willing to say so before it shipped. That's the actual transferable skill, and it's the same one that was already the job before any of this existed: reviewing work you didn't personally produce, catching the gap between "looks finished" and "is finished," and holding a line the first time so it doesn't need repeating the second.
+
+### Your next step
+
+Go back through the last piece of AI-assisted work you signed off on and find the moment you didn't override it - the claim you took at face value, the shortcut you let through because the diff looked fine. That's not a confession. It's where your review process actually needs work, and it's a better use of an hour than reading one more take on how fast the tools have gotten.

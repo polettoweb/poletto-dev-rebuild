@@ -846,6 +846,50 @@ force-push and coordination instead of a clean rewrite.
 as the first public commit history. Cloudflare Pages, remaining article
 bodies, and the case-study post remain the open priorities after that.
 
+## The case-study post finally gets written
+
+**What I worked on:** The article this whole diary exists to support -
+"The Agent Wrote the Code. Leading It Was the Job." Migrated it into the
+site as the first genuinely new (not source-migrated) article, and made it
+the featured piece.
+
+**What the agent did:** Drafted the article from this diary's own entries -
+not a generic "AI pair programming" take, but six concrete moments already
+on record: refusing to fabricate the three still-unverified article bodies,
+the `hasContent`/`contentBySlug` drift bug and the structural fix, the
+JSON-LD assertion that was quietly checking the wrong thing, computing
+actual contrast ratios instead of eyeballing the dark theme, choosing static
+export over a working-but-unnecessary Cloudflare Workers adapter, and
+declining to touch git config even when asked directly. Added the MDX file,
+wired it into the same `contentBySlug` registry the last few sessions'
+content-boundary work exists to keep honest, marked it `featured`, and
+added it to the "AI & the future of engineering work" topic. Screenshotted
+the rendered result in the browser rather than trusting the markdown.
+
+**What I changed or overrode, and why:** Making the new piece `featured`
+un-featured the original article by construction (`featuredArticle` picks
+the first `featured: true` entry) - intentional, not a side effect. This
+piece is the direct evidence for the site's actual thesis, so it belongs in
+the lead slot, not the archive.
+
+**Trade-offs / decisions made:** Did not add the new article to any
+`/start-here` reading path. Those paths are hand-curated by topic, and
+forcing this piece into "strategy," "scaling," or "team culture" would have
+been a worse fit than leaving it discoverable through the homepage, the
+Blog archive, and its own topic pillar. Updated the three tests that
+hardcoded article counts (`toHaveLength(1)`, `toHaveLength(3)`, an exact
+`getArticleBySlug` equality against the old featured article) rather than
+loosen them - they were asserting real facts about the content boundary,
+just facts that were about to become stale, not facts that were wrong to
+assert in the first place.
+
+**Open questions / next steps:** Noticed but didn't fix: `.prose` in
+`globals.css` styles `h2` but not `h3`, so both articles' "Your next step"
+closing line renders with no heading emphasis at all. Small, pre-existing,
+affects both articles equally - worth a follow-up pass, not urgent enough
+to scope-creep into this session. Cloudflare Pages and the remaining three
+article bodies are still the open items after that.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
