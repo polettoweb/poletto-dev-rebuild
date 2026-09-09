@@ -626,6 +626,32 @@ or browser-specific behavior.
 consider splitting CI jobs only when runtime or ownership makes parallelism
 valuable. Add a deployment workflow only after the hosting target is decided.
 
+## 2026-09-09 — Site identity metadata and SEO contracts
+
+**What I worked on:** Added root-level canonical metadata and structured site
+identity information.
+
+**What the agent did:** Added `metadataBase`, canonical URLs, RSS discovery,
+Open Graph defaults, Twitter summary metadata, and JSON-LD for Marco as a
+Person and the site as a WebSite. It expanded the Playwright suite to verify
+the identity graph and retained the article-specific graph.
+
+**What I changed or overrode, and why:** Used the source repo's Person/site
+identity as the basis, but kept the implementation in the Next root layout
+instead of copying Astro head components. During browser validation, the first
+JSON-LD assertion incorrectly used visible-text matching on a script element;
+I changed it to inspect `textContent`, preserving a meaningful contract rather
+than weakening the assertion.
+
+**Trade-offs / decisions made:** Added only stable identity and discovery
+metadata now. Social preview images, organization schema, and richer article
+schema can wait until the visual assets and content migration are settled.
+
+**Open questions / next steps:** Migrate additional verified MDX articles and
+decide whether their metadata should move from the typed module into
+frontmatter. Add preview images when there is a deliberate visual identity to
+encode.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

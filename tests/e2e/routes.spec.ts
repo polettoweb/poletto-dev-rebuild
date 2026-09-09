@@ -6,6 +6,11 @@ test("homepage leads readers to the Blog archive", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Building teams that stay human as they scale." }),
   ).toBeVisible();
+  const identityJsonLd = await page
+    .locator('script[type="application/ld+json"]')
+    .first()
+    .textContent();
+  expect(identityJsonLd).toContain("Marco Poletto");
   await page.getByRole("link", { name: "View all →" }).click();
 
   await expect(page).toHaveURL(/\/blog$/);
@@ -22,7 +27,7 @@ test("verified article routes render content and structured metadata", async ({ 
   await expect(
     page.getByRole("heading", { name: "Engineering Strategy Is Mostly Saying No" }),
   ).toBeVisible();
-  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2);
   await expect(page.getByRole("heading", { name: "The payoff" })).toBeVisible();
 });
 
