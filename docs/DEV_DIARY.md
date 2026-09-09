@@ -600,6 +600,32 @@ route boundary without turning every page detail into an end-to-end test.
 then add mobile browser coverage if the responsive routes develop distinct
 behavior rather than merely different layout.
 
+## 2026-09-09 — CI for the proven validation path
+
+**What I worked on:** Added the first GitHub Actions workflow for pull-request
+and main-branch validation.
+
+**What the agent did:** Added `.github/workflows/ci.yml` with Node 20, npm
+cache support, least-privilege repository read access, dependency installation,
+lint, TypeScript, Vitest, production build, Chromium installation, and
+Playwright execution. The corresponding local commands all pass.
+
+**What I changed or overrode, and why:** Chose one sequential validation job
+instead of splitting checks into multiple jobs. The current project is small,
+and keeping the order visible makes the dependency between build and
+production-server browser tests easy to understand. I also kept CI on Node 20
+to match the existing `@types/node` baseline rather than upgrading the runtime
+as part of an unrelated workflow change.
+
+**Trade-offs / decisions made:** Playwright runs after the production build and
+installs only Chromium in CI. That keeps the first pipeline reproducible and
+focused; broader browser matrices can be justified later by actual responsive
+or browser-specific behavior.
+
+**Open questions / next steps:** Migrate more verified article bodies and
+consider splitting CI jobs only when runtime or ownership makes parallelism
+valuable. Add a deployment workflow only after the hosting target is decided.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
