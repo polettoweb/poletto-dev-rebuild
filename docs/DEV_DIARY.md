@@ -446,6 +446,32 @@ bodies, then add them to the MDX registry one at a time. After the content
 surface is stable, add focused tests for article lookup, 404 behavior, and
 newsletter form semantics.
 
+## 2026-09-09 — RSS route for verified articles
+
+**What I worked on:** Implemented the `/rss.xml` route already linked from the
+site footer and Newsletter page.
+
+**What the agent did:** Added a Next.js route that emits RSS 2.0 XML with
+article titles, descriptions, canonical links, GUIDs, and publication dates.
+It added XML escaping and verified the generated response in the browser,
+alongside lint, TypeScript, and the production build.
+
+**What I changed or overrode, and why:** Filtered the feed to articles with
+verified local content instead of syndicating every metadata entry. Three
+articles are still marked Coming soon in the archive because their complete
+bodies have not been verified locally; publishing them to RSS would make the
+content boundary inconsistent across the site.
+
+**Trade-offs / decisions made:** Kept the feed implementation dependency-free
+and route-local rather than adding an RSS package for one feed with a small
+schema. XML escaping is explicit and testable, and a package can be justified
+later if categories, enclosures, or Atom support are added.
+
+**Open questions / next steps:** Add the remaining verified article bodies to
+the MDX registry, then expand the RSS feed automatically as each article moves
+out of Coming soon. Add focused tests once the test-runner sequencing decision
+is made.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
