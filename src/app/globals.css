@@ -1,11 +1,38 @@
 @import "tailwindcss";
 
+/*
+  Theme tokens. Default (no data-theme attribute) follows the OS setting via
+  the prefers-color-scheme query below; [data-theme] is an explicit reader
+  choice from the header toggle and always wins. Dark is a warm sepia, not a
+  desaturated black, to match the site's editorial, paper-like light theme.
+  --line values are tuned to the WCAG 1.4.11 non-text 3:1 minimum against
+  their background; --foreground/--muted against --background clear 4.5:1.
+*/
 :root {
   --background: #f8f6f0;
   --foreground: #1f2924;
   --muted: #65706a;
-  --line: #cdd3cc;
+  --line: #899080;
   --accent: #e2eadf;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #211a14;
+    --foreground: #ead9bf;
+    --muted: #a89880;
+    --line: #7a6650;
+    --accent: #2e2519;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #211a14;
+  --foreground: #ead9bf;
+  --muted: #a89880;
+  --line: #7a6650;
+  --accent: #2e2519;
 }
 
 @theme inline {
@@ -19,6 +46,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 a {

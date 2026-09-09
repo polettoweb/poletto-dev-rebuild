@@ -63,6 +63,25 @@ test("RSS contains only verified article content", async ({ request }) => {
   expect(body).not.toContain("What Changes When You Start Managing Managers");
 });
 
+test("theme toggle overrides the OS theme and persists across navigation", async ({ page }) => {
+  await page.goto("/");
+
+  const toggle = page.getByRole("button", { name: "Switch to dark mode" });
+  await expect(toggle).toBeVisible();
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme", "dark");
+
+  await toggle.click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.getByRole("button", { name: "Switch to light mode" })).toBeVisible();
+
+  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Blog" }).click();
+  await expect(page).toHaveURL(/\/blog$/);
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+});
+
 test("sitemap contains public pages and verified article URLs", async ({ request }) => {
   const response = await request.get("/sitemap.xml");
   const body = await response.text();

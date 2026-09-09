@@ -759,6 +759,53 @@ output directory `out`. After that's live: migrate the remaining verified
 article bodies (source repo fetch is still failing outright, see prior entry),
 then write the case-study post the whole diary exists to support.
 
+## 2026-09-09 — Design pass: sepia dark mode
+
+**What I worked on:** A design review of the existing visual system, then
+added dark-mode support with a manual toggle.
+
+**What the agent did:** Audited the 5-token light palette in `globals.css`
+by computing actual WCAG contrast ratios rather than eyeballing hex values —
+found `--foreground`/`--muted` against `--background` both clear AA, but
+`--line` (used as the border color throughout) sat at 1.41:1, well under the
+3:1 minimum for meaningful non-text UI contrast. Retuned `--line` to a
+darker sage (`#899080`, 3.05:1) as part of the same pass, since a "design
+pass" should include the palette that already shipped, not just the new one.
+Added a dark theme — warm sepia (`#211a14` background, `#ead9bf` text)
+rather than a desaturated black, to stay consistent with the light theme's
+paper-like warmth — verified the same way (12.4:1 fg/bg, 6.1:1 muted/bg,
+3.1:1 line/bg). Implemented via a `data-theme` attribute: unset follows
+`prefers-color-scheme`, explicit `light`/`dark` (from a new header toggle,
+persisted to `localStorage`) always wins. A `next/script` `beforeInteractive`
+script applies any stored preference before first paint to avoid a flash of
+the wrong theme. Rendered both states with Playwright and read the
+screenshots directly rather than describing the change from the CSS alone.
+
+**What I changed or overrode, and why:** The toggle's first implementation
+read `matchMedia`/`localStorage` in a `useEffect` and called `setState`
+directly — the project's stricter React-Compiler-era lint rule
+(`react-hooks/set-state-in-effect`) correctly rejected this as the "effect
+that should be a subscription" anti-pattern. Rewrote it with
+`useSyncExternalStore`, which is the intended hook for syncing component
+state with an external system (browser APIs here), and ended up with less
+code and no effect at all. Used plain Unicode glyphs (☼/☾) for the toggle
+icon instead of an icon library, matching the site's existing no-icon-set,
+typographic aesthetic.
+
+**Trade-offs / decisions made:** Kept the toggle two-state (explicit
+light/dark) rather than a three-state light/dark/system cycle — simpler
+mental model for a reader, and "system" is still the default for anyone who
+never touches it. Added `suppressHydrationWarning` only on `<html>`, scoped
+to the one attribute the init script mutates before hydration, rather than
+disabling hydration warnings more broadly.
+
+**Open questions / next steps:** Visual/contrast check was done at the
+component level (homepage, article, hover states); a full page-by-page pass
+across `/topics`, `/start-here`, `/contact` would catch anything the shared
+primitives don't cover. The next priorities from the last entry are
+unchanged: get Cloudflare Pages connected, then the remaining article
+bodies, then the case-study post.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
