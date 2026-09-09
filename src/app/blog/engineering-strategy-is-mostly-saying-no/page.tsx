@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { getArticleBySlug } from "@/content/articles";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { TopicTag } from "@/components/ui/TopicTag";
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     "A strategy that says yes to everything is just a to-do list with ambitions.",
 };
 
-const topics = ["leadership", "strategy", "management"];
+const article = getArticleBySlug("engineering-strategy-is-mostly-saying-no");
 
 export default function EngineeringStrategyArticle() {
   return (
@@ -22,17 +23,17 @@ export default function EngineeringStrategyArticle() {
         <PageContainer className="py-16 sm:py-24">
           <article className="mx-auto max-w-3xl">
             <header>
-              <p className="eyebrow">Article · Aug 25, 2026 · 6 min read</p>
+              <p className="eyebrow">
+                Article · {article?.date} · {article?.readTime}
+              </p>
               <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
-                Engineering Strategy Is Mostly Saying No
+                {article?.title}
               </h1>
               <p className="mt-7 max-w-2xl text-xl leading-8 text-[var(--muted)] sm:text-2xl">
-                A strategy that says yes to everything is just a to-do list with
-                ambitions. The core skill of a senior engineering leader isn&apos;t
-                picking what to build - it&apos;s deciding, out loud, what you won&apos;t.
+                {article?.excerpt}
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
-                {topics.map((topic) => (
+                {article?.tags.map((topic) => (
                   <TopicTag key={topic} href="/topics">
                     {topic}
                   </TopicTag>

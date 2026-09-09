@@ -225,6 +225,37 @@ needs are visible.
 decide whether the next content milestone should extract this article into
 MDX or first build the Blog archive using the same local article data shape.
 
+## 2026-09-09 — Shared content model and Blog archive
+
+**What I worked on:** Used the original `polettoweb/leadingbytes` repository
+as the source of truth for published article metadata and built the first Blog
+archive in this Next.js rebuild.
+
+**What the agent did:** Reviewed the source repo's Astro content collection,
+frontmatter fields, article layout, homepage, and Blog route. It adapted the
+published article metadata into a typed `src/content/articles.ts` module,
+updated the homepage and featured article to consume that shared data, and
+added `/blog` using the existing `ArticleCard` primitive. It validated the
+archive in the browser and with lint, TypeScript, and a production build.
+
+**What I changed or overrode, and why:** Reused the original repo's content
+concepts (`title`, `description`, `pubDate`, `tags`, and `featured`) but did
+not copy Astro components, `getCollection`, or client-side filter scripts.
+The rebuild is intentionally Next.js-native, and four published articles are
+enough evidence for a shared typed module without committing to an MDX loader
+or browser filtering architecture yet.
+
+**Trade-offs / decisions made:** Kept the Blog archive unfiltered for this
+slice even though the original site has tag filtering. The archive first
+needs to establish the content contract and card behavior; filtering will be
+added only if the route and real tag usage justify the interaction and its
+test surface.
+
+**Open questions / next steps:** Decide whether to import the original MDX
+articles into `src/content` next, or build the Start Here page from the shared
+metadata first. The source repo's topic relationships are now available to
+inform that decision.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

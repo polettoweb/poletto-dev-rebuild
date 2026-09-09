@@ -1,6 +1,7 @@
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { featuredArticle, latestArticles } from "@/content/articles";
 import { ArticleCard } from "@/components/ui/ArticleCard";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { TopicTag } from "@/components/ui/TopicTag";
@@ -10,42 +11,6 @@ const topics = [
   { href: "/topics", label: "Delivery & metrics" },
   { href: "/topics", label: "Team culture" },
   { href: "/topics", label: "AI & change" },
-];
-
-const articles = [
-  {
-    href: "/blog/engineering-strategy-is-mostly-saying-no/",
-    title: "Engineering Strategy Is Mostly Saying No",
-    excerpt:
-      "A strategy that says yes to everything is just a to-do list with ambitions. The core skill of a senior engineering leader isn't picking what to build - it's deciding, out loud, what you won't.",
-    date: "2026-08-25",
-    readTime: "6 min read",
-    featured: true,
-  },
-  {
-    href: "/blog/what-changes-when-you-start-managing-managers/",
-    title: "What Changes When You Start Managing Managers",
-    excerpt:
-      "The skills that made you a great engineering manager quietly become liabilities the day you start leading other managers.",
-    date: "2026-08-22",
-    readTime: "7 min read",
-  },
-  {
-    href: "/blog/ai-is-breaking-the-junior-engineer-pipeline/",
-    title: "AI Is Quietly Breaking the Junior-Engineer Pipeline",
-    excerpt:
-      "Teams are hiring fewer juniors because AI does the grunt work now. But that grunt work was the apprenticeship.",
-    date: "2026-08-18",
-    readTime: "5 min read",
-  },
-  {
-    href: "/blog/signs-you-promoted-the-wrong-person-into-management/",
-    title: "The Signs You Promoted the Wrong Person Into Management",
-    excerpt:
-      "A struggling manager rarely announces it - the team does, quietly, months before it hits a dashboard.",
-    date: "2026-07-29",
-    readTime: "5 min read",
-  },
 ];
 
 export default function Home() {
@@ -102,8 +67,23 @@ export default function Home() {
             </a>
           </div>
           <div className="mt-10 grid gap-12 md:grid-cols-2">
-            {articles.map((article) => (
-              <ArticleCard key={article.href} {...article} />
+            <ArticleCard
+              href={`/blog/${featuredArticle.slug}`}
+              title={featuredArticle.title}
+              excerpt={featuredArticle.excerpt}
+              date={featuredArticle.date}
+              readTime={featuredArticle.readTime}
+              featured
+            />
+            {latestArticles.map((article) => (
+              <ArticleCard
+                key={article.slug}
+                href={`/blog/${article.slug}`}
+                title={article.title}
+                excerpt={article.excerpt}
+                date={article.date}
+                readTime={article.readTime}
+              />
             ))}
           </div>
           <a href="/blog" className="link-arrow mt-10 inline-block text-sm sm:hidden">
