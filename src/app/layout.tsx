@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "Writing on scaling engineering organisations, delivery, and the human side of technology.",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Marco Poletto | Engineering leadership, in practice",
     description:
       "Writing on scaling engineering organisations, delivery, and the human side of technology.",

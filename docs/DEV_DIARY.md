@@ -1324,6 +1324,78 @@ legible fix to hand back to future-me than a partially-patched lockfile.
 **Open questions / next steps:** `npm audit` now reports 0 vulnerabilities.
 No standing items left from recent sessions.
 
+## Adding a real social preview image
+
+**What I worked on:** No standing item this time - asked directly what to
+do next, and recommended (over an accessibility/perf audit) a proper
+Open Graph image, since sharing any article right now falls back to
+whatever LinkedIn/Slack/Twitter default to with no `og:image` at all.
+
+**What the agent did:** Built two `next/og` `ImageResponse` routes rather
+than one static image: `src/app/opengraph-image.tsx` as the site-wide
+default, and `src/app/blog/[slug]/opengraph-image.tsx` so every article
+gets its own image carrying its actual title, read time, and date -
+matching `generateStaticParams` against the same `getPublishedArticles()`
+the page route already uses, so the two stay in lockstep by construction
+rather than by convention. Reused the same "P" badge mark and warm-paper
+palette from the favicon/logo session rather than inventing new brand
+colours. Titles vary a lot in length across 22 articles (from ~25 to over
+90 characters), so added a simple length-based font-size step rather than
+picking one size and hoping - checked it against both a short title and
+the single longest one in the set (the Netherlands piece) to confirm
+neither looked cramped nor wasted the canvas.
+
+Hit a static-export-specific build error first
+(`export const dynamic = "force-static"` required on image routes under
+`output: "export"`) and fixed it directly rather than searching for a
+workaround. After a clean build, noticed the generated files were named
+literally `opengraph-image` with no extension, and - having just spent a
+session on Cloudflare deploy specifics - didn't assume that was harmless.
+Checked with `wrangler dev` (not `next dev`, not the `serve`-based e2e
+harness) and confirmed the real Workers static-assets runtime served them
+with no `Content-Type` header at all, which is exactly the class of thing
+that silently breaks social-card rendering on strict crawlers (Twitter/X
+in particular). Added `_headers` rules for both the root and per-article
+image paths, forcing `image/png`, matching the project's existing pattern
+for the RSS feed's content-type. Re-verified with `wrangler dev` again
+rather than trusting the fix on the first attempt - confirmed `Content-Type:
+image/png` on both the default and a per-article image before moving on.
+
+While verifying, discovered the project's Playwright e2e suite (which
+runs against `serve`, not `wrangler dev`) can't actually exercise this
+class of bug at all - `serve` doesn't read `public/_headers`, and its
+built-in mime-type table happens to get `.xml` right by coincidence of
+extension, which had been silently making the existing RSS content-type
+e2e test look like it was testing the Cloudflare-specific header
+behaviour when it wasn't. Didn't bolt a misleading test onto that harness
+for the new image routes - flagging the gap here instead of pretending to
+close it with a test that wouldn't actually catch a regression.
+
+Also upgraded `twitter.card` in the root layout from `"summary"` to
+`"summary_large_image"` - the small-thumbnail card type doesn't show the
+image prominently, which would have made the whole image undercut itself
+on the one platform most likely to actually render it.
+
+**What I changed or overrode, and why:** Nothing beyond what the task
+needed.
+
+**Trade-offs / decisions made:** Used Satori's default bundled font
+rather than loading Geist's font files into the `ImageResponse` call -
+matching the exact site typeface in the OG image would have meant
+fetching or bundling raw font binaries (Next's font loader doesn't expose
+them in a form `ImageResponse` can consume directly), and the default
+sans renders cleanly enough that the added fragility (a build-time font
+fetch, or a new binary asset to maintain) wasn't worth it for an asset
+most people see for a second in a link preview, not read closely.
+
+**Open questions / next steps:** The Playwright e2e suite has no coverage
+for Cloudflare-specific `_headers` behaviour (RSS's existing "content-type"
+test was inadvertently not testing what it looked like it was testing,
+and neither would a naive test for the new image routes) - worth a
+dedicated session if this class of bug becomes a recurring problem,
+switching that suite to run against `wrangler dev` instead of `serve`.
+Not blocking today. Nothing else outstanding.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

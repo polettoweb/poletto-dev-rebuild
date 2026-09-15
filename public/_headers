@@ -1,2 +1,8 @@
 /rss.xml
   Content-Type: application/rss+xml; charset=utf-8
+
+/opengraph-image
+  Content-Type: image/png
+
+/blog/*/opengraph-image
+  Content-Type: image/png
