@@ -27,6 +27,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   return {
     title: `${article.title} | Marco Poletto`,
     description: article.excerpt,
+    alternates: {
+      canonical: `/blog/${article.slug}/`,
+    },
   };
 }
 

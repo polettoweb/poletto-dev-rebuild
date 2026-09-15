@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Get in Touch | Marco Poletto",
   description:
     "Contact Marco Poletto about engineering leadership, organisational scaling, speaking, or collaboration.",
+  alternates: {
+    canonical: "/contact/",
+  },
 };
 
 const socialLinks = [

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Blog | Marco Poletto",
   description:
     "Articles on engineering leadership, management, and sustainable teams.",
+  alternates: {
+    canonical: "/blog/",
+  },
 };
 
 export default function BlogPage() {

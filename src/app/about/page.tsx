@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "About Marco Poletto",
   description:
     "Marco Poletto is an engineering leader in the Netherlands leading product domains and delivery operations at Rentman.",
+  alternates: {
+    canonical: "/about/",
+  },
 };
 
 export default function AboutPage() {

@@ -81,6 +81,25 @@ test("theme toggle overrides the OS theme and persists across navigation", async
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
 
+test("every page declares its own canonical URL, not the homepage's", async ({ page }) => {
+  const routes = [
+    { path: "/about/", canonical: "https://poletto.dev/about/" },
+    { path: "/blog/", canonical: "https://poletto.dev/blog/" },
+    {
+      path: "/blog/engineering-strategy-is-mostly-saying-no/",
+      canonical: "https://poletto.dev/blog/engineering-strategy-is-mostly-saying-no/",
+    },
+  ];
+
+  for (const route of routes) {
+    await page.goto(route.path);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      route.canonical,
+    );
+  }
+});
+
 test("sitemap contains public pages and verified article URLs", async ({ request }) => {
   const response = await request.get("/sitemap.xml");
   const body = await response.text();

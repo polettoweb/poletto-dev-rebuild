@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Topics | Marco Poletto",
   description:
     "The themes behind writing on scaling engineering organisations, delivery, team culture, and leading through change.",
+  alternates: {
+    canonical: "/topics/",
+  },
 };
 
 export default function TopicsPage() {

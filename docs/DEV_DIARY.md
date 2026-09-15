@@ -1396,6 +1396,65 @@ dedicated session if this class of bug becomes a recurring problem,
 switching that suite to run against `wrangler dev` instead of `serve`.
 Not blocking today. Nothing else outstanding.
 
+## An accessibility/performance audit that found a real SEO bug instead
+
+**What I worked on:** The audit recommended two sessions ago and deferred
+in favour of content/discovery work - verifying the README's accessibility
+and performance claims with real tooling instead of assuming they held.
+
+**What the agent did:** Tried the `cloudflare:web-perf` skill first, which
+needs a `chrome-devtools` MCP server this session doesn't have configured.
+Rather than stop and wait on a config change, fell back to the Lighthouse
+CLI directly - pointed `CHROME_PATH` at the Chromium binary Playwright had
+already cached locally, so no new install was needed. Audited the live
+production site (not a local dev server) on both the homepage and a
+representative article page, since MDX-rendered prose is a meaningfully
+different DOM shape than the homepage's card grid.
+
+Performance, accessibility, and best-practices all came back 100/100 on
+both pages - genuinely excellent, and said so rather than manufacturing
+findings to justify the session. SEO was 100 on the homepage but 92 on
+the article page. Didn't stop at the score: pulled the specific failing
+audit (`canonical`), then checked the actual served HTML with `curl`
+rather than trusting Lighthouse's summary. Found something worse than the
+one page it flagged: the article page's `<link rel="canonical">` pointed
+at `https://poletto.dev/` - the homepage - not itself. Checked the other
+six non-home routes (`/about/`, `/contact/`, `/blog/`, etc.) the same way
+and found every single one had the identical bug: the root layout sets a
+blanket `alternates: { canonical: "/" }` that every child page silently
+inherits unless it overrides `alternates` itself, and none of the seven
+page-level metadata exports did. Lighthouse only samples one URL per run,
+so it had no way to reveal this was site-wide - that took checking the
+actual pattern in the codebase, not just the one flagged page.
+
+Fixed all seven - the six static pages plus the dynamic `blog/[slug]`
+route, which now builds its canonical from the article's own slug. Verified
+against the full 22-article build output with a loop comparing each
+page's actual canonical against its expected URL, not just a couple of
+spot checks, since the bug's root cause (metadata inheritance) meant every
+article was equally exposed. Added a Playwright test asserting a sample of
+routes declare their own canonical rather than the homepage's, since this
+is exactly the kind of bug that's invisible in a single-file diff (each
+page's metadata block looks completely fine in isolation) and would
+silently recur the next time someone adds a page and forgets the
+`alternates` field.
+
+**What I changed or overrode, and why:** Nothing beyond the canonical fix
+and its regression test - the audit's other findings (a few KiB of legacy
+JS, unused JS, cache headers) were true but negligible on a page already
+loading in well under a second, so left them alone rather than chasing
+near-zero-impact changes for their own sake.
+
+**Trade-offs / decisions made:** Used the Lighthouse CLI against the
+Playwright-cached Chromium instead of asking the user to configure the
+`chrome-devtools` MCP server - got an equivalent result (Core Web Vitals,
+accessibility, SEO scoring) without a round-trip on tooling setup for a
+one-off audit.
+
+**Open questions / next steps:** Nothing new outstanding. The Playwright
+`serve`-vs-`wrangler dev` coverage gap from last session still stands as
+a known, non-blocking gap.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

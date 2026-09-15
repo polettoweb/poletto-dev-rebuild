@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Leading Bytes Newsletter | Marco Poletto",
   description:
     "Practical writing on scaling engineering organisations, delivery operations, and the human side of leadership.",
+  alternates: {
+    canonical: "/newsletter/",
+  },
 };
 
 const issueThemes = [

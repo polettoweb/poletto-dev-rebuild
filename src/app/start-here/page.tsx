@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Start Here | Marco Poletto",
   description:
     "A curated reading path through writing on scaling engineering organisations and leading people through change.",
+  alternates: {
+    canonical: "/start-here/",
+  },
 };
 
 const paths = [
