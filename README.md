@@ -52,7 +52,7 @@ a static build served on port 3100), `npm run build` (static export to
 
 ## Status
 
-Core routes, content pipeline, dark mode, and CI are live. Articles with a
-verified body publish; the rest are held to an honest "Coming soon" boundary
-until their source is verified — see the dev diary for the current state and
-next steps.
+Core routes, content pipeline, dark mode, and CI are live. All 22 articles
+carried over from the old blog now have verified bodies; the "Coming soon"
+content boundary is still in place for any future draft, just currently
+unexercised — see the dev diary for the current state and next steps.

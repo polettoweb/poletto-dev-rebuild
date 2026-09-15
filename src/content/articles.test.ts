@@ -25,9 +25,9 @@ describe("article content", () => {
   it("keeps verified article bodies distinguishable from unverified ones", () => {
     const verifiedArticles = articles.filter((article) => article.hasContent);
 
-    expect(verifiedArticles).toHaveLength(2);
+    expect(verifiedArticles).toHaveLength(articles.length);
     expect(
       latestArticles.filter((article) => !article.hasContent),
-    ).toHaveLength(3);
+    ).toHaveLength(0);
   });
 });

@@ -1,0 +1,53 @@
+Somewhere in your company's shared drive is an engineering strategy document. It has a roadmap, a list of architectural initiatives, maybe a tech-debt paydown plan. It is thorough, it is correct, and almost no one outside engineering has read past the first page.
+
+I've written those documents. I've also watched them fail to move a single decision or a single euro of budget. The problem was never the quality of the thinking. It was the translation. An engineering strategy written in engineering will be understood by engineers and quietly ignored by everyone who controls resources.
+
+If you want a seat where the company's direction is actually decided, this is the skill that gets you there. Not deeper technical knowledge - the ability to make engineering *legible* to the people who fund it.
+
+## The translation problem
+
+Executives think in outcomes: revenue, cost, risk, speed to market. When you present engineering work in engineering terms - "we need to migrate off the monolith" - you're asking a CFO to do a translation they can't do. So they default to the one question they *can* evaluate: "How much does it cost and can we delay it?"
+
+Consider the difference:
+
+> *"Our test coverage is low and our change failure rate is climbing."*
+
+versus
+
+> *"One in every four releases currently causes a customer-facing incident, which is capping how fast we can safely ship revenue features - and it's getting worse as we grow."*
+
+Same fact. One is a metric. The other is a business problem with a cost and an implied decision. Only one of them gets funded.
+
+## Anchor everything to an outcome
+
+The discipline is simple to state and hard to practise: **every initiative in your strategy must terminate in a business outcome, not a technical one.**
+
+A technical outcome is "we adopted a new architecture." A business outcome is "we cut the time to launch a new market integration from six weeks to one." Force yourself to complete this sentence for every initiative: *"We are doing X so that the business can Y."* If you can't fill in Y with something a non-engineer would recognise as valuable, the initiative shouldn't be near the top of your list.
+
+## Speak in the currencies executives trade in
+
+- **Revenue** - does this help us make more, or make it faster?
+- **Cost** - does this reduce what we spend?
+- **Risk** - does this reduce the chance of something expensive going wrong?
+- **Optionality** - does this preserve or create future choices? (This is how you fund platform work: not "clean code," but "the ability to move quickly on things we can't yet predict.")
+
+Tech-debt paydown becomes fundable the moment you translate it: not hygiene, but *speed*, *reduced incident risk*, and *the option* to build things the current architecture forbids.
+
+## Make the trade-offs explicit - that's what earns trust
+
+The fastest way to earn executive trust is not to promise everything. It's to show the trade-offs clearly and let them make an informed call. When you present engineering as a set of choices with costs and consequences, you stop being the department that always says "it'll take longer than you think" and start being a strategic partner who helps them steer.
+
+## A structure that survives contact with a boardroom
+
+1. **The business context** (two sentences).
+2. **The three things that matter** (not thirteen). A strategy that lists twenty initiatives is a leader who hasn't decided.
+3. **For each: outcome, cost, risk, and the decision you're asking for.** In business currency.
+4. **What we will *not* do.** Explicit non-goals are the most trust-building section in any strategy.
+
+## The bottom line
+
+Engineering strategy isn't a technical artefact. It's a persuasion artefact aimed at the people who allocate the company's resources. The engineers who get promoted into the rooms where direction is set aren't necessarily the deepest technologists - they're the ones who learned to make engineering legible to the business, honestly and without losing the substance.
+
+### Your next step
+
+Take one initiative from your current roadmap and rewrite its one-sentence pitch so it ends in a business outcome, not a technical one. If you can't finish "we are doing X so that the business can Y" with something a non-engineer would call valuable, that's the tell - either dig for the real reason, or move it down the list.

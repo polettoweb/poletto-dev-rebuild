@@ -1031,6 +1031,126 @@ isn't still being served from a cached edge somewhere. Standing items otherwise 
 (still blocked on finding a verifiable source - see the earlier "Single
 source of truth" entry) and the deferred Vitest 5 upgrade from `npm audit`.
 
+## The source repository wasn't gone, it was private
+
+**What I worked on:** The three remaining unverified article bodies,
+revisited after the user confirmed the live site's DNS check independently
+and asked to pick this up next.
+
+**What the agent did:** Previous sessions' raw GitHub fetches (tree API,
+repo page) had been returning 404 against `polettoweb/leadingbytes` and
+that was read as the repo being unreachable. It wasn't unreachable, it was
+private - `gh api`, authenticated, resolved it immediately and listed the
+full `src/content/blog/` tree, including all three missing slugs. The user
+then pointed out a local clone already existed at `~/leadingbytes`; a
+`diff` against the `gh api`-fetched copies confirmed both sources agreed
+byte-for-byte, so the local clone was used directly. Read the one existing
+migrated article's source-to-site diff
+(`engineering-strategy-is-mostly-saying-no`) to reverse-engineer the actual
+migration convention before writing anything: frontmatter stripped (title
+/ date / tags now live in `articles.ts`), internal links to other
+leadingbytes posts that don't exist on this site dropped along with their
+sentences rather than de-linked in place, em dashes rendered as spaced
+hyphens, and the whole piece condensed to roughly 40-45% of source length
+while keeping section headers, the closing "Your next step" beat, and the
+density of bolded/italicized emphasis. Applied the same treatment to the
+three remaining pieces, wired them into `contentBySlug` and the metadata
+array in `articles.ts`, and updated the two tests that had the old
+2-verified-articles count hardcoded rather than derived.
+
+**What I changed or overrode, and why:** Asked the user up front whether to
+match the existing condensed editorial treatment, do a lighter literal
+migration, or hand the raw content off for them to edit - condensing
+without checking would have meant silently rewriting the user's own prose
+under their byline. They picked the condensed match. Confirmed via `next
+build` and a grep of the built HTML/RSS/sitemap output, not just green
+tests, that all five articles render, feed, and index correctly - the same
+"verify the receipt, not the claim" standard the case-study article on this
+site describes.
+
+**Trade-offs / decisions made:** Left
+`the-agent-wrote-the-code-leading-it-was-the-job.mdx` untouched even though
+it narrates the now-resolved "three articles stuck as Coming soon" episode
+in the present-reading tense - it's phrased as a retrospective of the
+build ("sat as Coming soon for the entire build"), which stays accurate as
+history rather than a live status claim, so editing it would have been
+revising the user's own past narrative rather than fixing a stale fact.
+Did update the README's Status line, which *was* a live claim and had gone
+stale the moment the fifth article shipped.
+
+**Open questions / next steps:** The content boundary mechanism
+(`hasContent`, the dynamic route's real 404, the "Coming soon" card state)
+is now fully unexercised with all five articles verified - worth keeping
+in mind that it's currently untested by real data if a sixth article is
+ever added mid-draft. The deferred Vitest 5 upgrade from `npm audit` is the
+last standing item.
+
+## The other seventeen
+
+**What I worked on:** The user pointed out that `articles.ts` only ever
+had 5 entries - the other 17 posts on the old leadingbytes blog had no
+footprint in this rebuild at all, not even an unverified stub. Asked to
+bring all of them over.
+
+**What the agent did:** Read all 17 source files in full before writing
+anything. They split cleanly into two groups: about ten matched the sharp,
+opinionated voice of the articles already on this site closely enough to
+condense using the same treatment as before, while the rest were visibly
+from a different era or template - generic "Introduction"/"Conclusion"
+listicles, footnote-citation apparatus with no rendering support in this
+site's plain `@next/mdx` config, ASCII-art diagrams, task-list checkboxes,
+ten years of "As an engineering manager, you have many responsibilities"
+filler. Rewrote those more heavily rather than lightly condensing them,
+to bring them up to the same bar rather than visibly clash with it -
+stripped the footnotes to inline mentions, converted the ASCII diagram to
+prose, flattened checklists to bullet lists, and added a closing "Your
+next step" to every piece that lacked the site's now-consistent CTA
+convention. Also discovered, mid-read, that three of the 17 were marked
+`draft: true` on the source and filtered out of the old site's own build -
+never actually published. Flagged this before writing anything for them,
+rather than assuming; the user chose to include all three anyway.
+
+Cross-referenced every `/blog/...` link across all 21 leadingbytes source
+articles before writing: with this batch landing, every internal link in
+the corpus now has a real target on this site, where earlier sessions had
+been forced to drop them because the target didn't exist yet. Went back
+and restored the dropped links in the four already-published articles
+(`what-changes-when-you-start-managing-managers`,
+`ai-is-breaking-the-junior-engineer-pipeline`,
+`signs-you-promoted-the-wrong-person-into-management`,
+`engineering-strategy-is-mostly-saying-no`) rather than leaving them
+one-directionally linked from only the new pieces.
+
+**What I changed or overrode, and why:** Two of the three Playwright tests
+and one assertion had been written against "an unverified article exists"
+as their negative case (`what-changes-when-you-start-managing-managers`
+returns 404, is absent from RSS/sitemap) - true when they were written,
+false the moment this session made every article verified. Rewrote the
+404 test against a slug that will never exist rather than a real article,
+so it stops being coupled to which articles happen to be in a draft state
+today. Dropped the negative RSS/sitemap assertions rather than replacing
+them with a tautological check against a fake title - a passing assertion
+that isn't actually exercising anything is worse than no assertion, because
+it looks like coverage. The real "only verified articles render" guarantee
+is still covered at the right layer, by the `articles.test.ts` /
+`publishing.test.ts` unit tests that check `hasContent` derivation
+directly, independent of which slugs currently happen to be verified.
+
+**Trade-offs / decisions made:** Did not touch `topics.ts` or the
+`start-here` curated reading path. Both are hand-picked editorial lists,
+not registries that auto-include every article, and "port the content"
+didn't imply "rewrite the site's curation" - surfaced this as an open
+question rather than silently leaving 17 articles absent from both, or
+silently assigning them to topics on my own judgment.
+
+**Open questions / next steps:** `topics.ts` and `start-here/page.tsx`
+are still curated around the original 5 articles; worth a deliberate pass
+if the user wants the other 17 folded into that information architecture.
+The content boundary mechanism is now exercised by 22 real articles
+instead of 5, but still has zero real unverified examples to test against
+if a future draft article is added mid-write. Standing item unchanged:
+the deferred Vitest 5 upgrade from `npm audit`.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

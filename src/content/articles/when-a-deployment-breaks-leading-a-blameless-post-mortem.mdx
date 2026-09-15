@@ -1,0 +1,28 @@
+It's 4:15 PM on a Thursday. You're about to close your laptop when the Slack alerts start firing - first one, then ten, then a wall of red. Production is down. Users can't check out.
+
+The next hour is a blur: digging through logs, a war room call, reverting the latest release, watching traffic stabilise. You breathe out. The immediate fire is out. But for you, the engineering manager, the real work is just beginning - how you handle the next 24 hours determines whether your team grows stronger or becomes terrified of shipping code. It's the ultimate test of psychological safety.
+
+## Theoretical safety vs. the outage test
+
+It's easy to talk about psychological safety when sprints are green and deployments are smooth. It's tested when someone drops a database table, fat-fingers an API key, or deploys a memory leak that brings down the core application. When things break, the human brain default-schedules a finger-pointing session - we want a name to attach to the incident. Yield to that impulse and you pay for it: engineers start hiding mistakes and delaying reports, ship speed drops to a crawl as every PR needs extra approvals, and root-cause analysis stays surface-level because the person who knows what happened is busy covering their tracks. That's why we run blameless post-mortems.
+
+## The local rationality principle
+
+A blameless post-mortem isn't about avoiding accountability. It's built on the understanding that **human error is a symptom of a deeper system failure, not the cause** - what safety scientists call local rationality: given the information, tools, and pressure someone was under, what they did made sense to them at the time. If an engineer deployed a bad config, the questions are: why didn't staging catch it? Why was it possible to deploy that directly to production without a check? Was the schema documented clearly? Once you shift from "who did this" to "how did the system allow this," the defensive walls come down, and the engineer who made the mistake becomes your most valuable asset in fixing it.
+
+## Facilitating the meeting
+
+- **Set the ground rules in the first five minutes.** State plainly: we're here to understand how the system failed, not who failed. Read it aloud if you have to.
+- **Build the timeline on objective facts.** What was deployed, when did the first alert fire, what was tried, what red herrings did you chase, how did you recover. When someone admits "I noticed the latency spike but didn't say anything because I thought it was normal," thank them - that's a monitoring signal problem you can now fix.
+- **Analyse the gaps in detection and mitigation.** How would we catch this faster next time, and how would we recover faster - automated rollbacks, feature flags.
+- **Write action items that actually change something.** "Remind people to double-check configs" is a useless action item - it assumes willpower is a system architecture. Rank fixes by strength: weak (documentation, a warning), medium (an alert, a test), strong (automated validation, a failure state made impossible, auto-rollback on error-rate spikes). Aim for at least one strong action item per incident.
+
+For the invite itself: name the incident neutrally, bring in the engineer who deployed, the responder, someone from product for business impact, and one engineer from outside the team for a fresh eye. Three questions worth asking directly: what did you expect to happen when you ran that command; what dashboards or logs did you check first, and were they useful; and if you could change one thing in our tooling to prevent this from ever happening again, what would it be.
+
+## The bottom line
+
+Production outages are expensive and inevitable, but they're also the most potent learning opportunities your team will get. Run a blameless post-mortem well and you're not just fixing a bug - you're upgrading your engineering culture, teaching your team that it's safe to push boundaries and safe to be human.
+
+### Your next step
+
+Next time production breaks, resist the urge to look for a scapegoat before the dust has even settled. Write down the ground-rules sentence now, while nothing is on fire, so it's ready to read aloud the moment something is.

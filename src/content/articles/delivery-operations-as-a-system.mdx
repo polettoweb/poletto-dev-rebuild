@@ -1,0 +1,45 @@
+There's a moment every scaling engineering organisation hits. You have three, five, eight autonomous teams, each shipping well on its own. And yet, at the org level, delivery feels *unpredictable*. Releases collide. A quality issue in one domain surprises everyone. An incident escalates through three Slack channels before anyone with authority sees it.
+
+The instinctive fix is to add process. A release board. A change-approval committee. Six months later delivery is *more* predictable and teams are *slower*, more resentful, and less autonomous. You traded velocity for predictability - exactly the trade a good leader should refuse to make.
+
+There's a better framing: treat **delivery operations as a system that runs across your teams without owning them.** Not a committee, not a phase gate - a thin, well-designed layer that makes the whole org's delivery legible and safe, while leaving each team fast and in control of its own work.
+
+That system has three surfaces: **release, quality, and incidents.**
+
+## Surface 1: Release - visibility without a gatekeeper
+
+The failure mode here is the human bottleneck: one person or board that has to bless every release. The goal isn't to *control* releases. It's to make them **coordinated and visible** so teams can control their own.
+
+- **A release calendar kept visible org-wide.** Most release collisions aren't a control failure; they're a visibility failure.
+- **A lightweight go/no-go, owned by the team,** against a shared checklist - tests green, rollback ready, stakeholders aware.
+- **Explicit version deprecation**, as a scheduled, communicated event, not a surprise.
+
+The principle: **decouple visibility from permission.** You want everyone to *see* delivery clearly. You do not want everyone to need *permission* to deliver.
+
+## Surface 2: Quality - a target someone owns
+
+Quality is where "everyone's responsibility" quietly becomes no one's. The fix is to make it a *number someone is accountable for*, connected to the people who feel it first.
+
+- **A single point of contact for customer-facing software issues** - one clear path in, not a scavenger hunt across teams.
+- **SLAs with the teams you serve**, so "we're on it" means something in hours.
+- **An owned quality target** - a metric no one owns is a metric that only gets attention after an outage.
+
+## Surface 3: Incidents - severity, response, and clear escalation
+
+The organisations that handle incidents well aren't the ones with the fewest; they're the ones where everyone already knows what happens next.
+
+- **A shared severity scale (P1-P3)**, so nobody has to negotiate how serious a fire is while it's burning.
+- **Severity-based response** that follows automatically from the severity, not from who happens to be online.
+- **Clear escalation paths** - a well-lit staircase, not a search party.
+
+And critically, the incident should end in *learning*, not blame - I've written separately about running [blameless post-mortems people actually enjoy](/blog/when-a-deployment-breaks-leading-a-blameless-post-mortem/); the incident system is what feeds them.
+
+## The org design that makes this work
+
+This system works precisely because it doesn't live inside any one team, and it doesn't sit on top of them as bureaucracy either. It runs *across* them, thin and well-designed. Someone is accountable for delivery operations at the org level, while the teams themselves stay fully in control of *what* and *how* they build. The delivery-ops layer never tells a team what to ship.
+
+That's the balance every scaling org is really looking for: **autonomy and predictability at the same time.** You get there by building a delivery system thin enough that teams barely feel it, and strong enough that the organisation can finally trust its own dates.
+
+### Your next step
+
+Look at your last three "delivery surprises" - a collision, a quality escape, a messy incident. For each, ask: was this a *team* failure, or a *system* failure? Almost always, it's the system. Pick the one that hurt most and build the thinnest possible mechanism that would have caught it - then resist the urge to make it heavier.

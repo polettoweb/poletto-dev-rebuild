@@ -1,0 +1,34 @@
+It started with a promise of absolute liberation. In the early days of generative AI assistants, the narrative was simple: tools like Copilot, Cursor, and ChatGPT would automate away the boring, boilerplate parts of software engineering, freeing developers for higher-level design. Executives began calculating how a 30% boost in coding efficiency would shrink their time-to-market.
+
+The reality in the trenches feels very different. Many engineering teams are exhausted - a phenomenon the industry has started calling **AI fatigue**. Developers aren't writing less code; they're drowning in machine-generated text. They aren't spending more time on architecture; they're acting as human compilers, debugging subtle hallucinations, and wrestling with codebases that grow faster - and become harder to reason about - than ever before.
+
+If we treat AI tools as plugins that automatically yield productivity, we risk burning out our teams and degrading our technical foundations.
+
+## The code review tax and cognitive overload
+
+AI fatigue is a problem of cognitive bandwidth. The bottleneck in software development has never been typing speed - it's comprehension and decision-making. In a traditional cycle, writing and reading code are tightly coupled; a developer holds a deep internal model of the changes they made. AI tools flip that ratio: they let developers generate hundreds of lines in seconds, but reviewing code - your own machine-generated code or a teammate's - is cognitively much harder than writing it, because there's no underlying intent to reconstruct. A large study of changed code by GitClear found a marked rise in code churn and a corresponding drop in code reuse - developers shipping more code, a larger share of it redundant or buggy. Typing gets faster; overall velocity slows, because the cognitive load of review and integration has skyrocketed.
+
+## The executive disconnect
+
+The pressure to adopt AI tools often flows down from the boardroom, where consulting reports promise 30-50% productivity gains that leadership expects to see reflected in delivery metrics immediately. When engineering managers are asked why teams aren't shipping three times faster, they're forced to justify why story points delivered has stayed flat despite the AI licensing spend. As researchers behind the DORA and SPACE frameworks have pointed out, measuring developer productivity by raw output is not just inaccurate - it's actively counterproductive. A developer who uses AI to generate 500 lines that introduce a subtle memory leak is not "10x more productive" than one who spends three hours writing ten lines of clean, tested code.
+
+## The loss of flow state
+
+Flow - the immersion of solving a complex problem - is what draws most developers to the craft. AI assistants disrupt it: the prompt-and-correct loop, acting as a human compiler hunting for the one line that broke an integration test, constant context-switching between writing, reviewing, and prompting. When developers spend their days auditing machine-generated code rather than building systems, they feel less like craftsmen and more like assembly-line inspectors - a primary driver of AI-induced burnout.
+
+## How leaders can combat it
+
+We can't stop the technology, nor should we. Our job is to design a culture and workflow that keeps people grounded.
+
+- **Measure developer experience, not output.** Lines of code and PR volume just encourage teams to generate noise. Watch DORA's change failure rate and lead time instead, and ask directly in 1:1s: does your tooling feel like it's helping, or adding noise?
+- **Slow down to speed up on review.** Reviewing AI-assisted code takes more time, not less. Make it acceptable to ask for large AI-generated PRs to be broken into smaller chunks, encourage attribution of which parts were AI-generated, and double down on automated test coverage as the only way to safely review high volumes of code.
+- **Protect deep-craft, AI-free zones.** Whiteboard sessions before anyone opens an IDE. Pair-programming without AI assistants enabled. Time set aside to build things the old-fashioned way.
+- **Normalise tool autonomy.** Using AI should be a personal choice, not a mandate because the company bought licenses. Let developers toggle off autocomplete if it disrupts their train of thought.
+
+## The bottom line
+
+AI coding assistants are accelerators, but they only accelerate what's already there. Accelerate a healthy, thoughtful team with strong testing culture and you get faster delivery of good software. Accelerate a stressed, output-driven team with weak guardrails and you get a faster accumulation of technical debt and burnout. Our most valuable assets were never our lines of code or our software licenses - they're the brains, the trust, and the mental health of our engineers.
+
+### Your next step
+
+Ask your team directly, this week: does the tooling feel like it's helping, or is it adding noise? Do you feel rushed to approve PRs? Their answer will tell you more about your real velocity than any dashboard.

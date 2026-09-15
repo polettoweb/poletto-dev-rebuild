@@ -31,8 +31,8 @@ test("verified article routes render content and structured metadata", async ({ 
   await expect(page.getByRole("heading", { name: "The payoff" })).toBeVisible();
 });
 
-test("unverified article routes return a real 404", async ({ page }) => {
-  const response = await page.goto("/blog/what-changes-when-you-start-managing-managers/");
+test("unknown article routes return a real 404", async ({ page }) => {
+  const response = await page.goto("/blog/this-slug-does-not-exist/");
 
   expect(response?.status()).toBe(404);
   await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
@@ -53,14 +53,13 @@ test("newsletter signup exposes an accessible Buttondown form", async ({ page })
   await expect(page.getByRole("button", { name: "Subscribe" })).toBeVisible();
 });
 
-test("RSS contains only verified article content", async ({ request }) => {
+test("RSS contains verified article content", async ({ request }) => {
   const response = await request.get("/rss.xml");
   const body = await response.text();
 
   expect(response.ok()).toBe(true);
   expect(response.headers()["content-type"]).toContain("application/rss+xml");
   expect(body).toContain("Engineering Strategy Is Mostly Saying No");
-  expect(body).not.toContain("What Changes When You Start Managing Managers");
 });
 
 test("theme toggle overrides the OS theme and persists across navigation", async ({ page }) => {
@@ -90,8 +89,5 @@ test("sitemap contains public pages and verified article URLs", async ({ request
   expect(body).toContain("https://poletto.dev/blog");
   expect(body).toContain(
     "https://poletto.dev/blog/engineering-strategy-is-mostly-saying-no",
-  );
-  expect(body).not.toContain(
-    "https://poletto.dev/blog/what-changes-when-you-start-managing-managers",
   );
 });

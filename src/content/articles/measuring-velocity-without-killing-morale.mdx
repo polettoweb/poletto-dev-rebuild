@@ -1,0 +1,39 @@
+It's a scene played out in engineering departments worldwide: a leadership team, eager to understand why feature delivery is "slow," decides it's time to start measuring developer productivity. Within weeks, dashboards appear, charting commits, PR cycle times, and completed story points.
+
+On paper, the goal is visibility and predictability. In reality, the launch of these dashboards is often the exact moment team morale begins to tank. Developers feel like assembly-line workers watched by a digital foreman, and do what any intelligent human does when faced with a rigid system: they optimise for the numbers instead of the software.
+
+## Two ways this goes wrong
+
+At a fast-growing scale-up, a VP of Engineering bought a tool that scored developers individually on lines of code, commit frequency, and PR pull-through, then posted weekly stack rankings to "encourage friendly competition." The codebase collapsed. Engineers split simple changes into ten tiny PRs to boost their counts, copy-pasted verbose libraries to spike lines of code, and rushed or ignored code review because it didn't contribute to an individual's "impact score." Three senior developers resigned within a quarter.
+
+At a legacy enterprise, an Agile coach standardised sprint velocity across five teams and rewarded the team with the highest points at quarterly review. Within two sprints, velocity skyrocketed - and nothing new was actually reaching production. What had happened was inflation: a ticket that used to be a 2-point task was now a 5. Developers protected themselves by inflating the numbers, the business gained zero additional value, and trust between product and engineering was severed.
+
+## Why metrics alter behaviour
+
+When you measure a human system, you're not a passive observer - the act of measurement changes the system.
+
+**Goodhart's Law** says it plainly: when a measure becomes a target, it ceases to be a good measure. **Campbell's Law** goes further: the more a quantitative indicator is used for decision-making, the more it distorts the process it's meant to monitor. If you reward commits, you get commits - not clean architecture, mentoring, or documentation.
+
+The **Hawthorne effect** describes how people modify behaviour in response to being observed. In a high-trust team, developers have agency and autonomy - two pillars of intrinsic motivation. Introduce individual telemetry dashboards and the engineer shifts from "how do I build the best system for our customers?" to "how do I make my activity graph look green today?" That shift from intrinsic to extrinsic motivation drastically reduces job satisfaction and creativity.
+
+And Dr. David Rock's **SCARF model** explains the rest: using metrics to evaluate developers triggers a threat state across Status ("am I ranked lower than my peers?"), Autonomy ("is my manager watching my minute-by-minute activity?"), and Fairness ("is it fair that my colleague gets a high score for easy CRUD work while I get a low score for three days debugging a race condition?"). In a threat state, the prefrontal cortex - the part responsible for problem-solving and complex reasoning - shuts down. You make your engineers less capable of writing good code by stressing them out with metrics about their code.
+
+## Putting the psychological part first, without giving up results
+
+This doesn't mean you shouldn't measure anything. It means changing *why* and *how*. The rule I use: **metrics should be used by the team to diagnose systems, never by management to evaluate individuals.**
+
+Focus on system-level indicators - the DORA metrics (lead time for changes, deployment frequency, change failure rate, recovery time) measure the effectiveness of the whole system and can't be gamed by an individual; push code too fast to lower lead time and the change failure rate spikes, showing exactly where things are breaking down.
+
+Use metrics as retro starters, not performance reviews. If cycle time has doubled, the question isn't "who is working slowly" - it's "where are we getting stuck, and how can I help clear the path?"
+
+> One of my previous teams noticed their lead time for changes had crept up to 8 days. Rather than blaming the developers, we looked at the data together. The team pointed out that code review was the bottleneck - because CI took 50 minutes and failed randomly on flaky tests, so developers were avoiding running them. We paused feature development for a single week to stabilise the suite and cut build time to 8 minutes. Cycle time dropped to under 2 days. The metric highlighted a systemic issue, and because the team felt safe, they solved it without pointing fingers.
+
+## The manager's choice
+
+It's easy to complain about pressure from above - "my director wants these numbers." But how you implement metrics is always a choice. You can pass the pressure straight down and install the tracker tools, or you can shield the team: translate the metrics upwards, focus the team on systemic problems, and protect the working environment.
+
+Build a team that consistently delivers business value, and no one will care about the micro-metrics. When you prioritise psychological safety, developers take risks, mentor juniors, write cleaner code, and flag architectural problems early - and that intrinsic motivation is what produces stable, predictable delivery.
+
+### Your next step
+
+Before your next metrics review, ask one question of your own dashboards: is anything on here being used to evaluate a person rather than diagnose a system? If yes, that's the one to fix first.

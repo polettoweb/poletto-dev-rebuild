@@ -1,0 +1,41 @@
+Every engineer knows the visceral pain of technical debt: a codebase where shipping a straightforward feature takes three weeks because the architecture is a tangle of "temporary" fixes that became permanent. We know that to regain velocity, we have to stop building and start refactoring.
+
+But what happens when the codebase isn't the bottleneck?
+
+When you move from managing individual contributors to managing other managers, your perspective on bottlenecks shifts. The most crippling drag on a department's velocity isn't a bloated frontend or a legacy monolith - it's a poorly structured organisation.
+
+Call it **management debt**: the accumulation of short-term organisational compromises that made perfect sense at the time. The daily standup that used to take ten minutes for a tight-knit squad and has mutated into a 45-minute status report. The undocumented, ad-hoc decision-making that fractures alignment across teams. As a leader, your primary output is no longer just the code - it's the environment where the code gets written, and it deserves the same rigour as software architecture.
+
+## Identifying "org smells"
+
+A "code smell" doesn't mean the system is broken; it's an indicator of a deeper weakness that will eventually cause a failure. Management debt manifests the same way. Four common ones:
+
+- **The standup monologue.** A ten-minute sync bloated into a 45-minute status report. If managers are using standups just to figure out what people are working on, they lack the visibility systems - proper dashboards, async status - to track flow without a meeting.
+- **The IC/manager squeeze.** A healthy hybrid leader focuses on technical strategy and guardrails. The smell is when EMs are expected to burn down sprint tickets to hit deadlines - they aren't managing the system, they're caught in the gears.
+- **Multidisciplinary silos.** Squads that run perfectly internally while cross-department initiatives - an architectural migration, an accessibility overhaul - repeatedly stall.
+- **The leadership bus factor.** A director who has to manually approve every design document or PTO request. Authority is being hoarded instead of distributed through documented principles.
+
+## The refactor
+
+Just as you wouldn't rewrite a legacy monolith in a weekend, you don't overhaul a department's culture overnight. You pay down management debt iteratively.
+
+- **Deprecate meetings, upgrade visibility.** Audit the recurring calendar and cut meetings that don't produce a decision. Replace manual status reporting with dashboards teams can query asynchronously.
+- **Redefine the hybrid role around strategy, not sprint tickets.** A hybrid leader's technical contribution is the guardrails - clean-code standards, architectural RFC review - not the implementation. Let ICs write the code; the manager's job is to ensure the environment supports writing good code.
+- **Break the silos with communities of practice.** If frontend engineers are scattered across five squads, a bi-weekly guild is where cross-team alignment happens - standardising patterns, planning migrations - without bottlenecking the product squads.
+- **Distribute context instead of permission.** Stop dictating the how; define the what and why. Document the constraints - performance budgets, security standards - then push decision-making authority down. You stop being the gatekeeper and become the architect of the system others operate within.
+
+## Building the feedback loop that prevents it recurring
+
+Refactoring pays down the immediate debt. To stop it accumulating again, build the organisational equivalent of continuous integration:
+
+- **Your 1:1s with your EMs are the unit tests for alignment** - not status updates, but strategic checks on whether they're handling underperformance and upholding the guardrails.
+- **Track org health metrics, not just velocity.** EM retention, cross-team escalation frequency, time to a new hire's first deployed PR. When these start slipping, an org smell is forming before it becomes structural debt.
+- **Treat team topologies as living systems**, with quarterly reviews and small incremental adjustments, rather than waiting until debt is insurmountable and forcing a traumatic full-scale reorg.
+
+## The bottom line
+
+It's easy for engineering leaders to retreat into technical problems - code is deterministic, and a bug can be traced and fixed. Organisations are messy, human systems. But you cannot scale a fast-growing product on top of a fragile, debt-ridden organisation. Ignoring management debt is just as dangerous as ignoring technical debt: bloated rituals, misaligned teams, and leadership bottlenecks will eventually grind the department to a halt, no matter how clean the architecture is.
+
+### Your next step
+
+Don't wait for your next quarterly review. Look at your calendar and find one recurring meeting that exists solely to share status updates. Cancel it, and replace it with an asynchronous dashboard. Give your managers their most valuable resource back: the space to actually lead.
