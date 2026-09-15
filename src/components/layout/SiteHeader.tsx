@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { PageContainer } from "./PageContainer";
+import { Logo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navigation = [
@@ -14,7 +15,8 @@ export function SiteHeader() {
   return (
     <header>
       <PageContainer className="flex items-center justify-between py-6">
-        <Link href="/" className="font-semibold tracking-tight">
+        <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+          <Logo />
           Marco Poletto
         </Link>
         <div className="flex items-center gap-6">

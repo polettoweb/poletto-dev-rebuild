@@ -1151,6 +1151,65 @@ instead of 5, but still has zero real unverified examples to test against
 if a future draft article is added mid-write. Standing item unchanged:
 the deferred Vitest 5 upgrade from `npm audit`.
 
+## Replacing the default Next.js favicon
+
+**What I worked on:** The user pointed out the site was still serving
+Next.js's default favicon (the generic scaffolding icon), which read as
+unfinished next to everything else that had shipped.
+
+**What the agent did:** Checked the actual palette in `globals.css` rather
+than picking arbitrary brand colours - the site already has a considered
+warm-sepia identity (`--foreground: #1f2924` ink / `--background: #f8f6f0`
+paper in light mode, inverted warm tones in dark) that a new mark needed to
+sit inside rather than compete with. Drafted two monogram concepts - a
+single "P" and an "MP" - and, before writing any of it into the codebase,
+rendered both through the *actual* failure mode that matters for a favicon:
+16x16px, the real size a browser tab renders at. "MP" collapsed into an
+unreadable smear at that size; "P" stayed crisp. Showed both renders and
+asked the user to pick a direction rather than assuming - they chose the
+single "P," used consistently for both the favicon and an in-page mark.
+
+Built the favicon set properly rather than dropping in one PNG: `icon.svg`
+as the primary vector source, `icon.png` (512) and `apple-icon.png` (180)
+rasterised from it via `sharp` (already resolvable in `node_modules`,
+pulled in transitively - no new dependency needed there), and a real
+multi-resolution `favicon.ico` (16/32/48) built with `png-to-ico`, since
+browsers still request `/favicon.ico` directly regardless of the `<link>`
+tags Next generates from the file-based icon convention. Confirmed via the
+actual build output - not just that the files existed, but that
+`out/favicon.ico` reported as a genuine 3-image ICO container and that
+`out/index.html`'s `<head>` carried all four correctly-sized `<link>` tags.
+
+Also built a small `Logo` component for the header, reusing the same mark
+but with `fill="var(--foreground)"` / `var(--background)` instead of fixed
+hex values, so it inverts automatically with the site's existing dark-mode
+mechanism instead of needing its own theme logic. Verified this actually
+worked - not just that the CSS should cascade correctly - by spinning up
+the static build under `serve`, driving it with a throwaway Playwright
+script, and screenshotting the header in both themes. First attempt showed
+the badge colours flipping but the page background not yet transitioned;
+the CSS `transition: background-color 200ms ease` on `body` meant the
+screenshot taken immediately after toggling `data-theme` was mid-transition.
+Added a short wait rather than assuming the first render was correct.
+
+**What I changed or overrode, and why:** Kept the favicon's colours fixed
+(dark ink badge, cream "P") rather than theme-aware, unlike the header
+logo - a favicon lives in browser chrome, not the page, so it never sees
+the site's dark-mode toggle at all; making it "theme-aware" would have
+meant guessing at OS-level dark mode via a `prefers-color-scheme` media
+query embedded in the SVG, which has inconsistent browser support for
+favicons specifically and wasn't worth the fragility for an asset that
+already reads fine as a fixed dark badge against either light or dark tab
+chrome.
+
+**Trade-offs / decisions made:** Didn't touch the OG image or any other
+brand surface - the ask was specifically the favicon (and, once a mark
+existed, the natural companion header logo), not a full brand refresh.
+
+**Open questions / next steps:** Nothing new blocking. Standing items
+unchanged: `topics.ts`/`start-here` curation for the 17 newly-migrated
+articles, and the deferred Vitest 5 upgrade.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
