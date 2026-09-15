@@ -9,12 +9,14 @@ describe("topic relationships", () => {
     );
 
     expect(scalingTopic).toBeDefined();
-    expect(getArticlesForTopic(scalingTopic!)).toHaveLength(2);
     expect(
       getArticlesForTopic(scalingTopic!).map((article) => article.slug),
     ).toEqual([
       "engineering-strategy-is-mostly-saying-no",
       "what-changes-when-you-start-managing-managers",
+      "scaling-without-breaking-field-notes-on-growth-and-reorgs",
+      "engineering-strategy-executives-actually-read",
+      "refactoring-the-organization-how-to-pay-down-management-debt",
     ]);
   });
 });

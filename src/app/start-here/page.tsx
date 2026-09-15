@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -25,13 +26,36 @@ const paths = [
       "The identity shifts and organisational choices that arrive as your scope grows.",
     slugs: [
       "what-changes-when-you-start-managing-managers",
-      "ai-is-breaking-the-junior-engineer-pipeline",
+      "scaling-without-breaking-field-notes-on-growth-and-reorgs",
+      "refactoring-the-organization-how-to-pay-down-management-debt",
     ],
   },
   {
     title: "People and team culture",
     blurb: "The human signals behind healthy teams and sustainable leadership.",
-    slugs: ["signs-you-promoted-the-wrong-person-into-management"],
+    slugs: [
+      "signs-you-promoted-the-wrong-person-into-management",
+      "how-i-grow-an-engineer-into-a-manager",
+      "leading-in-the-fog",
+    ],
+  },
+  {
+    title: "Leading through the AI shift",
+    blurb:
+      "What changes for teams, juniors, and delivery when AI does more of the work.",
+    slugs: [
+      "ai-is-breaking-the-junior-engineer-pipeline",
+      "managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation",
+      "the-agent-wrote-the-code-leading-it-was-the-job",
+    ],
+  },
+  {
+    title: "Your own career, not just your team's",
+    blurb: "Navigating the IC/management fork and what actually grows you into the role.",
+    slugs: [
+      "engineering-management-in-the-netherlands-should-you-stay-technical-or-embrace-leadership",
+      "what-i-look-for-when-hiring-and-growing-engineering-managers",
+    ],
   },
 ];
 
@@ -70,12 +94,12 @@ export default function StartHerePage() {
                     return (
                       <li key={article.slug} className="border-l-2 border-[var(--line)] pl-5">
                         {article.hasContent ? (
-                          <a
+                          <Link
                             href={`/blog/${article.slug}`}
                             className="text-xl font-semibold tracking-tight underline underline-offset-4"
                           >
                             {article.title}
-                          </a>
+                          </Link>
                         ) : (
                           <p className="text-xl font-semibold tracking-tight">{article.title}</p>
                         )}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -23,9 +24,10 @@ export default function TopicsPage() {
               The themes behind the writing.
             </h1>
             <p className="mt-7 text-xl leading-8 text-[var(--muted)] sm:text-2xl">
-              Four themes shape the work I write about: scaling organisations,
-              making delivery predictable, and keeping teams healthy while
-              everything around them changes.
+              The themes that keep showing up: scaling organisations, making
+              delivery predictable, keeping teams healthy while everything
+              around them changes, leading through the AI shift, and
+              navigating your own career alongside your team&apos;s.
             </p>
           </header>
 
@@ -46,12 +48,12 @@ export default function TopicsPage() {
                         {relatedArticles.map((article) => (
                           <li key={article.slug}>
                             {article.hasContent ? (
-                              <a
+                              <Link
                                 href={`/blog/${article.slug}`}
                                 className="text-lg font-semibold underline underline-offset-4"
                               >
                                 {article.title}
-                              </a>
+                              </Link>
                             ) : (
                               <span className="text-lg font-semibold">{article.title}</span>
                             )}

@@ -1210,6 +1210,75 @@ existed, the natural companion header logo), not a full brand refresh.
 unchanged: `topics.ts`/`start-here` curation for the 17 newly-migrated
 articles, and the deferred Vitest 5 upgrade.
 
+## Folding the 17 into topics and start-here
+
+**What I worked on:** The standing item from the last two sessions -
+`topics.ts` and `start-here/page.tsx` were still curated around the
+original 5 articles, so most of what's actually live was invisible from
+both discovery surfaces.
+
+**What the agent did:** While reading `start-here/page.tsx` to plan the
+curation, noticed its article links used a plain `<a href={...}>` instead
+of `next/link`, with no trailing slash - the exact bug class an earlier
+session had already found and fixed on the homepage's two stray anchors,
+just missed here because this page didn't exist yet at the time. Grepped
+every hand-built `/blog/` URL across the codebase rather than trusting
+that one file was the only offender, and found the same bug on
+`topics/page.tsx` too. Confirmed both were live breakage, not theoretical:
+built the site and checked the actual output HTML - both pages emitted
+`href="/blog/slug"` with no trailing slash, which 404s against the
+Workers static-assets deploy (exact-path serving, no redirect middleware
+the way `next dev` provides). Fixed both by switching to `Link`, matching
+the pattern `ArticleCard` already used correctly.
+
+For the curation itself, read all 22 articles' tags and actual content
+rather than mechanically sorting by the `tags` array, and found a cluster
+that didn't fit any of the 4 existing topics: pieces about the reader's
+own career trajectory (the Netherlands IC/management piece, the reading
+list, the two weaker legacy drafts, the leap-into-management piece) as
+opposed to the existing topics' focus on leading *other people*. Added a
+fifth topic, "Career & Growth," rather than force-fitting those into
+"People & Team Culture." Cross-checked the result: every one of the 22
+articles appears in at least one topic's `articleSlugs` (grepped the built
+`/topics/` output for exactly 22 unique article hrefs), several
+deliberately in two, matching how the original 4 topics already let an
+article belong to more than one theme.
+
+Kept `start-here` deliberately un-exhaustive rather than mirroring the
+full topic list - it's framed as "a fast way in," and stuffing all 22
+entries into it would undercut the thing that makes it different from
+`/blog` or `/topics`. Added two new paths ("Leading through the AI shift,"
+"Your own career, not just your team's") and extended the three existing
+ones with 2-3 curated additions each, capping every path at three
+articles.
+
+Also caught that `topics/page.tsx`'s intro paragraph hardcoded "Four
+themes shape the work..." - stale the moment a fifth topic existed.
+Rewrote it to name the themes rather than count them, the same fix
+pattern used on the README's status line two sessions ago, for the same
+reason: a stale count is invisible until someone reads the copy next to
+the actual page.
+
+Screenshotted both pages against the real static build (not `next dev`)
+to check the denser topic sections - particularly "People & Team Culture"
+at 9 articles - didn't visually break under the added volume before
+calling it done.
+
+**What I changed or overrode, and why:** Nothing beyond the two `<a>` to
+`Link` conversions and the stale copy - both were bugs surfaced while
+doing the requested task, not scope creep, and both were live breakage on
+the production site.
+
+**Trade-offs / decisions made:** Left several articles in two topics
+(`how-i-grow-an-engineer-into-a-manager` and
+`what-i-look-for-when-hiring-and-growing-engineering-managers` both sit in
+"People & Team Culture" and "Career & Growth") rather than forcing a
+single home for pieces that genuinely span both the leader's practice and
+the individual's career arc.
+
+**Open questions / next steps:** Standing item unchanged: the deferred
+Vitest 5 upgrade from `npm audit`. Nothing else currently blocking.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
