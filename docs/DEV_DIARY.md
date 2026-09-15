@@ -1279,6 +1279,51 @@ the individual's career arc.
 **Open questions / next steps:** Standing item unchanged: the deferred
 Vitest 5 upgrade from `npm audit`. Nothing else currently blocking.
 
+## Closing out the Vitest 5 upgrade
+
+**What I worked on:** The last standing item from `npm audit`, deferred
+across several sessions rather than bundled into unrelated fixes.
+
+**What the agent did:** Ran `npm audit` fresh rather than trusting the
+old finding was still accurate - it had grown to 8 vulnerabilities, only
+some of which were actually the Vitest/Vite/esbuild chain. A `sharp`
+vulnerability nested under `miniflare`/`wrangler` was unrelated and fixed
+cleanly with a plain `npm audit fix` first, isolating the real Vitest
+upgrade to just the pieces that needed a major bump. Bumping the
+`vitest` version in `package.json` and running `npm install` hit an
+ERESOLVE conflict - npm reported a peer conflict against `vite@8.3.0`
+that didn't actually exist anywhere in `node_modules` yet, which pointed
+at a stale incremental-resolution problem rather than a genuine
+dependency clash (confirmed by checking `npm ls vite`: only one real
+`vite@5.4.21` was installed, nothing conflicting). Rather than reaching
+for `--legacy-peer-deps` to paper over a resolution npm itself flagged as
+suspect, deleted `node_modules` and `package-lock.json` and did a full
+clean install so npm solved the whole tree fresh against the new
+`vitest@^5.0.1` requirement.
+
+Confirmed the specific thing this upgrade had been deferred over -
+whether the MDX transform in `vitest.config.mts` still works under
+Vitest 5's new Vite version - by actually running the suite rather than
+assuming a clean install implies a working one: `articles.test.ts` and
+`publishing.test.ts` both import `articles.ts`, which transitively pulls
+in `.mdx` files through the `@mdx-js/rollup` plugin, and both passed.
+Followed with the full regression sweep this project always runs before
+calling a dependency change done - lint, `next build`, and the Playwright
+suite - rather than treating passing unit tests as sufficient signal for
+a build-tool upgrade.
+
+**What I changed or overrode, and why:** Nothing beyond the dependency
+bump itself.
+
+**Trade-offs / decisions made:** Chose a full clean reinstall over trying
+to hand-resolve the ERESOLVE conflict, since this is a dev-only tooling
+change with no production runtime dependencies affected - the blast
+radius of "get this wrong" was low, and a clean install is the more
+legible fix to hand back to future-me than a partially-patched lockfile.
+
+**Open questions / next steps:** `npm audit` now reports 0 vulnerabilities.
+No standing items left from recent sessions.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 
