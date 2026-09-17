@@ -13,6 +13,7 @@ import HowIGrowAnEngineerIntoAManager from "./articles/how-i-grow-an-engineer-in
 import LeadingInTheFog from "./articles/leading-in-the-fog.mdx";
 import ManagingThroughAiFatigueKeepingDevTeamsGroundedInTheAgeOfAutomation from "./articles/managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation.mdx";
 import MeasuringVelocityWithoutKillingMorale from "./articles/measuring-velocity-without-killing-morale.mdx";
+import ProximityIsntBondingWhatActuallyConnectsARemoteTeam from "./articles/proximity-isnt-bonding-what-actually-connects-a-remote-team.mdx";
 import RefactoringTheOrganizationHowToPayDownManagementDebt from "./articles/refactoring-the-organization-how-to-pay-down-management-debt.mdx";
 import ScalingWithoutBreakingFieldNotesOnGrowthAndReorgs from "./articles/scaling-without-breaking-field-notes-on-growth-and-reorgs.mdx";
 import SignsYouPromotedTheWrongPersonIntoManagement from "./articles/signs-you-promoted-the-wrong-person-into-management.mdx";
@@ -52,6 +53,7 @@ export const contentBySlug: Record<string, ComponentType> = {
   "leading-in-the-fog": LeadingInTheFog,
   "managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation": ManagingThroughAiFatigueKeepingDevTeamsGroundedInTheAgeOfAutomation,
   "measuring-velocity-without-killing-morale": MeasuringVelocityWithoutKillingMorale,
+  "proximity-isnt-bonding-what-actually-connects-a-remote-team": ProximityIsntBondingWhatActuallyConnectsARemoteTeam,
   "refactoring-the-organization-how-to-pay-down-management-debt": RefactoringTheOrganizationHowToPayDownManagementDebt,
   "scaling-without-breaking-field-notes-on-growth-and-reorgs": ScalingWithoutBreakingFieldNotesOnGrowthAndReorgs,
   "signs-you-promoted-the-wrong-person-into-management": SignsYouPromotedTheWrongPersonIntoManagement,
@@ -75,6 +77,15 @@ const articleData: ArticleData[] = [
     readTime: "8 min read",
     tags: ["ai", "leadership"],
     featured: true,
+  },
+  {
+    slug: "proximity-isnt-bonding-what-actually-connects-a-remote-team",
+    title: "Proximity Isn't Bonding: What Actually Connects a Remote Team",
+    excerpt:
+      "Office teams bond by osmosis, just from sharing a room. Remote and hybrid teams don't get that for free - the mechanism has to be built on purpose, and it isn't more meetings.",
+    date: "2026-09-15",
+    readTime: "3 min read",
+    tags: ["leadership", "team-culture", "remote-work"],
   },
   {
     slug: "engineering-strategy-is-mostly-saying-no",

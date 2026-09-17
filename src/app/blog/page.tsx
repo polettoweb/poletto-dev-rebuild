@@ -13,6 +13,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/blog/",
   },
+  openGraph: {
+    title: "Blog | Marco Poletto",
+    description:
+      "Articles on engineering leadership, management, and sustainable teams.",
+    url: "/blog/",
+  },
+  twitter: {
+    title: "Blog | Marco Poletto",
+    description:
+      "Articles on engineering leadership, management, and sustainable teams.",
+  },
 };
 
 export default function BlogPage() {

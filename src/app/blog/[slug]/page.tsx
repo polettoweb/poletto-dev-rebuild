@@ -24,11 +24,23 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     return {};
   }
 
+  const canonicalPath = `/blog/${article.slug}/`;
+
   return {
     title: `${article.title} | Marco Poletto`,
     description: article.excerpt,
     alternates: {
-      canonical: `/blog/${article.slug}/`,
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url: canonicalPath,
+      type: "article",
+    },
+    twitter: {
+      title: article.title,
+      description: article.excerpt,
     },
   };
 }

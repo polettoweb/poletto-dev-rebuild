@@ -12,6 +12,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/newsletter/",
   },
+  openGraph: {
+    title: "Leading Bytes Newsletter | Marco Poletto",
+    description:
+      "Practical writing on scaling engineering organisations, delivery operations, and the human side of leadership.",
+    url: "/newsletter/",
+  },
+  twitter: {
+    title: "Leading Bytes Newsletter | Marco Poletto",
+    description:
+      "Practical writing on scaling engineering organisations, delivery operations, and the human side of leadership.",
+  },
 };
 
 const issueThemes = [

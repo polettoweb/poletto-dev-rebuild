@@ -13,6 +13,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/topics/",
   },
+  openGraph: {
+    title: "Topics | Marco Poletto",
+    description:
+      "The themes behind writing on scaling engineering organisations, delivery, team culture, and leading through change.",
+    url: "/topics/",
+  },
+  twitter: {
+    title: "Topics | Marco Poletto",
+    description:
+      "The themes behind writing on scaling engineering organisations, delivery, team culture, and leading through change.",
+  },
 };
 
 export default function TopicsPage() {

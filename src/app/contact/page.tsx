@@ -11,6 +11,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/contact/",
   },
+  openGraph: {
+    title: "Get in Touch | Marco Poletto",
+    description:
+      "Contact Marco Poletto about engineering leadership, organisational scaling, speaking, or collaboration.",
+    url: "/contact/",
+  },
+  twitter: {
+    title: "Get in Touch | Marco Poletto",
+    description:
+      "Contact Marco Poletto about engineering leadership, organisational scaling, speaking, or collaboration.",
+  },
 };
 
 const socialLinks = [

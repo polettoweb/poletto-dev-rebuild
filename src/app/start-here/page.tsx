@@ -14,6 +14,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/start-here/",
   },
+  openGraph: {
+    title: "Start Here | Marco Poletto",
+    description:
+      "A curated reading path through writing on scaling engineering organisations and leading people through change.",
+    url: "/start-here/",
+  },
+  twitter: {
+    title: "Start Here | Marco Poletto",
+    description:
+      "A curated reading path through writing on scaling engineering organisations and leading people through change.",
+  },
 };
 
 const paths = [

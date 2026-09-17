@@ -44,6 +44,7 @@ export const topics: Topic[] = [
       "how-i-grow-an-engineer-into-a-manager",
       "what-i-look-for-when-hiring-and-growing-engineering-managers",
       "leading-in-the-fog",
+      "proximity-isnt-bonding-what-actually-connects-a-remote-team",
       "designing-an-effective-onboarding-plan-for-new-engineers",
       "engineering-leadership-beyond-delivery-why-psychological-safety-matters",
       "measuring-velocity-without-killing-morale",

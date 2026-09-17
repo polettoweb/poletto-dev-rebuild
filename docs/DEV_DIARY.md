@@ -1455,6 +1455,82 @@ one-off audit.
 `serve`-vs-`wrangler dev` coverage gap from last session still stands as
 a known, non-blocking gap.
 
+## The first genuinely new article, and a second metadata bug it uncovered
+
+**What I worked on:** The user's first request for original content rather
+than migrated content - a piece on remote/hybrid team bonding, prompted
+by asking what to work on next and them suggesting "a new article."
+
+**What the agent did:** Didn't draft this the way the 17 migrated articles
+were handled. Those were condensing the user's own pre-existing writing;
+this had no source at all, and the site's established voice writes in
+first person with specific claimed experience ("I've made this mistake,"
+"one of my previous teams"). Fabricating that under the user's byline
+would have directly contradicted the standing you-must-not-invent-things
+principle the site's own case-study article describes as a value, not a
+nice-to-have. Asked for the topic and the real experience behind it before
+writing anything, got back three concrete, specific practices (a pixel-art
+virtual office tool, a Google Maps location-guessing game, quarterly
+in-person activities), and drafted the piece around exactly those rather
+than padding with invented ones. Posted the full draft in conversation for
+approval before touching the codebase - this piece needed sign-off in a
+way the migrated ones didn't, since there was no source to defer to for
+"is this accurate."
+
+The user asked to dig up the actual name of the pixel-art tool they
+couldn't remember. Rather than guess and assert it, searched, found Gather
+was overwhelmingly the dominant match for "pixel-art retro virtual office,
+walk up to someone to start a call," and brought that back as a proposal
+with sources - not a fact - for the user to confirm before it went in
+under their name. They confirmed it.
+
+Wired the finished piece in following the same registry pattern as every
+other article (import, `contentBySlug` entry, dated metadata slotted in by
+actual chronological position, not appended to the end), and added it to
+the one existing topic it genuinely fits rather than leaving it undiscoverable
+from `/topics` - continuing the "every article belongs somewhere" standard
+set two sessions ago rather than treating that as one-time cleanup work.
+
+While checking the built output for the new article - specifically the
+JSON-LD and og:image tags, standard verification at this point - noticed
+`og:title` and `og:description` were still the generic site-wide values
+even though `og:image` was correctly per-article. Checked whether this was
+specific to the new page or systemic, the same way the canonical bug was
+checked two sessions ago: grepped an existing, previously-published
+article's built HTML rather than assuming. It was systemic and predates
+this session entirely - every one of the (now 23) article pages, plus all
+six static pages, had been serving the homepage's generic Open Graph
+title, description, and url since the OG image feature shipped, because
+adding the per-route `opengraph-image.tsx` file only wired the image; it
+never touched the `openGraph`/`twitter` metadata objects, which every page
+was silently inheriting unchanged from the root layout. Fixed all seven
+page-level metadata exports (six static pages plus the dynamic
+`blog/[slug]` route) the same way the canonical fix worked: each page now
+sets its own `openGraph.title`/`description`/`url` and `twitter.title`/
+`description`, relying on Next's documented shallow-merge behaviour for
+those two objects to keep inheriting `type`/`siteName`/`card` from the
+root rather than needing to repeat them. Also set `openGraph.type:
+"article"` on the blog route specifically, since that's the correct,
+standard Open Graph type for content pages and the site had been using
+the generic `"website"` type for every article. Verified against the full
+built output for all 23 articles with a loop, not a couple of spot checks,
+given the root cause was structural and every article was equally
+exposed. Added a Playwright regression test alongside the canonical one,
+for the same reason: this bug is invisible in any single page's diff.
+
+**What I changed or overrode, and why:** Nothing beyond the article itself
+and the metadata fix it led to discovering.
+
+**Trade-offs / decisions made:** Removed em dashes from the article on
+request even though earlier condensed-migration articles also use them
+sparingly in a couple of spots reviewers might notice as inconsistent -
+this piece is originally-authored rather than adapted, so it's reasonable
+for the user to hold it to a stricter version of the site's own style
+preference than pieces adapted from an external source.
+
+**Open questions / next steps:** Nothing new outstanding. The Playwright
+`serve`-vs-`wrangler dev` coverage gap remains a known, non-blocking item.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

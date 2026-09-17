@@ -100,6 +100,17 @@ test("every page declares its own canonical URL, not the homepage's", async ({ p
   }
 });
 
+test("article pages carry their own og:title, not the site-wide default", async ({ page }) => {
+  await page.goto("/blog/engineering-strategy-is-mostly-saying-no/");
+
+  const ogTitle = page.locator('meta[property="og:title"]');
+  await expect(ogTitle).toHaveAttribute("content", "Engineering Strategy Is Mostly Saying No");
+  await expect(ogTitle).not.toHaveAttribute(
+    "content",
+    "Marco Poletto | Engineering leadership, in practice",
+  );
+});
+
 test("sitemap contains public pages and verified article URLs", async ({ request }) => {
   const response = await request.get("/sitemap.xml");
   const body = await response.text();

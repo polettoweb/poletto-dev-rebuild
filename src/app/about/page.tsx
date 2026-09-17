@@ -11,6 +11,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/about/",
   },
+  openGraph: {
+    title: "About Marco Poletto",
+    description:
+      "Marco Poletto is an engineering leader in the Netherlands leading product domains and delivery operations at Rentman.",
+    url: "/about/",
+  },
+  twitter: {
+    title: "About Marco Poletto",
+    description:
+      "Marco Poletto is an engineering leader in the Netherlands leading product domains and delivery operations at Rentman.",
+  },
 };
 
 export default function AboutPage() {
