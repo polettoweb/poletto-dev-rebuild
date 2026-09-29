@@ -96,6 +96,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         {children}
+        <Script
+          data-goatcounter="https://polettoweb.goatcounter.com/count"
+          src="https://gc.zgo.at/count.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
