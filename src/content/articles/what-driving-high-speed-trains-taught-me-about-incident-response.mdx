@@ -1,0 +1,65 @@
+Everybody can drive a train when everything goes smoothly. I spent nine years driving Eurostar high-speed trains for Trenitalia, and the honest truth is that on a normal day the job is mostly attention and routine. The train knows the line. The signals tell you what to do. You do it.
+
+The job - the part that actually needs a trained driver - starts when something breaks. A signalling failure. An obstruction reported somewhere ahead. An instruction to proceed on sight at 5 km/h, eyes on the track, looking for something nobody can describe precisely. It happened to me everywhere: inside a 20 km tunnel, in the middle of the countryside, and in the middle of Milano Centrale, one of the busiest stations in the country.
+
+I now own incident response for an engineering organisation, and I'm in the middle of rethinking how we do it. The more I look at software incident processes, the more I recognise the railway in them - and the more I notice which parts got lost in translation.
+
+## Anyone can deploy on a good day
+
+The same thing that's true of trains is true of production systems. When nothing is going wrong, almost anyone can ship. Pipelines are green, dashboards are quiet, the process feels like it works.
+
+That's exactly why a good day tells you nothing about your incident process. The only real test of it is a bad day, and most teams meet their incident process for the first time in the middle of one. That's the equivalent of opening the rulebook after the signal has already failed.
+
+## The procedure is what holds when you can't think
+
+Stopped in a tunnel with a fault ahead of you, you are not creative. Nobody is. Adrenaline narrows your attention, and whatever you haven't practised simply isn't available to you.
+
+So you follow procedure. Not because you're told to, but because the procedure was written by people who were calm, with time to think, precisely so that you don't have to be. It tells you what to secure first, what speed you're allowed, what you must confirm before moving an inch.
+
+Most software incident runbooks aren't written that way. They're written as documentation - thorough, accurate, and useless at 3am to someone whose heart rate has doubled. A runbook for a real incident should read like a checklist, not a wiki page: short, ordered, and boring. The first five minutes of any incident should require no judgment at all.
+
+## Know who to call before you need to call them
+
+On the railway, there is never a question of *who* you call. For every section of line there is a specific traffic director responsible for it, and you know how to reach them before you ever need to. When something goes wrong, the call is the first move, not a search.
+
+Compare that with the most common opening of a software incident: someone posting "does anyone know who owns this?" in a busy channel. Every minute spent finding the owner is a minute of the incident that nobody is actually handling.
+
+Ownership during an incident has to be decided before the incident. Who is on call for this service, who declares the incident, who has authority to roll back - written down, current, and findable in seconds by someone who is panicking.
+
+## Warn the trains behind you
+
+A problem on the line is never just your problem. There are other trains behind you, and on the same infrastructure, heading into the same section. Part of the procedure is making sure the problem is signalled so that the next driver isn't surprised by it.
+
+In software, this is the step teams skip most often. One team fights its outage in a private channel while three other teams independently debug the symptoms, each assuming it's their own bug. Support finds out from customers. A good incident process treats "who else is affected and have they been told" as an early step, not a courtesy for the postmortem.
+
+## Someone still has to answer the phone
+
+This is the lesson I didn't expect, and the one I think about most now. During a problem on the line, my phone kept ringing - and I had to keep answering it while handling everything else. Not everybody knows how to handle a panic moment, and very often the people who handle it worst are the ones calling you.
+
+They aren't wrong to call. They need information, and they have their own people asking them. But every call pulls the person solving the problem away from the problem.
+
+Software incidents have exactly the same shape. The engineer with their hands in the system is also answering the head of sales, the customer success lead, and a manager who wants an ETA. The fix isn't asking stakeholders to stop asking. It's separating the roles: one person works the problem, another owns communication, and stakeholders know where updates will appear and how often. Panic travels by phone. Give it somewhere else to go.
+
+## Railways don't do blameless. Be grateful you can.
+
+Here's where the comparison turns uncomfortable. Software has spent years borrowing the language of safety-critical industries, including the idea of blameless postmortems. The railway I worked on was not blameless. If you passed a red signal, you were taken off the train by the police and went straight into a criminal procedure for attempted railway accident.
+
+I'm not arguing for that. But I think it explains something about why the procedures were so rigorous. When the personal cost of getting it wrong is that high, nobody treats the rulebook as optional. The procedure is the thing standing between you and the consequences, so you learn it properly.
+
+Software teams have the opposite situation. [Blameless reviews](/blog/when-a-deployment-breaks-leading-a-blameless-post-mortem/) are a genuine gift - they let people tell the truth about what happened without fearing for their jobs. But a lot of teams have quietly turned "blameless" into "procedureless". No one is to blame, so no one has to follow anything in particular, so every incident is improvised from scratch.
+
+Blameless should mean you don't punish the person. It shouldn't mean you don't have a rulebook. The freedom from blame is only worth having if it's paired with the discipline the railway got from fear.
+
+## Where the comparison stops working
+
+It would be dishonest to pretend software should run like a railway. It shouldn't. A train can't roll back. Most software can. That changes the maths completely: in production, moving fast is often the safest thing you can do, and a process heavy enough for a high-speed line would strangle a team shipping ten times a day.
+
+So the point isn't to copy the rulebook. It's to copy what the rulebook is for: making the abnormal case survivable by people under stress, with clear ownership, clear communication, and no improvisation where improvisation isn't needed.
+
+## The payoff
+
+Calm under pressure isn't a personality trait. On the railway, it was the product of procedures designed by people who weren't under pressure, for people who would be. In an engineering organisation, that design job belongs to leadership. The team's behaviour in the first five minutes of an incident is a direct reflection of decisions somebody made - or didn't make - months before it.
+
+### Your next step
+
+Take your last real incident and write down what actually happened in its first five minutes. Who noticed it, who declared it, who owned the fix, who told the other teams, and who was answering everyone else's questions. Wherever the honest answer is "it just sort of happened", that's where your process has a hole - and it's much cheaper to fix it now than in the tunnel.

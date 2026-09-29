@@ -27,6 +27,7 @@ export const topics: Topic[] = [
     description:
       "Making delivery predictable without losing judgment, focus, or morale.",
     articleSlugs: [
+      "what-driving-high-speed-trains-taught-me-about-incident-response",
       "engineering-strategy-is-mostly-saying-no",
       "delivery-operations-as-a-system",
       "measuring-velocity-without-killing-morale",

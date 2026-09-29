@@ -21,6 +21,7 @@ import TechnicallyUpdatingYourselfWhileBeingAnEngineeringManager from "./article
 import TheAgentWroteTheCodeLeadingItWasTheJob from "./articles/the-agent-wrote-the-code-leading-it-was-the-job.mdx";
 import TheEngineeringLeadersReadingList from "./articles/the-engineering-leaders-reading-list.mdx";
 import WhatChangesWhenYouStartManagingManagers from "./articles/what-changes-when-you-start-managing-managers.mdx";
+import WhatDrivingHighSpeedTrainsTaughtMeAboutIncidentResponse from "./articles/what-driving-high-speed-trains-taught-me-about-incident-response.mdx";
 import WhatILookForWhenHiringAndGrowingEngineeringManagers from "./articles/what-i-look-for-when-hiring-and-growing-engineering-managers.mdx";
 import WhenADeploymentBreaksLeadingABlamelessPostMortem from "./articles/when-a-deployment-breaks-leading-a-blameless-post-mortem.mdx";
 
@@ -61,6 +62,7 @@ export const contentBySlug: Record<string, ComponentType> = {
   "the-agent-wrote-the-code-leading-it-was-the-job": TheAgentWroteTheCodeLeadingItWasTheJob,
   "the-engineering-leaders-reading-list": TheEngineeringLeadersReadingList,
   "what-changes-when-you-start-managing-managers": WhatChangesWhenYouStartManagingManagers,
+  "what-driving-high-speed-trains-taught-me-about-incident-response": WhatDrivingHighSpeedTrainsTaughtMeAboutIncidentResponse,
   "what-i-look-for-when-hiring-and-growing-engineering-managers": WhatILookForWhenHiringAndGrowingEngineeringManagers,
   "when-a-deployment-breaks-leading-a-blameless-post-mortem": WhenADeploymentBreaksLeadingABlamelessPostMortem,
 };
@@ -68,6 +70,15 @@ export const contentBySlug: Record<string, ComponentType> = {
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "what-driving-high-speed-trains-taught-me-about-incident-response",
+    title: "What Nine Years Driving High-Speed Trains Taught Me About Incident Response",
+    excerpt:
+      "Everybody can drive a train when everything goes smoothly. The job starts when something breaks - and software incident response has quietly lost the parts of the railway's playbook that made it work.",
+    date: "2026-09-28",
+    readTime: "7 min read",
+    tags: ["leadership", "delivery", "incidents"],
+  },
   {
     slug: "the-agent-wrote-the-code-leading-it-was-the-job",
     title: "The Agent Wrote the Code. Leading It Was the Job.",
