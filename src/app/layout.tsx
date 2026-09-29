@@ -96,11 +96,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         {children}
-        <Script
-          data-goatcounter="https://polettoweb.goatcounter.com/count"
-          src="https://gc.zgo.at/count.js"
-          strategy="afterInteractive"
-        />
+        {/* GoatCounter, served first-party so ad blockers don't drop it.
+            The beacon endpoint is handled by src/worker/index.ts. */}
+        <Script data-goatcounter="/s/e" src="/s/site.js" strategy="afterInteractive" />
       </body>
     </html>
   );

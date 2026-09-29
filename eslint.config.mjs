@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     ".wrangler/**",
+    // Vendored GoatCounter count.js, served first-party.
+    "public/s/site.js",
   ]),
 ]);
 
