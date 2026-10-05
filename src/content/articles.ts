@@ -10,6 +10,7 @@ import EngineeringStrategyExecutivesActuallyRead from "./articles/engineering-st
 import EngineeringStrategyIsMostlySayingNo from "./articles/engineering-strategy-is-mostly-saying-no.mdx";
 import FromEngineerToEngineeringManager from "./articles/from-engineer-to-engineering-manager.mdx";
 import HowIGrowAnEngineerIntoAManager from "./articles/how-i-grow-an-engineer-into-a-manager.mdx";
+import IveRetrainedMyCareerTwiceWhatITellEngineersWorriedAboutAi from "./articles/ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai.mdx";
 import LeadingInTheFog from "./articles/leading-in-the-fog.mdx";
 import ManagingThroughAiFatigueKeepingDevTeamsGroundedInTheAgeOfAutomation from "./articles/managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation.mdx";
 import MeasuringVelocityWithoutKillingMorale from "./articles/measuring-velocity-without-killing-morale.mdx";
@@ -51,6 +52,7 @@ export const contentBySlug: Record<string, ComponentType> = {
   "engineering-strategy-is-mostly-saying-no": EngineeringStrategyIsMostlySayingNo,
   "from-engineer-to-engineering-manager": FromEngineerToEngineeringManager,
   "how-i-grow-an-engineer-into-a-manager": HowIGrowAnEngineerIntoAManager,
+  "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai": IveRetrainedMyCareerTwiceWhatITellEngineersWorriedAboutAi,
   "leading-in-the-fog": LeadingInTheFog,
   "managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation": ManagingThroughAiFatigueKeepingDevTeamsGroundedInTheAgeOfAutomation,
   "measuring-velocity-without-killing-morale": MeasuringVelocityWithoutKillingMorale,
@@ -71,6 +73,16 @@ type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
   {
+    slug: "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",
+    title: "I've Retrained My Career Twice. Here's What I Tell Engineers Worried About AI.",
+    excerpt:
+      "From train driver to developer to engineering manager. Most engineers I talk to aren't afraid of AI - they're afraid of leaders using it as an excuse. Two career changes taught me to keep those apart.",
+    date: "2026-10-05",
+    readTime: "9 min read",
+    tags: ["career", "ai", "leadership"],
+    featured: true,
+  },
+  {
     slug: "what-driving-high-speed-trains-taught-me-about-incident-response",
     title: "What Nine Years Driving High-Speed Trains Taught Me About Incident Response",
     excerpt:
@@ -87,7 +99,6 @@ const articleData: ArticleData[] = [
     date: "2026-09-09",
     readTime: "8 min read",
     tags: ["ai", "leadership"],
-    featured: true,
   },
   {
     slug: "proximity-isnt-bonding-what-actually-connects-a-remote-team",

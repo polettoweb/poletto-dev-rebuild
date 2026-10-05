@@ -1531,6 +1531,31 @@ preference than pieces adapted from an external source.
 **Open questions / next steps:** Nothing new outstanding. The Playwright
 `serve`-vs-`wrangler dev` coverage gap remains a known, non-blocking item.
 
+## Series opener: retraining twice
+
+**What I worked on:** Publishing "I've Retrained My Career Twice. Here's
+What I Tell Engineers Worried About AI.", the first piece in a planned
+"Growing engineers in the AI era" series, and making it the featured
+article.
+
+**What the agent did:** Interviewed me over several rounds, drafted outside
+`src/content/articles/` so nothing could publish early, and marked every
+gap as a story or a fact to confirm instead of filling it in.
+
+**What I changed or overrode, and why:** Supplied all the stories myself.
+The agent cut several sentences from its own first draft that went beyond
+what I'd actually said, and softened my "decades away" / "guarantee"
+forecast about AI so the essay doesn't make a claim it can't back.
+
+**Trade-offs / decisions made:** Kept it at ~1,900 words, longer than any
+other post, because every section carries a real story. Moved
+`featured: true` from the agent-built-this-site article; the featured-slug
+unit test now also asserts the flag is set, since the new article is also
+first in the list and would win the `articles[0]` fallback regardless.
+
+**Open questions / next steps:** Next in the series is likely the juniors
+piece, built on "a developer does not write code".
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

@@ -58,6 +58,7 @@ export const topics: Topic[] = [
     description:
       "Leading people through AI-driven change while protecting engineering craft.",
     articleSlugs: [
+      "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",
       "ai-is-breaking-the-junior-engineer-pipeline",
       "the-agent-wrote-the-code-leading-it-was-the-job",
       "managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation",
@@ -69,6 +70,7 @@ export const topics: Topic[] = [
     description:
       "Navigating your own path - not just the team's - through the IC/management fork and beyond.",
     articleSlugs: [
+      "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",
       "engineering-management-in-the-netherlands-should-you-stay-technical-or-embrace-leadership",
       "how-i-grow-an-engineer-into-a-manager",
       "what-i-look-for-when-hiring-and-growing-engineering-managers",

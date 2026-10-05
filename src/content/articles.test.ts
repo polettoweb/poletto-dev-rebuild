@@ -15,7 +15,10 @@ describe("article content", () => {
   });
 
   it("picks the featured article from the metadata flag", () => {
-    expect(featuredArticle.slug).toBe("the-agent-wrote-the-code-leading-it-was-the-job");
+    expect(featuredArticle.slug).toBe(
+      "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",
+    );
+    expect(featuredArticle.featured).toBe(true);
     expect(latestArticles).toHaveLength(articles.length - 1);
     expect(latestArticles.some((article) => article.slug === featuredArticle.slug)).toBe(
       false,
