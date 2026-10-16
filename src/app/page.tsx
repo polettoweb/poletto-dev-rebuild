@@ -28,7 +28,7 @@ export default function Home() {
             <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
               Building teams that stay human as they scale.
             </h1>
-            <p className="mt-7 max-w-2xl text-xl leading-8 text-[var(--muted)] sm:text-2xl">
+            <p className="mt-7 max-w-2xl text-xl leading-8 text-(--muted) sm:text-2xl">
               I&apos;m Marco Poletto, an engineering leader writing about org
               design, delivery, and the human side of technology.
             </p>
@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </PageContainer>
 
-        <section className="border-y border-[var(--line)] bg-[var(--tint)]">
+        <section className="border-y border-(--line) bg-(--tint)">
           <PageContainer className="py-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="eyebrow">Topics</p>
@@ -59,7 +59,7 @@ export default function Home() {
         </section>
 
         <PageContainer className="py-20 sm:py-28">
-          <div className="flex items-end justify-between gap-6 border-b border-[var(--line)] pb-5">
+          <div className="flex items-end justify-between gap-6 border-b border-(--line) pb-5">
             <div>
               <p className="eyebrow">Latest thinking</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -83,7 +83,7 @@ export default function Home() {
           </Link>
         </PageContainer>
 
-        <section className="border-y border-[var(--line)]">
+        <section className="border-y border-(--line)">
           <PageContainer className="py-20 sm:py-24">
             <NewsletterSignup
               action="https://buttondown.com/api/emails/embed-subscribe/marcopoletto"

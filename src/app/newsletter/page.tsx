@@ -59,7 +59,7 @@ export default function NewsletterPage() {
             <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
               Field notes on scaling teams, delivery systems, and org culture.
             </h1>
-            <p className="mt-7 text-xl leading-8 text-[var(--muted)] sm:text-2xl">
+            <p className="mt-7 text-xl leading-8 text-(--muted) sm:text-2xl">
               I publish a thoughtful dispatch every 2-3 weeks: real lessons and
               frameworks from scaling high-growth engineering organisations,
               without the corporate buzzwords.
@@ -72,24 +72,24 @@ export default function NewsletterPage() {
             </h2>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2">
               {issueThemes.map((theme) => (
-                <li key={theme.title} className="border-t border-[var(--line)] pt-5">
+                <li key={theme.title} className="border-t border-(--line) pt-5">
                   <h3 className="text-lg font-semibold">{theme.title}</h3>
-                  <p className="mt-2 text-[var(--muted)]">{theme.description}</p>
+                  <p className="mt-2 text-(--muted)">{theme.description}</p>
                 </li>
               ))}
             </ul>
           </section>
 
-          <blockquote className="mt-16 max-w-3xl border-l-2 border-[var(--foreground)] pl-6 text-2xl leading-9 sm:text-3xl">
+          <blockquote className="mt-16 max-w-3xl border-l-2 border-foreground pl-6 text-2xl leading-9 sm:text-3xl">
             &ldquo;I write to share the frameworks, hard lessons, and systems that
             actually survive contact with reality in fast-scaling tech companies.&rdquo;
-            <footer className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--muted)]">
+            <footer className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-(--muted)">
               Marco Poletto
             </footer>
           </blockquote>
         </PageContainer>
 
-        <section className="border-y border-[var(--line)]">
+        <section className="border-y border-(--line)">
           <PageContainer className="py-20 sm:py-24">
             <NewsletterSignup
               action="https://buttondown.com/api/emails/embed-subscribe/marcopoletto"
@@ -100,7 +100,7 @@ export default function NewsletterPage() {
         </section>
 
         <PageContainer className="py-12">
-          <p className="text-sm text-[var(--muted)]">
+          <p className="text-sm text-(--muted)">
             Prefer a feed reader? <a href="/rss.xml" className="link-arrow">Follow the RSS feed →</a>
           </p>
         </PageContainer>

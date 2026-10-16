@@ -41,18 +41,18 @@ export default function ContactPage() {
             <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
               Let&apos;s compare notes.
             </h1>
-            <p className="mt-7 max-w-2xl text-xl leading-8 text-[var(--muted)] sm:text-2xl">
+            <p className="mt-7 max-w-2xl text-xl leading-8 text-(--muted) sm:text-2xl">
               Whether you&apos;re hiring for a Director or Head of Engineering role,
               want to discuss scaling an engineering organisation, would like to
               invite me to speak, or just want to say hello, I&apos;d love to hear
               from you.
             </p>
 
-            <section className="mt-14 border-t border-[var(--line)] pt-8" aria-labelledby="contact-methods-heading">
+            <section className="mt-14 border-t border-(--line) pt-8" aria-labelledby="contact-methods-heading">
               <h2 id="contact-methods-heading" className="text-3xl font-semibold tracking-tight">
                 The most reliable way to reach me
               </h2>
-              <p className="mt-4 max-w-xl text-[var(--muted)]">
+              <p className="mt-4 max-w-xl text-(--muted)">
                 I read everything and reply as soon as I can.
               </p>
               <a
@@ -63,7 +63,7 @@ export default function ContactPage() {
               </a>
             </section>
 
-            <section className="mt-14 border-t border-[var(--line)] pt-8" aria-labelledby="linkedin-heading">
+            <section className="mt-14 border-t border-(--line) pt-8" aria-labelledby="linkedin-heading">
               <p className="eyebrow">LinkedIn</p>
               <h2 id="linkedin-heading" className="mt-3 text-3xl font-semibold tracking-tight">
                 Connect and message me
@@ -78,7 +78,7 @@ export default function ContactPage() {
               </a>
             </section>
 
-            <section className="mt-14 border-t border-[var(--line)] pt-8" aria-labelledby="elsewhere-heading">
+            <section className="mt-14 border-t border-(--line) pt-8" aria-labelledby="elsewhere-heading">
               <h2 id="elsewhere-heading" className="text-3xl font-semibold tracking-tight">
                 You can also find me on
               </h2>

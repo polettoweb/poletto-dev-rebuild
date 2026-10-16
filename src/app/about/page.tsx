@@ -35,7 +35,7 @@ export default function AboutPage() {
             <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
               Engineering leadership without losing the people inside it.
             </h1>
-            <p className="mt-7 text-xl leading-8 text-[var(--muted)] sm:text-2xl">
+            <p className="mt-7 text-xl leading-8 text-(--muted) sm:text-2xl">
               I&apos;m Marco Poletto, an engineering leader based in the Netherlands.
               At Rentman, a B2B SaaS company, I lead engineering across three
               product domains and own delivery operations for the whole engineering

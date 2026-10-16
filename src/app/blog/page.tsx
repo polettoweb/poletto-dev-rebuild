@@ -53,7 +53,7 @@ export default function BlogPage() {
             <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
               Articles on engineering leadership, management, and sustainable teams.
             </h1>
-            <p className="mt-7 max-w-2xl text-xl leading-8 text-[var(--muted)]">
+            <p className="mt-7 max-w-2xl text-xl leading-8 text-(--muted)">
               A curated archive of writing on scaling engineering organisations,
               delivery, career transitions, and the human side of software engineering.
             </p>
@@ -69,11 +69,11 @@ export default function BlogPage() {
                 <div className="flex items-baseline justify-between gap-4 pb-4">
                   <h2
                     id={`year-${year}`}
-                    className="text-4xl font-semibold tracking-tight text-[var(--muted)] sm:text-5xl"
+                    className="text-4xl font-semibold tracking-tight text-(--muted) sm:text-5xl"
                   >
                     {year}
                   </h2>
-                  <p className="text-sm text-[var(--muted)]">
+                  <p className="text-sm text-(--muted)">
                     {yearArticles.length} {yearArticles.length === 1 ? "article" : "articles"}
                   </p>
                 </div>

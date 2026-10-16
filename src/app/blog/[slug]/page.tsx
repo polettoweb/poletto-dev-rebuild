@@ -94,7 +94,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
                 {article.title}
               </h1>
-              <p className="mt-7 max-w-2xl text-xl leading-8 text-[var(--muted)] sm:text-2xl">
+              <p className="mt-7 max-w-2xl text-xl leading-8 text-(--muted) sm:text-2xl">
                 {article.excerpt}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
@@ -112,7 +112,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </article>
         </PageContainer>
 
-        <section aria-labelledby="read-next-heading" className="border-t border-[var(--line)]">
+        <section aria-labelledby="read-next-heading" className="border-t border-(--line)">
           <PageContainer className="py-16 sm:py-20">
             <div className="flex items-end justify-between gap-6">
               <h2
@@ -133,7 +133,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </PageContainer>
         </section>
 
-        <section className="border-y border-[var(--line)] bg-[var(--tint)]">
+        <section className="border-y border-(--line) bg-(--tint)">
           <PageContainer className="py-20 sm:py-24">
             <NewsletterSignup
               action="https://buttondown.com/api/emails/embed-subscribe/marcopoletto"

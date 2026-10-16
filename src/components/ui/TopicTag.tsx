@@ -6,7 +6,7 @@ type TopicTagProps = {
 };
 
 const pillClassName =
-  "inline-flex items-center rounded-full border border-[var(--line)] bg-[var(--tint)] px-3 py-1 text-xs font-medium leading-none";
+  "inline-flex items-center rounded-full border border-(--line) bg-(--tint) px-3 py-1 text-xs font-medium leading-none";
 
 export function TopicTag({ href, children }: TopicTagProps) {
   if (!href) {
@@ -16,7 +16,7 @@ export function TopicTag({ href, children }: TopicTagProps) {
   return (
     <Link
       href={href}
-      className={`${pillClassName} transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]`}
+      className={`${pillClassName} transition-colors hover:border-accent hover:text-accent`}
     >
       {children}
     </Link>
