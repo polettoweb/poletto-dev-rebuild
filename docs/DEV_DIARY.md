@@ -1556,6 +1556,32 @@ first in the list and would win the `articles[0]` fallback regardless.
 **Open questions / next steps:** Next in the series is likely the juniors
 piece, built on "a developer does not write code".
 
+## New article: incubate, then split
+
+**What I worked on:** Publishing "Building a Team From Zero: Incubate,
+Then Split", field notes on standing up the new integrations team.
+
+**What the agent did:** Picked the topic gap against existing posts,
+interviewed me for specifics, and drafted around my answers. It first
+wrote and merged the post into the old `leadingbytes` repo by mistake;
+I pointed it here, and it re-adapted the draft to this site's conventions
+(metadata in `articles.ts`, no em dashes, sparing bold) instead of copying
+it across as-is.
+
+**What I changed or overrode, and why:** Kept the company out entirely -
+"integrations team" is the only identifying detail. In the port the agent
+also removed its own invented specifics (a hypothetical invoicing example,
+claims about how the split felt to the engineers) so the piece only says
+what I'd actually told it.
+
+**Trade-offs / decisions made:** Didn't take the featured slot from the
+retraining essay, which opens a series. Added the article to both
+Scaling Organisations and People & Team Culture, and updated the topic
+test that pins the scaling list.
+
+**Open questions / next steps:** LinkedIn distribution for this piece, plus
+a separate job post for an open role, spaced a few days apart.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

@@ -12,6 +12,7 @@ describe("topic relationships", () => {
     expect(
       getArticlesForTopic(scalingTopic!).map((article) => article.slug),
     ).toEqual([
+      "building-a-team-from-zero-incubate-then-split",
       "engineering-strategy-is-mostly-saying-no",
       "what-changes-when-you-start-managing-managers",
       "scaling-without-breaking-field-notes-on-growth-and-reorgs",

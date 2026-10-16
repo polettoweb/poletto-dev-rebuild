@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 
 import AccessibleEngineeringManagerBookARemarkableRead from "./articles/accessible-engineering-manager-book-a-remarkable-read.mdx";
 import AiIsBreakingTheJuniorEngineerPipeline from "./articles/ai-is-breaking-the-junior-engineer-pipeline.mdx";
+import BuildingATeamFromZeroIncubateThenSplit from "./articles/building-a-team-from-zero-incubate-then-split.mdx";
 import DeliveryOperationsAsASystem from "./articles/delivery-operations-as-a-system.mdx";
 import DesigningAnEffectiveOnboardingPlanForNewEngineers from "./articles/designing-an-effective-onboarding-plan-for-new-engineers.mdx";
 import EngineeringLeadershipBeyondDeliveryWhyPsychologicalSafetyMatters from "./articles/engineering-leadership-beyond-delivery-why-psychological-safety-matters.mdx";
@@ -44,6 +45,7 @@ export type Article = {
 export const contentBySlug: Record<string, ComponentType> = {
   "accessible-engineering-manager-book-a-remarkable-read": AccessibleEngineeringManagerBookARemarkableRead,
   "ai-is-breaking-the-junior-engineer-pipeline": AiIsBreakingTheJuniorEngineerPipeline,
+  "building-a-team-from-zero-incubate-then-split": BuildingATeamFromZeroIncubateThenSplit,
   "delivery-operations-as-a-system": DeliveryOperationsAsASystem,
   "designing-an-effective-onboarding-plan-for-new-engineers": DesigningAnEffectiveOnboardingPlanForNewEngineers,
   "engineering-leadership-beyond-delivery-why-psychological-safety-matters": EngineeringLeadershipBeyondDeliveryWhyPsychologicalSafetyMatters,
@@ -72,6 +74,15 @@ export const contentBySlug: Record<string, ComponentType> = {
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "building-a-team-from-zero-incubate-then-split",
+    title: "Building a Team From Zero: Incubate, Then Split",
+    excerpt:
+      "When a team runs out of room, the instinct is to make it bigger. Field notes from standing up a new integrations team: grow the next team inside the old one, then cut it loose with a clear boundary.",
+    date: "2026-10-16",
+    readTime: "7 min read",
+    tags: ["leadership", "scaling", "management"],
+  },
   {
     slug: "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",
     title: "I've Retrained My Career Twice. Here's What I Tell Engineers Worried About AI.",

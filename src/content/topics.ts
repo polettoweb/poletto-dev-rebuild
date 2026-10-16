@@ -14,6 +14,7 @@ export const topics: Topic[] = [
     description:
       "The organisational choices that help engineering teams stay fast as their scope grows.",
     articleSlugs: [
+      "building-a-team-from-zero-incubate-then-split",
       "engineering-strategy-is-mostly-saying-no",
       "what-changes-when-you-start-managing-managers",
       "scaling-without-breaking-field-notes-on-growth-and-reorgs",
@@ -46,6 +47,7 @@ export const topics: Topic[] = [
       "what-i-look-for-when-hiring-and-growing-engineering-managers",
       "leading-in-the-fog",
       "proximity-isnt-bonding-what-actually-connects-a-remote-team",
+      "building-a-team-from-zero-incubate-then-split",
       "designing-an-effective-onboarding-plan-for-new-engineers",
       "engineering-leadership-beyond-delivery-why-psychological-safety-matters",
       "measuring-velocity-without-killing-morale",

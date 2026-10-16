@@ -1,0 +1,89 @@
+The fastest way to slow a team down is to make it bigger.
+
+I'm in the middle of standing up a new team: an integrations team that owns our external API and the integrations built on it. It's still very much a work in progress, so these aren't polished lessons from years ago. They're field notes from inside the build. But a few things are already clear enough to write down.
+
+## The team didn't run out of people. It ran out of ownership.
+
+The signal wasn't a missed deadline. It was subtler than that: priorities were shifting constantly, and the important-but-not-urgent work was always the thing that got left aside. Every sprint something more pressing jumped the queue, and the same important things slid to "next time."
+
+That pattern has a cause. The team owned more than it could actually control. Every new request competed with every existing responsibility, and the loudest one won. [When everything is a priority, nothing is](/blog/engineering-strategy-is-mostly-saying-no/), and this team had lost the ability to say no, because everything it was asked to do genuinely belonged to it.
+
+The obvious fix was headcount. But a bigger team doesn't just add capacity, it adds coordination. The same product, design and QA would now be feeding more engineers, more refinement, more reviews. You don't remove a bottleneck by adding people behind it. You move it, and usually you multiply it, at every level around the team.
+
+The problem wasn't too few people. It was too much ownership in one place. So the answer wasn't a bigger team. It was a second one.
+
+## Incubate inside, then split
+
+We didn't build the new team from scratch. We grew it inside the old one.
+
+The two developers who would become the integrations team were hired into the existing team first. To begin with they did what any new joiner does: onboarding, small tickets and bug fixes to get familiar with the codebase, guided by an experienced developer who knew it well. No ownership, no pressure, no "you're the integrations team now, good luck."
+
+After a couple of months, once they knew the codebase and the way the team worked, we split them out and handed them a clear piece of territory: the external API and the integrations built on it.
+
+I think of this as incubate, then split. It does a few things a team built from scratch can't:
+
+- **The new team inherits the culture instead of inventing a new one.** They learned how decisions get made and what "good" looks like from people who already did it well. It's the same [absorption rate](/blog/scaling-without-breaking-field-notes-on-growth-and-reorgs/) logic that applies to growing a team, applied to growing a new team out of an old one.
+- **Context transfers before ownership does.** By the time they owned the API, they weren't learning the system and being accountable for it at the same time.
+- **The relationships already exist.** "The other team" is people they've worked alongside, not a name on an org chart. That matters the first time a boundary gets fuzzy.
+
+The cost is patience: for a couple of months you're investing in a team that doesn't exist yet. A [good onboarding](/blog/designing-an-effective-onboarding-plan-for-new-engineers/) is cheap compared to a team that starts its life confused.
+
+## Draw the boundary with a rule, not a list
+
+The hardest conversation in any split isn't who gets which people. It's who owns what. We had that conversation with product, and we're still having it as new work arrives.
+
+What helps is a rule of thumb rather than an exhaustive list: business logic stays with the team that owns the feature. The routing and the integration with the outside world go to the integrations team.
+
+The feature team still owns what its data means: the rules, the edge cases, the domain. The integrations team owns how that data gets in and out. Logic stays home; the edge moves.
+
+A rule beats a list because lists go stale the moment someone invents a new kind of work. A rule lets two teams resolve most new cases themselves. And it stops the integrations team from becoming the place where everyone else's business logic ends up.
+
+It isn't perfect. Some things genuinely sit on the line, and those still need a conversation. But a clear default turns most boundary questions into quick ones.
+
+## The trio, staffed for a team that's still forming
+
+A new team needs more product and leadership presence than an established one, not less. Ours works with a shared, external designer, and with the product manager and me working as one: both of us in every discovery meeting and every meeting where an agreement gets made, guiding the team step by step.
+
+That's more hands-on than I'd want for a mature team. But a brand-new team doesn't yet have the shared context to fill the gaps itself, and every agreement made without it is one it has to reconstruct later. The goal is to step back as the team builds its own judgment, not to stay in every room forever.
+
+## The mistake: engineers ready, product not
+
+Here's what I'd do differently. The product manager was hired after the engineers were ready.
+
+The developers had done their incubation and were ready to own something. Then there was a gap, time lost between engineers being ready and product having scoped the work. A team primed to move had nothing clearly defined to move on.
+
+The lesson: staff the question before you staff the answer. A team without scoped problems isn't a team yet; it's a group of capable people waiting. If you're building a new team, product should arrive first, or at the very least at the same time.
+
+## What actually moves a new team forward
+
+It isn't a framework. It's three unglamorous habits: communication, agreements and documentation.
+
+- **Communication:** over-communicating the boundary, the plan and the "why," to the team and to everyone around it.
+- **Agreements:** explicit ones. Who owns this piece, who decides that, what "done" means. Written down, not assumed.
+- **Documentation:** because a new team's biggest risk is that every decision lives in two people's heads, and an external API is exactly the kind of system other people depend on understanding.
+
+None of it is exciting. All of it compounds.
+
+I also have to be honest about the scoreboard. This is a large, important piece of work, and it will take time to see results. That's the long feedback loop that comes with [leading at a higher altitude](/blog/what-changes-when-you-start-managing-managers/): you make the structural decision now and you don't get to grade it for months.
+
+## The surprise: ownership creates opportunity
+
+What I didn't expect: once the external API had a dedicated team, it started kick-starting other opportunities around the API for the company as a whole, things that hadn't had anyone's attention before.
+
+When the API was one responsibility among many on an overloaded team, it got maintained. A shared backlog maintains things. A dedicated owner imagines them.
+
+That's also why the ownership stays fluid. Things will be added to the team's scope and things will be removed as we learn. The rule of thumb stays; what sits underneath it keeps moving.
+
+## The bottom line
+
+When a team runs out of room, the instinct is to make it bigger. Often the better move is to make it two, and to grow the second team inside the first before you cut it loose.
+
+- Diagnose ownership, not headcount. Constant priority churn and important work always slipping are signs a team owns too much.
+- Incubate, then split. Hire into the existing team, let new people absorb the codebase and the culture, then hand them clear territory.
+- Draw the boundary with a rule. "Logic stays home; the edge moves" settles more arguments than any ownership spreadsheet.
+- Staff the question before the answer. Get product in place before the engineers are ready, not after.
+- Lean on the boring habits, then be patient with the results.
+
+### Your next step
+
+Look at your most overloaded team and list what it owns. Then look at what kept getting pushed aside last quarter. If that work clusters around one area, you may not have a capacity problem at all. You may have a second team hiding inside the first, waiting to be incubated.
