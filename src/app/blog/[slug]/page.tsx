@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { contentBySlug, getArticleBySlug, getPublishedArticles } from "@/content/articles";
@@ -6,7 +7,9 @@ import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
+import { ArticleCard } from "@/components/ui/ArticleCard";
 import { TopicTag } from "@/components/ui/TopicTag";
+import { getRelatedArticles } from "@/content/topics";
 import { formatDate } from "@/lib/dates";
 
 type ArticlePageProps = {
@@ -40,6 +43,9 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       type: "article",
     },
     twitter: {
+      // Restated because a page-level twitter object replaces the layout's
+      // wholesale, which would otherwise drop the large-image card.
+      card: "summary_large_image",
       title: article.title,
       description: article.excerpt,
     },
@@ -106,7 +112,28 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </article>
         </PageContainer>
 
-        <section className="border-y border-[var(--line)]">
+        <section aria-labelledby="read-next-heading" className="border-t border-[var(--line)]">
+          <PageContainer className="py-16 sm:py-20">
+            <div className="flex items-end justify-between gap-6">
+              <h2
+                id="read-next-heading"
+                className="text-3xl font-semibold tracking-tight sm:text-4xl"
+              >
+                Read next
+              </h2>
+              <Link href="/blog" className="link-arrow shrink-0 text-sm">
+                All articles →
+              </Link>
+            </div>
+            <div className="mt-10 grid gap-12 md:grid-cols-2">
+              {getRelatedArticles(article.slug).map((related) => (
+                <ArticleCard key={related.slug} article={related} />
+              ))}
+            </div>
+          </PageContainer>
+        </section>
+
+        <section className="border-y border-[var(--line)] bg-[var(--tint)]">
           <PageContainer className="py-20 sm:py-24">
             <NewsletterSignup
               action="https://buttondown.com/api/emails/embed-subscribe/marcopoletto"

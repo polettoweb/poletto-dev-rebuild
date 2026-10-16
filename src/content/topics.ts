@@ -100,3 +100,19 @@ export function getArticlesForTopic(topic: Topic): Article[] {
 export function getPrimaryTopic(slug: string): Topic | undefined {
   return topics.find((topic) => topic.articleSlugs.includes(slug));
 }
+
+// "Read next" picks: published articles sharing the primary topic, newest
+// first, topped up with the latest articles overall when the topic is thin.
+export function getRelatedArticles(slug: string, count = 2): Article[] {
+  const byNewest = (a: Article, b: Article) => b.date.localeCompare(a.date);
+  const candidates = articles
+    .filter((article) => article.hasContent && article.slug !== slug)
+    .toSorted(byNewest);
+  const topic = getPrimaryTopic(slug);
+  const sameTopic = topic
+    ? candidates.filter((article) => topic.articleSlugs.includes(article.slug))
+    : [];
+  const rest = candidates.filter((article) => !sameTopic.includes(article));
+
+  return [...sameTopic, ...rest].slice(0, count);
+}
