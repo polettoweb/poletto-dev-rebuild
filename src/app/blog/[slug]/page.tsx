@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { TopicTag } from "@/components/ui/TopicTag";
+import { formatDate } from "@/lib/dates";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -82,7 +83,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             />
             <header>
               <p className="eyebrow">
-                Article · {article.date} · {article.readTime}
+                <time dateTime={article.date}>{formatDate(article.date)}</time> · {article.readTime}
               </p>
               <h1 className="mt-5 text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
                 {article.title}
@@ -90,7 +91,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <p className="mt-7 max-w-2xl text-xl leading-8 text-[var(--muted)] sm:text-2xl">
                 {article.excerpt}
               </p>
-              <div className="mt-6 flex flex-wrap gap-4">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {article.tags.map((topic) => (
                   <TopicTag key={topic} href="/topics">
                     {topic}

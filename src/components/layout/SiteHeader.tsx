@@ -17,11 +17,11 @@ export function SiteHeader() {
       <PageContainer className="flex items-center justify-between py-6">
         <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
           <Logo />
-          Marco Poletto
+          <span className="sr-only sm:not-sr-only">Marco Poletto</span>
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <nav aria-label="Main navigation">
-            <ul className="flex items-center gap-5 text-sm">
+            <ul className="flex items-center gap-4 whitespace-nowrap text-sm sm:gap-5">
               {navigation.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}>{item.label}</Link>

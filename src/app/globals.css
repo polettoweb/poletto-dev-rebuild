@@ -7,13 +7,17 @@
   desaturated black, to match the site's editorial, paper-like light theme.
   --line values are tuned to the WCAG 1.4.11 non-text 3:1 minimum against
   their background; --foreground/--muted against --background clear 4.5:1.
+  --tint is a quiet surface colour for bands, cards and pills. --accent is the
+  single terracotta highlight, used sparingly (labels, links, hover); it clears
+  4.5:1 against both --background and --tint in each theme.
 */
 :root {
   --background: #f8f6f0;
   --foreground: #1f2924;
   --muted: #65706a;
   --line: #899080;
-  --accent: #e2eadf;
+  --tint: #e2eadf;
+  --accent: #a84b24;
   color-scheme: light dark;
 }
 
@@ -23,7 +27,8 @@
     --foreground: #ead9bf;
     --muted: #a89880;
     --line: #7a6650;
-    --accent: #2e2519;
+    --tint: #2e2519;
+    --accent: #e08a5c;
   }
 }
 
@@ -32,12 +37,14 @@
   --foreground: #ead9bf;
   --muted: #a89880;
   --line: #7a6650;
-  --accent: #2e2519;
+  --tint: #2e2519;
+  --accent: #e08a5c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -54,11 +61,22 @@ a {
 }
 
 a:hover {
-  color: var(--muted);
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
 }
 
 .eyebrow {
-  color: var(--muted);
+  color: var(--accent);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -68,6 +86,7 @@ a:hover {
 .link-arrow {
   text-decoration: underline;
   text-decoration-thickness: 1px;
+  text-decoration-color: var(--accent);
   text-underline-offset: 0.25rem;
 }
 
@@ -79,6 +98,17 @@ a:hover {
 
 .prose > * + * {
   margin-top: 1.5rem;
+}
+
+.prose a {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.prose a:hover {
+  text-decoration-thickness: 2px;
 }
 
 .prose h2 {

@@ -50,7 +50,7 @@ export default function TopicsPage() {
               const relatedArticles = getArticlesForTopic(topic);
 
               return (
-                <section key={topic.slug} className="border-t border-[var(--line)] pt-8">
+                <section key={topic.slug} id={topic.slug} className="scroll-mt-8 border-t border-[var(--line)] pt-8">
                   <h2 className="text-3xl font-semibold tracking-tight">{topic.title}</h2>
                   <p className="mt-3 max-w-2xl text-lg leading-8 text-[var(--muted)]">
                     {topic.description}

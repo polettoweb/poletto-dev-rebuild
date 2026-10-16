@@ -3,6 +3,8 @@ import { articles, type Article } from "./articles";
 export type Topic = {
   slug: string;
   title: string;
+  // Compact label for pills on article cards and lists.
+  shortTitle: string;
   description: string;
   articleSlugs: string[];
 };
@@ -11,6 +13,7 @@ export const topics: Topic[] = [
   {
     slug: "scaling-organisations",
     title: "Scaling Engineering Organisations",
+    shortTitle: "Scaling",
     description:
       "The organisational choices that help engineering teams stay fast as their scope grows.",
     articleSlugs: [
@@ -25,6 +28,7 @@ export const topics: Topic[] = [
   {
     slug: "delivery-and-engineering-excellence",
     title: "Delivery & Engineering Excellence",
+    shortTitle: "Delivery",
     description:
       "Making delivery predictable without losing judgment, focus, or morale.",
     articleSlugs: [
@@ -38,6 +42,7 @@ export const topics: Topic[] = [
   {
     slug: "people-and-team-culture",
     title: "People & Team Culture",
+    shortTitle: "Team culture",
     description:
       "The human signals behind healthy teams and sustainable leadership.",
     articleSlugs: [
@@ -57,6 +62,7 @@ export const topics: Topic[] = [
   {
     slug: "ai-and-the-future-of-engineering-work",
     title: "AI & the Future of Engineering Work",
+    shortTitle: "AI & work",
     description:
       "Leading people through AI-driven change while protecting engineering craft.",
     articleSlugs: [
@@ -69,6 +75,7 @@ export const topics: Topic[] = [
   {
     slug: "career-and-growth",
     title: "Career & Growth",
+    shortTitle: "Career",
     description:
       "Navigating your own path - not just the team's - through the IC/management fork and beyond.",
     articleSlugs: [
@@ -86,4 +93,10 @@ export const topics: Topic[] = [
 
 export function getArticlesForTopic(topic: Topic): Article[] {
   return articles.filter((article) => topic.articleSlugs.includes(article.slug));
+}
+
+// The first topic that lists an article is its primary topic: the one shown
+// on its card. Order in `topics` therefore doubles as tie-break priority.
+export function getPrimaryTopic(slug: string): Topic | undefined {
+  return topics.find((topic) => topic.articleSlugs.includes(slug));
 }

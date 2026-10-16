@@ -4,16 +4,18 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { PageContainer } from "@/components/layout/PageContainer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { featuredArticle, latestArticles } from "@/content/articles";
-import { ArticleCard } from "@/components/ui/ArticleCard";
+import { ArticleCard, FeaturedArticleCard } from "@/components/ui/ArticleCard";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { TopicTag } from "@/components/ui/TopicTag";
 
 const topics = [
-  { href: "/topics", label: "Scaling organisations" },
-  { href: "/topics", label: "Delivery & metrics" },
-  { href: "/topics", label: "Team culture" },
-  { href: "/topics", label: "AI & change" },
+  { href: "/topics#scaling-organisations", label: "Scaling organisations" },
+  { href: "/topics#delivery-and-engineering-excellence", label: "Delivery & metrics" },
+  { href: "/topics#people-and-team-culture", label: "Team culture" },
+  { href: "/topics#ai-and-the-future-of-engineering-work", label: "AI & change" },
 ];
+
+const homepageArticleCount = 4;
 
 export default function Home() {
   return (
@@ -41,11 +43,11 @@ export default function Home() {
           </div>
         </PageContainer>
 
-        <section className="border-y border-[var(--line)] bg-[var(--accent)]">
+        <section className="border-y border-[var(--line)] bg-[var(--tint)]">
           <PageContainer className="py-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="eyebrow">Topics</p>
-              <div className="flex flex-wrap gap-x-5 gap-y-3">
+              <div className="flex flex-wrap gap-2">
                 {topics.map((topic) => (
                   <TopicTag key={topic.label} href={topic.href}>
                     {topic.label}
@@ -68,24 +70,12 @@ export default function Home() {
               View all →
             </Link>
           </div>
-          <div className="mt-10 grid gap-12 md:grid-cols-2">
-            <ArticleCard
-              href={`/blog/${featuredArticle.slug}`}
-              title={featuredArticle.title}
-              excerpt={featuredArticle.excerpt}
-              date={featuredArticle.date}
-              readTime={featuredArticle.readTime}
-              featured
-            />
-            {latestArticles.map((article) => (
-              <ArticleCard
-                key={article.slug}
-                href={article.hasContent ? `/blog/${article.slug}` : undefined}
-                title={article.title}
-                excerpt={article.excerpt}
-                date={article.date}
-                readTime={article.readTime}
-              />
+          <div className="mt-10">
+            <FeaturedArticleCard article={featuredArticle} />
+          </div>
+          <div className="mt-14 grid gap-x-12 gap-y-12 md:grid-cols-2">
+            {latestArticles.slice(0, homepageArticleCount).map((article) => (
+              <ArticleCard key={article.slug} article={article} />
             ))}
           </div>
           <Link href="/blog" className="link-arrow mt-10 inline-block text-sm sm:hidden">
