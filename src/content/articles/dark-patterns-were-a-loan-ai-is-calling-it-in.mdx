@@ -1,0 +1,73 @@
+For years, the cheapest growth lever in software wasn't a feature. It was friction.
+
+Make cancelling take five screens. Put single sign-on behind the enterprise tier. Charge a full seat for someone who only reads a dashboard once a month. Move the feature everyone relies on from the free plan to the paid one, and call it a "new plan structure." Let customers export their data, technically, as long as they ask support nicely.
+
+None of this was ever a secret. It worked because leaving was expensive. Not in money, but in effort: evaluating alternatives, migrating data, retraining people, building the thing yourself. Customers stayed not because they were happy, but because unhappy was still cheaper than leaving.
+
+That was the deal. And AI just changed the price of the other side of it.
+
+## Friction was rent, charged on switching cost
+
+It's worth being precise about what a dark pattern actually monetises. It doesn't monetise value. It monetises the gap between how annoyed a customer is and how much it would cost them to leave.
+
+As long as that gap was wide, the rent was safe. A team frustrated with a tool would grumble, file it under "we should really replace this," and then never do it, because replacing it meant a quarter of engineering time nobody would ever approve.
+
+So pricing teams learned, quite rationally, to price right up to the edge of that gap. Not "what is this worth to the customer?" but "how much can we take before leaving becomes worth the effort?"
+
+The problem with pricing against switching cost is that you don't control switching cost. Your customers' tools do.
+
+## The build side of "build or buy" just collapsed
+
+Most products are bought for a fraction of what they do. A team pays for a whole platform to use one workflow, one integration, one report. The other ninety percent is what justifies the price on the sales deck, not what the customer actually uses.
+
+That narrow slice used to be protected by the same rule as everything else: building even a small internal tool meant scoping, staffing and maintaining it. Now someone on the team can describe the slice to a coding agent on a Friday afternoon and have something working by Monday. It won't be as polished. It won't have the other ninety percent. It doesn't need to.
+
+It only needs to be good enough, and not hostile.
+
+That second part matters more than vendors think. A homegrown tool doesn't need to beat your product on features. It needs to beat it on how it makes people feel when they use it. And a tool that never upsells, never hides the export button and never locks a basic feature behind a sales call wins that comparison easily, even when it's a little rough.
+
+## Who leaves first
+
+The customers most likely to rebuild you are not the ones you'd guess.
+
+They're the technical ones. The teams with engineers who notice the pricing tricks, who have the skills to replace you, and who now have tools that make replacing you a weekend project instead of a roadmap item. In a lot of products, those are also the customers who championed you internally in the first place.
+
+And they don't leave loudly. There's no angry support ticket, no negotiation, no "we're evaluating a competitor" email that gives your account team a chance to respond. The renewal just doesn't happen, and the churn reason, if anyone records one, says "built in-house." That line is easy to dismiss as a one-off. It's worth reading as a trend.
+
+## The honest caveat: building it yourself is often a trap
+
+I want to be fair to the vendors here, because the buyer's side of this is not as rosy as it sounds.
+
+A vibe-coded replacement is cheap to build and expensive to own. Somebody has to patch it, secure it, keep it working when the API it depends on changes, and remember how it works when the person who built it moves on. The first version took a weekend. The fifth year will not. [Code an agent wrote fast still needs someone to verify it](/blog/the-agent-wrote-the-code-leading-it-was-the-job/), and that someone is usually not budgeted for.
+
+If you lead an engineering team, the right question isn't "can we build this?" Almost always, now, you can. It's "do we want to own this for the next three years?" For anything core to your business, or anything handling sensitive data, the answer is often no, and paying a vendor is the cheaper choice even when the vendor is annoying.
+
+But here's why that's cold comfort for vendors: it doesn't matter whether the rebuild is a good idea. It matters that it's a credible one. A customer who can build a rough replacement in a few days negotiates differently, tolerates less, and stops accepting the price increase with a shrug. The threat alone reprices you. And some of those rough replacements will turn out to be good enough, forever.
+
+## What I'd tell anyone building a product right now
+
+If you build or lead a product, the lesson isn't "AI will kill SaaS." It won't. The lesson is narrower and more uncomfortable: every part of your revenue that comes from friction instead of value just became fragile.
+
+So audit for it, the same way you'd audit for tech debt:
+
+- **Ask the free-exit question.** If leaving your product cost nothing tomorrow, which customers would stay? The revenue from the ones who wouldn't is rent, not loyalty, and it's the part most at risk.
+- **Treat the exits as table stakes.** Easy cancellation, full data export, a working API and SSO aren't premium features anymore. They're the things that make a customer feel safe staying. Hostage-taking now reads as a challenge to build around you.
+- **Price on the value of the slice.** If most customers use one narrow workflow, make that workflow cheap and obviously worth it. The slice is exactly what's now easiest to rebuild.
+- **Listen for "we could just build this."** When a customer says it in a sales call, they aren't bluffing anymore. Treat it as a signal about your pricing, not a negotiating tactic.
+- **Make the switch cost honest.** The only switching cost that survives is the one made of real value: workflows people like, data that's genuinely better in your product, support that actually helps. Everything else is getting cheaper to walk away from by the month.
+
+## The bottom line
+
+Dark patterns were always a loan against customer goodwill, secured by the cost of leaving. As long as leaving was expensive, the loan never got called.
+
+AI is calling it in. Not because every customer will rebuild you, but because enough of them now can, and the rest know it.
+
+- Dark patterns don't monetise value. They monetise the cost of leaving.
+- That cost is collapsing for the narrow slice of your product most customers actually use.
+- The first customers to leave are the technical ones, and they leave quietly.
+- Building it yourself is often a bad deal for the buyer. It's still a credible threat to the seller.
+- The only durable moat left is a product people would choose again if leaving were free.
+
+### Your next step
+
+Pull last year's churn reasons and search for "in-house", "built our own" or "internal tool." Then open your pricing page and find the one thing on it that exists to make leaving harder rather than staying better. That's the line your most capable customers are already reading, and some of them have already opened their editor.

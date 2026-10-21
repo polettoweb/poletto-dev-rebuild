@@ -66,6 +66,7 @@ export const topics: Topic[] = [
     description:
       "Leading people through AI-driven change while protecting engineering craft.",
     articleSlugs: [
+      "dark-patterns-were-a-loan-ai-is-calling-it-in",
       "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",
       "ai-is-breaking-the-junior-engineer-pipeline",
       "the-agent-wrote-the-code-leading-it-was-the-job",

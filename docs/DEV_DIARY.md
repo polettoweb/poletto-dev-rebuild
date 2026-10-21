@@ -1582,6 +1582,33 @@ test that pins the scaling list.
 **Open questions / next steps:** LinkedIn distribution for this piece, plus
 a separate job post for an open role, spaced a few days apart.
 
+## New article: dark patterns were a loan
+
+**What I worked on:** Publishing "Dark Patterns Were a Loan. AI Is Calling
+It In.", an essay on how pricing tricks and paywalls that charged rent on
+switching cost become fragile once customers can vibe code the slice of a
+product they actually use.
+
+**What the agent did:** Read the latest posts for voice and conventions,
+then asked me four questions before drafting: angle, personal story,
+naming companies, and how strong the caveat should be. It drafted from
+those answers and wired the post into `articles.ts` and the AI topic.
+
+**What I changed or overrode, and why:** Chose a warning to builders over
+a buyer's how-to, no personal anecdote rather than an invented one, and
+recognisable patterns (cancel mazes, the SSO tax, paywalled exports)
+instead of named companies, to avoid factual and legal risk. Asked for a
+strong caveat that building it yourself is often a trap for the buyer, so
+the piece doesn't read as cheerleading for vibe coding.
+
+**Trade-offs / decisions made:** Listed only under AI & the Future of
+Engineering Work, at the top. Didn't take the featured slot from the
+retraining essay. No statistics, since none could be sourced without
+naming companies.
+
+**Open questions / next steps:** LinkedIn post linking the article, planned
+for Tuesday 27 October.
+
 <!--
 Next entry template — copy this below the divider for each new session:
 

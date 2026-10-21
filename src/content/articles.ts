@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import AccessibleEngineeringManagerBookARemarkableRead from "./articles/accessible-engineering-manager-book-a-remarkable-read.mdx";
 import AiIsBreakingTheJuniorEngineerPipeline from "./articles/ai-is-breaking-the-junior-engineer-pipeline.mdx";
 import BuildingATeamFromZeroIncubateThenSplit from "./articles/building-a-team-from-zero-incubate-then-split.mdx";
+import DarkPatternsWereALoanAiIsCallingItIn from "./articles/dark-patterns-were-a-loan-ai-is-calling-it-in.mdx";
 import DeliveryOperationsAsASystem from "./articles/delivery-operations-as-a-system.mdx";
 import DesigningAnEffectiveOnboardingPlanForNewEngineers from "./articles/designing-an-effective-onboarding-plan-for-new-engineers.mdx";
 import EngineeringLeadershipBeyondDeliveryWhyPsychologicalSafetyMatters from "./articles/engineering-leadership-beyond-delivery-why-psychological-safety-matters.mdx";
@@ -46,6 +47,7 @@ export const contentBySlug: Record<string, ComponentType> = {
   "accessible-engineering-manager-book-a-remarkable-read": AccessibleEngineeringManagerBookARemarkableRead,
   "ai-is-breaking-the-junior-engineer-pipeline": AiIsBreakingTheJuniorEngineerPipeline,
   "building-a-team-from-zero-incubate-then-split": BuildingATeamFromZeroIncubateThenSplit,
+  "dark-patterns-were-a-loan-ai-is-calling-it-in": DarkPatternsWereALoanAiIsCallingItIn,
   "delivery-operations-as-a-system": DeliveryOperationsAsASystem,
   "designing-an-effective-onboarding-plan-for-new-engineers": DesigningAnEffectiveOnboardingPlanForNewEngineers,
   "engineering-leadership-beyond-delivery-why-psychological-safety-matters": EngineeringLeadershipBeyondDeliveryWhyPsychologicalSafetyMatters,
@@ -74,6 +76,15 @@ export const contentBySlug: Record<string, ComponentType> = {
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "dark-patterns-were-a-loan-ai-is-calling-it-in",
+    title: "Dark Patterns Were a Loan. AI Is Calling It In.",
+    excerpt:
+      "Cancel mazes, the SSO tax and paywalled exports all charged rent on the cost of leaving. Now that customers can vibe code the slice they actually use, that rent is coming due.",
+    date: "2026-10-21",
+    readTime: "6 min read",
+    tags: ["ai", "leadership", "strategy"],
+  },
   {
     slug: "building-a-team-from-zero-incubate-then-split",
     title: "Building a Team From Zero: Incubate, Then Split",
