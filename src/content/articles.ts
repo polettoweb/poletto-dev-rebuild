@@ -13,6 +13,7 @@ import EngineeringStrategyIsMostlySayingNo from "./articles/engineering-strategy
 import FromEngineerToEngineeringManager from "./articles/from-engineer-to-engineering-manager.mdx";
 import HowIGrowAnEngineerIntoAManager from "./articles/how-i-grow-an-engineer-into-a-manager.mdx";
 import IveRetrainedMyCareerTwiceWhatITellEngineersWorriedAboutAi from "./articles/ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai.mdx";
+import LearningAiAsAnEngineeringManager from "./articles/learning-ai-as-an-engineering-manager.mdx";
 import LeadingInTheFog from "./articles/leading-in-the-fog.mdx";
 import ManagingThroughAiFatigueKeepingDevTeamsGroundedInTheAgeOfAutomation from "./articles/managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation.mdx";
 import MeasuringVelocityWithoutKillingMorale from "./articles/measuring-velocity-without-killing-morale.mdx";
@@ -58,6 +59,7 @@ export const contentBySlug: Record<string, ComponentType> = {
   "how-i-grow-an-engineer-into-a-manager": HowIGrowAnEngineerIntoAManager,
   "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai": IveRetrainedMyCareerTwiceWhatITellEngineersWorriedAboutAi,
   "leading-in-the-fog": LeadingInTheFog,
+  "learning-ai-as-an-engineering-manager": LearningAiAsAnEngineeringManager,
   "managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation": ManagingThroughAiFatigueKeepingDevTeamsGroundedInTheAgeOfAutomation,
   "measuring-velocity-without-killing-morale": MeasuringVelocityWithoutKillingMorale,
   "proximity-isnt-bonding-what-actually-connects-a-remote-team": ProximityIsntBondingWhatActuallyConnectsARemoteTeam,
@@ -76,6 +78,15 @@ export const contentBySlug: Record<string, ComponentType> = {
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "learning-ai-as-an-engineering-manager",
+    title: "Learning AI as an Engineering Manager: Only What You Need, While You Work",
+    excerpt:
+      "No protected time, no need to learn everything. How I learn AI one real problem at a time - and the gap document that taught me AI is only as good as its sources.",
+    date: "2026-10-27",
+    readTime: "6 min read",
+    tags: ["ai", "career", "leadership"],
+  },
   {
     slug: "dark-patterns-were-a-loan-ai-is-calling-it-in",
     title: "Dark Patterns Were a Loan. AI Is Calling It In.",
