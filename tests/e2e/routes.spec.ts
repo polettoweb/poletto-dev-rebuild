@@ -121,3 +121,23 @@ test("sitemap contains public pages and verified article URLs", async ({ request
     "https://poletto.dev/blog/engineering-strategy-is-mostly-saying-no",
   );
 });
+
+test("speaking page lists talks and a way to invite Marco", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Speaking" }).click();
+
+  await expect(page).toHaveURL(/\/speaking\/$/);
+  await expect(page.getByRole("heading", { level: 1, name: "Field notes, told on stage." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: /Incubate, Then Split/ })).toBeVisible();
+  await expect(page.locator('a[href^="mailto:marco@poletto.dev"]').last()).toBeVisible();
+});
+
+test("start here leads with field notes from the job", async ({ page }) => {
+  await page.goto("/start-here/");
+
+  const firstSection = page.locator("main section").first();
+  await expect(firstSection.getByRole("heading", { name: "Field notes from the job" })).toBeVisible();
+  await expect(
+    firstSection.getByRole("link", { name: /Driving High-Speed Trains/ }),
+  ).toBeVisible();
+});

@@ -6,6 +6,7 @@ const navigation = [
   { href: "/start-here", label: "Start here" },
   { href: "/blog", label: "Blog" },
   { href: "/topics", label: "Topics" },
+  { href: "/speaking", label: "Speaking" },
   { href: "/about", label: "About" },
   { href: "/newsletter", label: "Newsletter" },
   { href: "/contact", label: "Contact" },

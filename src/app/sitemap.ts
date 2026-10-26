@@ -7,7 +7,7 @@ const siteUrl = "https://poletto.dev";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["/", "/about/", "/blog/", "/contact/", "/newsletter/", "/start-here/", "/topics/"];
+  const pages = ["/", "/about/", "/blog/", "/contact/", "/newsletter/", "/speaking/", "/start-here/", "/topics/"];
   const articlePages = getPublishedArticles()
     .map((article) => `/blog/${article.slug}/`);
 

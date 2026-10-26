@@ -29,7 +29,16 @@ export const metadata: Metadata = {
 
 const paths = [
   {
-    title: "Start with the big idea",
+    title: "Field notes from the job",
+    blurb:
+      "What I've learned owning incidents and building a team from zero, told from inside the work.",
+    slugs: [
+      "what-driving-high-speed-trains-taught-me-about-incident-response",
+      "building-a-team-from-zero-incubate-then-split",
+    ],
+  },
+  {
+    title: "The big idea",
     blurb:
       "A practical argument for treating strategy as a discipline of deliberate trade-offs.",
     slugs: ["engineering-strategy-is-mostly-saying-no"],
