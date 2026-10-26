@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { PageContainer } from "@/components/layout/PageContainer";
@@ -199,7 +200,26 @@ export default function SpeakingPage() {
             <h2 id="bio-heading" className="text-3xl font-semibold tracking-tight">
               Speaker bio
             </h2>
-            <p className="mt-4 text-(--muted)">Free to copy into your programme.</p>
+            <p className="mt-4 text-(--muted)">
+              Free to copy into your programme, along with the headshot.
+            </p>
+
+            <figure className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-6">
+              <Image
+                src="/me.jpg"
+                alt="Marco Poletto, smiling, with a dark beard, outdoors among trees"
+                width={800}
+                height={800}
+                unoptimized
+                className="h-40 w-40 rounded-sm object-cover sm:h-48 sm:w-48"
+              />
+              <figcaption className="text-sm text-(--muted)">
+                Headshot, 800 × 800 px.{" "}
+                <a href="/me.jpg" download="marco-poletto-headshot.jpg" className="link-arrow">
+                  Download →
+                </a>
+              </figcaption>
+            </figure>
 
             <h3 className="mt-8 text-lg font-semibold">Short</h3>
             <p className="mt-3 rounded-sm bg-(--tint) p-5 leading-7">

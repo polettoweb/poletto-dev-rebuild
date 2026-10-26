@@ -42,10 +42,9 @@ export default function ContactPage() {
               Let&apos;s compare notes.
             </h1>
             <p className="mt-7 max-w-2xl text-xl leading-8 text-(--muted) sm:text-2xl">
-              Whether you&apos;re hiring for a Director or Head of Engineering role,
-              want to discuss scaling an engineering organisation, would like to
-              invite me to speak, or just want to say hello, I&apos;d love to hear
-              from you.
+              Whether you want to talk about engineering leadership, compare
+              notes on scaling teams, invite me to speak, or explore working
+              together, I&apos;d love to hear from you.
             </p>
 
             <section className="mt-14 border-t border-(--line) pt-8" aria-labelledby="contact-methods-heading">

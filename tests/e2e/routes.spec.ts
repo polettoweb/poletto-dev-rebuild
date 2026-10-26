@@ -141,3 +141,13 @@ test("start here leads with field notes from the job", async ({ page }) => {
     firstSection.getByRole("link", { name: /Driving High-Speed Trains/ }),
   ).toBeVisible();
 });
+
+test("speaking page offers a downloadable headshot", async ({ page }) => {
+  await page.goto("/speaking/");
+
+  await expect(page.getByRole("img", { name: /Marco Poletto/ })).toBeVisible();
+  const download = page.getByRole("link", { name: "Download →" });
+  await expect(download).toHaveAttribute("href", "/me.jpg");
+  const response = await page.request.get("/me.jpg");
+  expect(response.ok()).toBe(true);
+});
