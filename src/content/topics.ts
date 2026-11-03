@@ -46,6 +46,7 @@ export const topics: Topic[] = [
     description:
       "The human signals behind healthy teams and sustainable leadership.",
     articleSlugs: [
+      "burnout-from-the-inside-what-it-taught-me-as-a-manager",
       "ai-is-breaking-the-junior-engineer-pipeline",
       "signs-you-promoted-the-wrong-person-into-management",
       "how-i-grow-an-engineer-into-a-manager",
@@ -81,6 +82,7 @@ export const topics: Topic[] = [
     description:
       "Navigating your own path - not just the team's - through the IC/management fork and beyond.",
     articleSlugs: [
+      "burnout-from-the-inside-what-it-taught-me-as-a-manager",
       "learning-ai-as-an-engineering-manager",
       "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",
       "engineering-management-in-the-netherlands-should-you-stay-technical-or-embrace-leadership",

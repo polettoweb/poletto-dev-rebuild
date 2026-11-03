@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 
 import AccessibleEngineeringManagerBookARemarkableRead from "./articles/accessible-engineering-manager-book-a-remarkable-read.mdx";
 import AiIsBreakingTheJuniorEngineerPipeline from "./articles/ai-is-breaking-the-junior-engineer-pipeline.mdx";
+import BurnoutFromTheInsideWhatItTaughtMeAsAManager from "./articles/burnout-from-the-inside-what-it-taught-me-as-a-manager.mdx";
 import BuildingATeamFromZeroIncubateThenSplit from "./articles/building-a-team-from-zero-incubate-then-split.mdx";
 import DarkPatternsWereALoanAiIsCallingItIn from "./articles/dark-patterns-were-a-loan-ai-is-calling-it-in.mdx";
 import DeliveryOperationsAsASystem from "./articles/delivery-operations-as-a-system.mdx";
@@ -48,6 +49,7 @@ export const contentBySlug: Record<string, ComponentType> = {
   "accessible-engineering-manager-book-a-remarkable-read": AccessibleEngineeringManagerBookARemarkableRead,
   "ai-is-breaking-the-junior-engineer-pipeline": AiIsBreakingTheJuniorEngineerPipeline,
   "building-a-team-from-zero-incubate-then-split": BuildingATeamFromZeroIncubateThenSplit,
+  "burnout-from-the-inside-what-it-taught-me-as-a-manager": BurnoutFromTheInsideWhatItTaughtMeAsAManager,
   "dark-patterns-were-a-loan-ai-is-calling-it-in": DarkPatternsWereALoanAiIsCallingItIn,
   "delivery-operations-as-a-system": DeliveryOperationsAsASystem,
   "designing-an-effective-onboarding-plan-for-new-engineers": DesigningAnEffectiveOnboardingPlanForNewEngineers,
@@ -78,6 +80,15 @@ export const contentBySlug: Record<string, ComponentType> = {
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "burnout-from-the-inside-what-it-taught-me-as-a-manager",
+    title: "Burnout From the Inside: What It Taught Me as a Manager",
+    excerpt:
+      "A stand-up I couldn't follow, a voice telling me to stop, and the mistake of thinking any job with the same requirements would do. What burnout changed in how I manage people.",
+    date: "2026-11-03",
+    readTime: "6 min read",
+    tags: ["leadership", "career", "ai"],
+  },
   {
     slug: "learning-ai-as-an-engineering-manager",
     title: "Learning AI as an Engineering Manager: Only What You Need, While You Work",
