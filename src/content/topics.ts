@@ -82,6 +82,7 @@ export const topics: Topic[] = [
     description:
       "Navigating your own path - not just the team's - through the IC/management fork and beyond.",
     articleSlugs: [
+      "a-degree-in-fragments-ten-years-of-studying-alongside-the-job",
       "burnout-from-the-inside-what-it-taught-me-as-a-manager",
       "learning-ai-as-an-engineering-manager",
       "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",

@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import ADegreeInFragmentsTenYearsOfStudyingAlongsideTheJob from "./articles/a-degree-in-fragments-ten-years-of-studying-alongside-the-job.mdx";
 import AccessibleEngineeringManagerBookARemarkableRead from "./articles/accessible-engineering-manager-book-a-remarkable-read.mdx";
 import AiIsBreakingTheJuniorEngineerPipeline from "./articles/ai-is-breaking-the-junior-engineer-pipeline.mdx";
 import BurnoutFromTheInsideWhatItTaughtMeAsAManager from "./articles/burnout-from-the-inside-what-it-taught-me-as-a-manager.mdx";
@@ -46,6 +47,7 @@ export type Article = {
 // hand-set per entry, so metadata can never claim a body that doesn't exist
 // (or hide one that does).
 export const contentBySlug: Record<string, ComponentType> = {
+  "a-degree-in-fragments-ten-years-of-studying-alongside-the-job": ADegreeInFragmentsTenYearsOfStudyingAlongsideTheJob,
   "accessible-engineering-manager-book-a-remarkable-read": AccessibleEngineeringManagerBookARemarkableRead,
   "ai-is-breaking-the-junior-engineer-pipeline": AiIsBreakingTheJuniorEngineerPipeline,
   "building-a-team-from-zero-incubate-then-split": BuildingATeamFromZeroIncubateThenSplit,
@@ -80,6 +82,15 @@ export const contentBySlug: Record<string, ComponentType> = {
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "a-degree-in-fragments-ten-years-of-studying-alongside-the-job",
+    title: "A Degree in Fragments: Ten Years of Studying Alongside the Job",
+    excerpt:
+      "A computer science degree that should have taken six years took ten: a four-year stop, two detours, a burnout and a newborn. What finishing it taught me, and how I support engineers who study.",
+    date: "2026-11-09",
+    readTime: "6 min read",
+    tags: ["career", "learning", "leadership"],
+  },
   {
     slug: "burnout-from-the-inside-what-it-taught-me-as-a-manager",
     title: "Burnout From the Inside: What It Taught Me as a Manager",
