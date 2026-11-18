@@ -1,0 +1,52 @@
+I'm all in on AI in engineering. I use it every day, I rebuilt this site with an agent, and I don't think any team should be writing code the way it did three years ago.
+
+But there's a sentence I keep hearing that worries me: "we'll move faster and the quality will take care of itself." It won't. AI doesn't remove quality from software, and it doesn't add it either. It multiplies whatever process you already have. A team with good habits gets better faster. A team with weak habits gets worse faster, and at first it looks exactly like progress.
+
+There are two ways to bring AI into an engineering organisation. You can treat it as a throughput machine and treat people as the bottleneck to route around. Or you can treat speed as something you decide, together with the people doing the work, and build the guardrails that make that speed safe. This piece is about the second way.
+
+## Where quality leaks when output goes up
+
+When I [rebuilt this site with an agent](/blog/the-agent-wrote-the-code-leading-it-was-the-job/), quality was a conversation between me and one tool. In a team it's a system, and the system leaks in predictable places.
+
+- **Reviews become rubber stamps.** When the number of pull requests doubles and the number of reviewers doesn't, something gives. It's rarely the deadline. It's the depth of the review. I wrote about the cost of this in [managing through AI fatigue](/blog/managing-through-ai-fatigue-keeping-dev-teams-grounded-in-the-age-of-automation/): reading code you didn't write is harder than writing it, and AI produces a lot of code nobody wrote.
+- **Ownership blurs.** "The agent wrote it" is a sentence that should never end a discussion about a bug. Every change needs a human who understands it well enough to defend it.
+- **The tests agree with the code because they came from the same place.** If the same agent writes the feature and its tests in one go, the tests confirm what the code does, not what it should do. They pass, and they protect nothing.
+- **Incidents get harder to explain.** When nobody holds a mental model of a piece of code, the post-mortem turns into archaeology.
+
+None of these are new problems. AI just makes each one cheaper to create and easier to miss.
+
+## Speed is a setting, not a side effect
+
+Before tech, I spent nine years driving high-speed trains. Nobody on the railway thinks of speed as "as fast as possible". The line tells you the speed. Some sections are built for full speed, some have restrictions, and the reason is always the same: what happens if something goes wrong there.
+
+Engineering teams should work the same way. A payments flow, an authentication service and an internal admin tool should not run under the same AI rules. On the admin tool, let the agent go far with light review. On payments, AI can still help, but a human designs the change, reviews every line and owns the tests.
+
+The important part is that the setting is explicit. Decide it per area, write it down, and decide it with the team rather than for them. Engineers usually know better than their managers where the dangerous code lives.
+
+## Guardrails that are structural, not heroic
+
+A guardrail that depends on people being careful under pressure is not a guardrail. It's a hope. The guardrails that work are the ones built into the process, so the safe path is also the easy one.
+
+- **A definition of done that names AI work.** Done means a human owner has read the change, can explain it, and has checked the tests against the intended behaviour, not just the code.
+- **Tests that come from intent.** For risky areas, write or at least specify the tests before the agent writes the implementation. Then the tests check the code, instead of describing it.
+- **CI gates nobody can skip.** Type checks, test coverage on the paths that matter, security scanning. If a gate can be bypassed "just this once", it will be, at the worst moment.
+- **Smaller changes.** An agent can produce a 2,000-line pull request in minutes. Nobody can review one properly. Keep changes small enough for a human to hold in their head.
+- **Post-mortems that ask two questions.** What did the AI do, and what did the human check? Not to blame anyone, but because that's where your process has gaps. The same blameless rules apply as in [any good post-mortem](/blog/when-a-deployment-breaks-leading-a-blameless-post-mortem/).
+
+## The human part
+
+This is where the two ways of adopting AI really split.
+
+If you see guardrails as a way for managers to police engineers, you'll get compliance at best and quiet workarounds at worst. If you see them as the thing that lets the team trust its own speed, you'll get people who improve them.
+
+So involve the team. Let engineers decide where the agent can go fast and where it can't. Make it normal to say "I don't understand this code well enough to approve it", and treat that as a strength, not a delay. Measure what matters (incidents, rework, time to recover) instead of lines or pull requests shipped. And protect the time people need to actually review, because that time is where quality lives.
+
+The goal isn't to slow AI down. It's to make speed something the team chose, rather than something that happened to them.
+
+## The bottom line
+
+AI made writing code cheap. Understanding code, owning it and keeping it safe is still expensive, and it still takes people. The companies that do well with AI won't be the ones that remove humans from the loop. They'll be the ones that decide, area by area, how much speed they can afford, and give their people the guardrails to deliver it with confidence.
+
+### Your next step
+
+List the three areas of your system where a mistake would hurt most. Then write down how your team's AI rules for those areas differ from the rules for everything else. If the honest answer is "they don't", that's your first conversation with the team, and it's a better use of an hour than another tool demo.

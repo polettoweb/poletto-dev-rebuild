@@ -32,6 +32,7 @@ export const topics: Topic[] = [
     description:
       "Making delivery predictable without losing judgment, focus, or morale.",
     articleSlugs: [
+      "ai-made-code-cheap-quality-is-still-expensive",
       "what-driving-high-speed-trains-taught-me-about-incident-response",
       "engineering-strategy-is-mostly-saying-no",
       "delivery-operations-as-a-system",
@@ -46,6 +47,7 @@ export const topics: Topic[] = [
     description:
       "The human signals behind healthy teams and sustainable leadership.",
     articleSlugs: [
+      "when-everyone-can-build-someone-still-has-to-choose",
       "burnout-from-the-inside-what-it-taught-me-as-a-manager",
       "ai-is-breaking-the-junior-engineer-pipeline",
       "signs-you-promoted-the-wrong-person-into-management",
@@ -67,6 +69,8 @@ export const topics: Topic[] = [
     description:
       "Leading people through AI-driven change while protecting engineering craft.",
     articleSlugs: [
+      "when-everyone-can-build-someone-still-has-to-choose",
+      "ai-made-code-cheap-quality-is-still-expensive",
       "learning-ai-as-an-engineering-manager",
       "dark-patterns-were-a-loan-ai-is-calling-it-in",
       "ive-retrained-my-career-twice-what-i-tell-engineers-worried-about-ai",

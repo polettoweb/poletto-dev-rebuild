@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 
 import ADegreeInFragmentsTenYearsOfStudyingAlongsideTheJob from "./articles/a-degree-in-fragments-ten-years-of-studying-alongside-the-job.mdx";
 import AccessibleEngineeringManagerBookARemarkableRead from "./articles/accessible-engineering-manager-book-a-remarkable-read.mdx";
+import AiMadeCodeCheapQualityIsStillExpensive from "./articles/ai-made-code-cheap-quality-is-still-expensive.mdx";
 import AiIsBreakingTheJuniorEngineerPipeline from "./articles/ai-is-breaking-the-junior-engineer-pipeline.mdx";
 import BurnoutFromTheInsideWhatItTaughtMeAsAManager from "./articles/burnout-from-the-inside-what-it-taught-me-as-a-manager.mdx";
 import BuildingATeamFromZeroIncubateThenSplit from "./articles/building-a-team-from-zero-incubate-then-split.mdx";
@@ -30,6 +31,7 @@ import WhatChangesWhenYouStartManagingManagers from "./articles/what-changes-whe
 import WhatDrivingHighSpeedTrainsTaughtMeAboutIncidentResponse from "./articles/what-driving-high-speed-trains-taught-me-about-incident-response.mdx";
 import WhatILookForWhenHiringAndGrowingEngineeringManagers from "./articles/what-i-look-for-when-hiring-and-growing-engineering-managers.mdx";
 import WhenADeploymentBreaksLeadingABlamelessPostMortem from "./articles/when-a-deployment-breaks-leading-a-blameless-post-mortem.mdx";
+import WhenEveryoneCanBuildSomeoneStillHasToChoose from "./articles/when-everyone-can-build-someone-still-has-to-choose.mdx";
 
 export type Article = {
   slug: string;
@@ -50,6 +52,7 @@ export const contentBySlug: Record<string, ComponentType> = {
   "a-degree-in-fragments-ten-years-of-studying-alongside-the-job": ADegreeInFragmentsTenYearsOfStudyingAlongsideTheJob,
   "accessible-engineering-manager-book-a-remarkable-read": AccessibleEngineeringManagerBookARemarkableRead,
   "ai-is-breaking-the-junior-engineer-pipeline": AiIsBreakingTheJuniorEngineerPipeline,
+  "ai-made-code-cheap-quality-is-still-expensive": AiMadeCodeCheapQualityIsStillExpensive,
   "building-a-team-from-zero-incubate-then-split": BuildingATeamFromZeroIncubateThenSplit,
   "burnout-from-the-inside-what-it-taught-me-as-a-manager": BurnoutFromTheInsideWhatItTaughtMeAsAManager,
   "dark-patterns-were-a-loan-ai-is-calling-it-in": DarkPatternsWereALoanAiIsCallingItIn,
@@ -77,11 +80,30 @@ export const contentBySlug: Record<string, ComponentType> = {
   "what-driving-high-speed-trains-taught-me-about-incident-response": WhatDrivingHighSpeedTrainsTaughtMeAboutIncidentResponse,
   "what-i-look-for-when-hiring-and-growing-engineering-managers": WhatILookForWhenHiringAndGrowingEngineeringManagers,
   "when-a-deployment-breaks-leading-a-blameless-post-mortem": WhenADeploymentBreaksLeadingABlamelessPostMortem,
+  "when-everyone-can-build-someone-still-has-to-choose": WhenEveryoneCanBuildSomeoneStillHasToChoose,
 };
 
 type ArticleData = Omit<Article, "hasContent">;
 
 const articleData: ArticleData[] = [
+  {
+    slug: "when-everyone-can-build-someone-still-has-to-choose",
+    title: "When Everyone Can Build, Someone Still Has to Choose",
+    excerpt:
+      "AI is shortening the relay from PM to designer to engineer into one product builder. Building is no longer the hard part. Choosing is, and that changes what it means to lead a team.",
+    date: "2026-11-18",
+    readTime: "4 min read",
+    tags: ["ai", "leadership", "strategy"],
+  },
+  {
+    slug: "ai-made-code-cheap-quality-is-still-expensive",
+    title: "AI Made Code Cheap. Quality Is Still Expensive.",
+    excerpt:
+      "AI doesn't add quality or remove it. It multiplies the process you already have. Where quality leaks when output goes up, and the structural guardrails that make speed a team's choice.",
+    date: "2026-11-18",
+    readTime: "5 min read",
+    tags: ["ai", "delivery", "leadership"],
+  },
   {
     slug: "a-degree-in-fragments-ten-years-of-studying-alongside-the-job",
     title: "A Degree in Fragments: Ten Years of Studying Alongside the Job",
